@@ -10,6 +10,10 @@ import UIKit
 
 class NewsViewController: UIViewController {
 
+    @IBOutlet weak var webview: UIWebView!
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var publishDateBtnItem: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +25,9 @@ class NewsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func showPublishDate(sender: AnyObject) {
+        
+    }
 
     /*
     // MARK: - Navigation

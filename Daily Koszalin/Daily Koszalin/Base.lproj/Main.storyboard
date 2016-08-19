@@ -1,26 +1,148 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mfF-SH-SeE">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--News View Controller-->
+        <scene sceneID="81o-cG-MHp">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Daily_Koszalin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="idNewsViewController" id="IPv-oO-iH4" customClass="NewsViewController" customModule="Daily_Koszalin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="Fed-1a-gnQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="8yT-HS-M4W"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="H08-i3-M4S">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nie wybrano żadnej wiadomości" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IL6-2Q-v7P">
+                                <rect key="frame" x="177" y="290" width="246" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbN-qg-zlh">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Akk-Sc-pqE"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="94i-2P-Z0V"/>
+                                    <barButtonItem title="Data publikacji" id="4he-Xj-o7W">
+                                        <connections>
+                                            <action selector="showPublishDate:" destination="IPv-oO-iH4" id="ach-uT-w4C"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O7Z-yd-03J">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="topMargin" secondItem="O7Z-yd-03J" secondAttribute="top" id="8kd-3n-2Dd"/>
+                            <constraint firstItem="ZbN-qg-zlh" firstAttribute="top" secondItem="O7Z-yd-03J" secondAttribute="bottom" id="F8g-YK-Fap"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="O7Z-yd-03J" secondAttribute="bottom" constant="44" id="GaP-KT-zHY"/>
+                            <constraint firstAttribute="trailing" secondItem="ZbN-qg-zlh" secondAttribute="trailing" id="Lzk-09-9pE"/>
+                            <constraint firstAttribute="trailing" secondItem="ZbN-qg-zlh" secondAttribute="trailing" id="SiT-si-KLE"/>
+                            <constraint firstItem="IL6-2Q-v7P" firstAttribute="centerY" secondItem="H08-i3-M4S" secondAttribute="centerY" id="So7-Wu-YtP"/>
+                            <constraint firstItem="ZbN-qg-zlh" firstAttribute="top" secondItem="H08-i3-M4S" secondAttribute="topMargin" constant="556" id="aJf-gq-cWh"/>
+                            <constraint firstItem="ZbN-qg-zlh" firstAttribute="leading" secondItem="H08-i3-M4S" secondAttribute="leading" id="dNF-tY-kmk"/>
+                            <constraint firstItem="IL6-2Q-v7P" firstAttribute="centerX" secondItem="H08-i3-M4S" secondAttribute="centerX" id="gpi-Jc-S7f"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="ZbN-qg-zlh" secondAttribute="bottom" id="mul-fA-XLk"/>
+                            <constraint firstItem="ZbN-qg-zlh" firstAttribute="leading" secondItem="H08-i3-M4S" secondAttribute="leading" id="oGd-XL-MBS"/>
+                            <constraint firstAttribute="trailing" secondItem="O7Z-yd-03J" secondAttribute="trailing" id="wGM-d2-efB"/>
+                            <constraint firstItem="O7Z-yd-03J" firstAttribute="leading" secondItem="H08-i3-M4S" secondAttribute="leading" id="zYT-5w-fDd"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="F8g-YK-Fap"/>
+                                <exclude reference="SiT-si-KLE"/>
+                                <exclude reference="dNF-tY-kmk"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="publishDateBtnItem" destination="4he-Xj-o7W" id="hVo-R4-bKO"/>
+                        <outlet property="toolbar" destination="ZbN-qg-zlh" id="3nm-A7-xTy"/>
+                        <outlet property="webview" destination="O7Z-yd-03J" id="VNE-zz-dqB"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D4f-xr-UlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="316" y="378"/>
+        </scene>
+        <!--Wiadomości z Koszalina i okolic-->
+        <scene sceneID="kHw-k0-VTy">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="VOA-IS-Mlg" customClass="NewsTableViewController" customModule="Daily_Koszalin" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="tn7-MY-n8a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="newsCell" textLabel="3Sm-Sh-N2t" style="IBUITableViewCellStyleDefault" id="FMC-Nm-LaU">
+                                <rect key="frame" x="0.0" y="92" width="600" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FMC-Nm-LaU" id="hPS-mT-jWN">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Sm-Sh-N2t">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="79"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VOA-IS-Mlg" id="ZnY-yn-0MC"/>
+                            <outlet property="delegate" destination="VOA-IS-Mlg" id="8u0-4c-10u"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Wiadomości z Koszalina i okolic" id="Whr-f4-O3e"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WsB-FI-OUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1136" y="-283"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="k9t-ZL-iBz">
+            <objects>
+                <navigationController id="NTg-an-jtk" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A5h-4h-hum">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VOA-IS-Mlg" kind="relationship" relationship="rootViewController" id="TiD-xu-nFl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bFV-eO-3Hg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="316" y="-283"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="Kwy-xH-44p">
+            <objects>
+                <splitViewController id="mfF-SH-SeE" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="NTg-an-jtk" kind="relationship" relationship="masterViewController" id="lhk-lc-l0i"/>
+                        <segue destination="IPv-oO-iH4" kind="relationship" relationship="detailViewController" id="Imx-D9-khm"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hdr-9C-ocI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-504" y="48"/>
         </scene>
     </scenes>
 </document>
