@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3AB97A031D673DC000ADBF74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A021D673DC000ADBF74 /* AppDelegate.swift */; };
+		3AB97A081D673DC000ADBF74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB97A061D673DC000ADBF74 /* Main.storyboard */; };
+		3AB97A0A1D673DC000ADBF74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB97A091D673DC000ADBF74 /* Assets.xcassets */; };
+		3AB97A0D1D673DC000ADBF74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB97A0B1D673DC000ADBF74 /* LaunchScreen.storyboard */; };
+		3AB97A181D673DC000ADBF74 /* Daily_KoszalinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A171D673DC000ADBF74 /* Daily_KoszalinTests.swift */; };
+		3AB97A231D673DC000ADBF74 /* Daily_KoszalinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A221D673DC000ADBF74 /* Daily_KoszalinUITests.swift */; };
+		3AB97A311D673FF000ADBF74 /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A301D673FF000ADBF74 /* NewsTableViewController.swift */; };
+		3AB97A331D67402800ADBF74 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A321D67402800ADBF74 /* NewsViewController.swift */; };
+		3AB97A351D67405600ADBF74 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A341D67405600ADBF74 /* ContainerViewController.swift */; };
+		3AB97A371D67407A00ADBF74 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A361D67407A00ADBF74 /* XMLParser.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3AB97A141D673DC000ADBF74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AB979F71D673DC000ADBF74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AB979FE1D673DC000ADBF74;
+			remoteInfo = "Daily Koszalin";
+		};
+		3AB97A1F1D673DC000ADBF74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AB979F71D673DC000ADBF74 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AB979FE1D673DC000ADBF74;
+			remoteInfo = "Daily Koszalin";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3AB979FF1D673DC000ADBF74 /* Daily Koszalin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Koszalin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AB97A021D673DC000ADBF74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3AB97A071D673DC000ADBF74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3AB97A091D673DC000ADBF74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3AB97A0C1D673DC000ADBF74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3AB97A0E1D673DC000ADBF74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AB97A131D673DC000ADBF74 /* Daily KoszalinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Daily KoszalinTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AB97A171D673DC000ADBF74 /* Daily_KoszalinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily_KoszalinTests.swift; sourceTree = "<group>"; };
+		3AB97A191D673DC000ADBF74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AB97A1E1D673DC000ADBF74 /* Daily KoszalinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Daily KoszalinUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AB97A221D673DC000ADBF74 /* Daily_KoszalinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily_KoszalinUITests.swift; sourceTree = "<group>"; };
+		3AB97A241D673DC000ADBF74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AB97A301D673FF000ADBF74 /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
+		3AB97A321D67402800ADBF74 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		3AB97A341D67405600ADBF74 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		3AB97A361D67407A00ADBF74 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3AB979FC1D673DC000ADBF74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AB97A101D673DC000ADBF74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AB97A1B1D673DC000ADBF74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3AB979F61D673DC000ADBF74 = {
+			isa = PBXGroup;
+			children = (
+				3AB97A011D673DC000ADBF74 /* Daily Koszalin */,
+				3AB97A161D673DC000ADBF74 /* Daily KoszalinTests */,
+				3AB97A211D673DC000ADBF74 /* Daily KoszalinUITests */,
+				3AB97A001D673DC000ADBF74 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3AB97A001D673DC000ADBF74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3AB979FF1D673DC000ADBF74 /* Daily Koszalin.app */,
+				3AB97A131D673DC000ADBF74 /* Daily KoszalinTests.xctest */,
+				3AB97A1E1D673DC000ADBF74 /* Daily KoszalinUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3AB97A011D673DC000ADBF74 /* Daily Koszalin */ = {
+			isa = PBXGroup;
+			children = (
+				3AB97A021D673DC000ADBF74 /* AppDelegate.swift */,
+				3AB97A061D673DC000ADBF74 /* Main.storyboard */,
+				3AB97A091D673DC000ADBF74 /* Assets.xcassets */,
+				3AB97A0B1D673DC000ADBF74 /* LaunchScreen.storyboard */,
+				3AB97A0E1D673DC000ADBF74 /* Info.plist */,
+				3AB97A301D673FF000ADBF74 /* NewsTableViewController.swift */,
+				3AB97A321D67402800ADBF74 /* NewsViewController.swift */,
+				3AB97A341D67405600ADBF74 /* ContainerViewController.swift */,
+				3AB97A361D67407A00ADBF74 /* XMLParser.swift */,
+			);
+			path = "Daily Koszalin";
+			sourceTree = "<group>";
+		};
+		3AB97A161D673DC000ADBF74 /* Daily KoszalinTests */ = {
+			isa = PBXGroup;
+			children = (
+				3AB97A171D673DC000ADBF74 /* Daily_KoszalinTests.swift */,
+				3AB97A191D673DC000ADBF74 /* Info.plist */,
+			);
+			path = "Daily KoszalinTests";
+			sourceTree = "<group>";
+		};
+		3AB97A211D673DC000ADBF74 /* Daily KoszalinUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3AB97A221D673DC000ADBF74 /* Daily_KoszalinUITests.swift */,
+				3AB97A241D673DC000ADBF74 /* Info.plist */,
+			);
+			path = "Daily KoszalinUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3AB979FE1D673DC000ADBF74 /* Daily Koszalin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AB97A271D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily Koszalin" */;
+			buildPhases = (
+				3AB979FB1D673DC000ADBF74 /* Sources */,
+				3AB979FC1D673DC000ADBF74 /* Frameworks */,
+				3AB979FD1D673DC000ADBF74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Daily Koszalin";
+			productName = "Daily Koszalin";
+			productReference = 3AB979FF1D673DC000ADBF74 /* Daily Koszalin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3AB97A121D673DC000ADBF74 /* Daily KoszalinTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AB97A2A1D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily KoszalinTests" */;
+			buildPhases = (
+				3AB97A0F1D673DC000ADBF74 /* Sources */,
+				3AB97A101D673DC000ADBF74 /* Frameworks */,
+				3AB97A111D673DC000ADBF74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AB97A151D673DC000ADBF74 /* PBXTargetDependency */,
+			);
+			name = "Daily KoszalinTests";
+			productName = "Daily KoszalinTests";
+			productReference = 3AB97A131D673DC000ADBF74 /* Daily KoszalinTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3AB97A1D1D673DC000ADBF74 /* Daily KoszalinUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AB97A2D1D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily KoszalinUITests" */;
+			buildPhases = (
+				3AB97A1A1D673DC000ADBF74 /* Sources */,
+				3AB97A1B1D673DC000ADBF74 /* Frameworks */,
+				3AB97A1C1D673DC000ADBF74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AB97A201D673DC000ADBF74 /* PBXTargetDependency */,
+			);
+			name = "Daily KoszalinUITests";
+			productName = "Daily KoszalinUITests";
+			productReference = 3AB97A1E1D673DC000ADBF74 /* Daily KoszalinUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3AB979F71D673DC000ADBF74 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Adrian Kubała";
+				TargetAttributes = {
+					3AB979FE1D673DC000ADBF74 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					3AB97A121D673DC000ADBF74 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 3AB979FE1D673DC000ADBF74;
+					};
+					3AB97A1D1D673DC000ADBF74 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 3AB979FE1D673DC000ADBF74;
+					};
+				};
+			};
+			buildConfigurationList = 3AB979FA1D673DC000ADBF74 /* Build configuration list for PBXProject "Daily Koszalin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3AB979F61D673DC000ADBF74;
+			productRefGroup = 3AB97A001D673DC000ADBF74 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3AB979FE1D673DC000ADBF74 /* Daily Koszalin */,
+				3AB97A121D673DC000ADBF74 /* Daily KoszalinTests */,
+				3AB97A1D1D673DC000ADBF74 /* Daily KoszalinUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3AB979FD1D673DC000ADBF74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AB97A0D1D673DC000ADBF74 /* LaunchScreen.storyboard in Resources */,
+				3AB97A0A1D673DC000ADBF74 /* Assets.xcassets in Resources */,
+				3AB97A081D673DC000ADBF74 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AB97A111D673DC000ADBF74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AB97A1C1D673DC000ADBF74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3AB979FB1D673DC000ADBF74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AB97A331D67402800ADBF74 /* NewsViewController.swift in Sources */,
+				3AB97A311D673FF000ADBF74 /* NewsTableViewController.swift in Sources */,
+				3AB97A351D67405600ADBF74 /* ContainerViewController.swift in Sources */,
+				3AB97A031D673DC000ADBF74 /* AppDelegate.swift in Sources */,
+				3AB97A371D67407A00ADBF74 /* XMLParser.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AB97A0F1D673DC000ADBF74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AB97A181D673DC000ADBF74 /* Daily_KoszalinTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AB97A1A1D673DC000ADBF74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AB97A231D673DC000ADBF74 /* Daily_KoszalinUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3AB97A151D673DC000ADBF74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AB979FE1D673DC000ADBF74 /* Daily Koszalin */;
+			targetProxy = 3AB97A141D673DC000ADBF74 /* PBXContainerItemProxy */;
+		};
+		3AB97A201D673DC000ADBF74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AB979FE1D673DC000ADBF74 /* Daily Koszalin */;
+			targetProxy = 3AB97A1F1D673DC000ADBF74 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3AB97A061D673DC000ADBF74 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3AB97A071D673DC000ADBF74 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3AB97A0B1D673DC000ADBF74 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3AB97A0C1D673DC000ADBF74 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3AB97A251D673DC000ADBF74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3AB97A261D673DC000ADBF74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3AB97A281D673DC000ADBF74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Daily Koszalin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-Koszalin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3AB97A291D673DC000ADBF74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Daily Koszalin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-Koszalin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3AB97A2B1D673DC000ADBF74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Daily KoszalinTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-KoszalinTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daily Koszalin.app/Daily Koszalin";
+			};
+			name = Debug;
+		};
+		3AB97A2C1D673DC000ADBF74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Daily KoszalinTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-KoszalinTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Daily Koszalin.app/Daily Koszalin";
+			};
+			name = Release;
+		};
+		3AB97A2E1D673DC000ADBF74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Daily KoszalinUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-KoszalinUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Daily Koszalin";
+			};
+			name = Debug;
+		};
+		3AB97A2F1D673DC000ADBF74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Daily KoszalinUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-KoszalinUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Daily Koszalin";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3AB979FA1D673DC000ADBF74 /* Build configuration list for PBXProject "Daily Koszalin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AB97A251D673DC000ADBF74 /* Debug */,
+				3AB97A261D673DC000ADBF74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AB97A271D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily Koszalin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AB97A281D673DC000ADBF74 /* Debug */,
+				3AB97A291D673DC000ADBF74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3AB97A2A1D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily KoszalinTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AB97A2B1D673DC000ADBF74 /* Debug */,
+				3AB97A2C1D673DC000ADBF74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3AB97A2D1D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily KoszalinUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AB97A2E1D673DC000ADBF74 /* Debug */,
+				3AB97A2F1D673DC000ADBF74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3AB979F71D673DC000ADBF74 /* Project object */;
+}
