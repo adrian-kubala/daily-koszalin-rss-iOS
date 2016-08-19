@@ -45,7 +45,10 @@ class XMLParser: NSObject, NSXMLParserDelegate {
         if !foundCharacters.isEmpty {
             
             if elementName == "link"{
-                foundCharacters = (foundCharacters as NSString).substringFromIndex(3)
+                foundCharacters = (foundCharacters as String).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+                
+                foundCharacters = foundCharacters.stringByReplacingOccurrencesOfString("%0A", withString: "")
+                foundCharacters = foundCharacters.stringByReplacingOccurrencesOfString("%20", withString: "")
             }
             
             currentDataDictionary[currentElement] = foundCharacters
