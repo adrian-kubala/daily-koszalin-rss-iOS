@@ -20,7 +20,6 @@ xcuserdata/
 ## Other
 *.moved-aside
 *.xcuserstate
-UserInterfaceState.xcuserstate
 
 ## Obj-C/Swift specific
 *.hmap
