@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A54EB2E1D6C7D3D0005AD0E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3A54EB2D1D6C7D3D0005AD0E /* .gitignore */; };
 		3AB97A031D673DC000ADBF74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A021D673DC000ADBF74 /* AppDelegate.swift */; };
 		3AB97A081D673DC000ADBF74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB97A061D673DC000ADBF74 /* Main.storyboard */; };
 		3AB97A0A1D673DC000ADBF74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB97A091D673DC000ADBF74 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A54EB2D1D6C7D3D0005AD0E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = "Daily Koszalin/.gitignore"; sourceTree = "<group>"; };
 		3AB979FF1D673DC000ADBF74 /* Daily Koszalin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Koszalin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB97A021D673DC000ADBF74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AB97A071D673DC000ADBF74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		3AB979F61D673DC000ADBF74 = {
 			isa = PBXGroup;
 			children = (
+				3A54EB2D1D6C7D3D0005AD0E /* .gitignore */,
 				3AB97A011D673DC000ADBF74 /* Daily Koszalin */,
 				3AB97A161D673DC000ADBF74 /* Daily KoszalinTests */,
 				3AB97A211D673DC000ADBF74 /* Daily KoszalinUITests */,
@@ -238,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A54EB2E1D6C7D3D0005AD0E /* .gitignore in Resources */,
 				3AB97A0D1D673DC000ADBF74 /* LaunchScreen.storyboard in Resources */,
 				3AB97A0A1D673DC000ADBF74 /* Assets.xcassets in Resources */,
 				3AB97A081D673DC000ADBF74 /* Main.storyboard in Resources */,
@@ -496,6 +500,7 @@
 				3AB97A291D673DC000ADBF74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AB97A2A1D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily KoszalinTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +509,7 @@
 				3AB97A2C1D673DC000ADBF74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3AB97A2D1D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily KoszalinUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +518,7 @@
 				3AB97A2F1D673DC000ADBF74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
