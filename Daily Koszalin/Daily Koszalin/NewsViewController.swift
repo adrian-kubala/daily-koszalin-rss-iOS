@@ -14,6 +14,8 @@ class NewsViewController: UIViewController {
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var pubDateBtnItem: UIBarButtonItem!
     
+    var newsButtonitem : UIBarButtonItem!
+    
     var newsURL: NSURL?
     
     override func viewDidLoad() {
@@ -21,6 +23,52 @@ class NewsViewController: UIViewController {
 
         webview.hidden = true
         toolbar.hidden = true
+        
+        newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(NewsViewController.showNewsViewController))
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsViewController.handleFirstViewControllerDisplayModeChangeWithNotification(_:)), name: "PrimaryVCDisplayModeChangeNotification", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func handleFirstViewControllerDisplayModeChangeWithNotification(notification: NSNotification) {
+        let displayModeObject = notification.object as? NSNumber
+        let nextDisplayMode = displayModeObject?.integerValue
+        
+        if toolbar.items?.count == 3 {
+            toolbar.items?.removeAtIndex(0)
+        }
+        
+        if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue {
+            toolbar.items?.insert(newsButtonitem, atIndex: 0)
+        } else {
+            toolbar.items?.insert(splitViewController!.displayModeButtonItem(), atIndex: 0)
+        }
+    }
+    
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+            let firstItem = toolbar.items?[0]
+            if firstItem?.title == "Wiadomości" {
+                toolbar.items?.removeAtIndex(0)
+            }
+        } else if traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
+            if toolbar.items?.count == 3 {
+                toolbar.items?.removeAtIndex(0)
+            }
+            
+            if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
+                toolbar.items?.insert(newsButtonitem, atIndex: 0)
+            } else {
+                toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
+            }
+        }
+    }
+    
+    func showNewsViewController() {
+        splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -33,6 +81,10 @@ class NewsViewController: UIViewController {
             if webview.hidden == true {
                 webview.hidden = false
                 toolbar.hidden = false
+            }
+            
+            if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+                toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
             }
         }
     }
