@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
+class NewsViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var webview: UIWebView!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -17,6 +17,7 @@ class NewsViewController: UIViewController {
     var newsButtonitem : UIBarButtonItem!
     
     var newsURL: NSURL?
+    var publishDate: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +96,24 @@ class NewsViewController: UIViewController {
     }
     
     @IBAction func showPublishDate(sender: AnyObject) {
+        let popoverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idPopoverViewController") as? PopoverViewController
         
+        popoverViewController?.modalPresentationStyle = UIModalPresentationStyle.Popover
+        
+        popoverViewController?.popoverPresentationController?.delegate = self
+        
+        self.presentViewController(popoverViewController!, animated: true, completion: nil)
+        
+        popoverViewController?.popoverPresentationController?.barButtonItem = pubDateBtnItem
+        popoverViewController?.popoverPresentationController?.permittedArrowDirections = .Any
+        popoverViewController?.preferredContentSize = CGSizeMake(200, 80)
+        
+        popoverViewController?.lblMessage.text = publishDate
     }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
+    }
+    
+    
 }

@@ -72,4 +72,6 @@ class XMLParser: NSObject, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, validationErrorOccurred validationError: NSError) {
         print(validationError.description)
     }
+    
+    
 }

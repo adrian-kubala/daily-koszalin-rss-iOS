@@ -55,12 +55,13 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let dictionary = (xmlParser?.arrParsedData[indexPath.row])! as Dictionary<String, String>
-        
         let newsLink = dictionary["link"]
+        let pubDate = dictionary["pubDate"]
         
         let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as! NewsViewController
  
         newsVC.newsURL = NSURL(string: newsLink!)
+        newsVC.publishDate = pubDate
         
         showDetailViewController(newsVC, sender: self)
     }
@@ -70,4 +71,6 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
         return 80
     }
     */
+    
+    
 }
