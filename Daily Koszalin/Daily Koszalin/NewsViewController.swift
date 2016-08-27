@@ -25,7 +25,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         webview.hidden = true
         toolbar.hidden = true
         
-        newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(NewsViewController.showNewsViewController))
+        newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(NewsViewController.showNewsTableViewController))
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsViewController.handleFirstViewControllerDisplayModeChangeWithNotification(_:)), name: "PrimaryVCDisplayModeChangeNotification", object: nil)
     }
@@ -38,14 +38,16 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let displayModeObject = notification.object as? NSNumber
         let nextDisplayMode = displayModeObject?.integerValue
         
-        if toolbar.items?.count == 3 {
+        if toolbar.items?.count == 3 && splitViewController != nil {
             toolbar.items?.removeAtIndex(0)
         }
         
         if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue {
             toolbar.items?.insert(newsButtonitem, atIndex: 0)
         } else {
-            toolbar.items?.insert(splitViewController!.displayModeButtonItem(), atIndex: 0)
+            if splitViewController != nil {
+                toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
+            }
         }
     }
     
@@ -68,8 +70,13 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     }
     
-    func showNewsViewController() {
+    func showNewsTableViewController() {
         splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+        
+        if toolbar.items?.count == 3 {
+            toolbar.items?.removeAtIndex(0)
+            toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -84,7 +91,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 toolbar.hidden = false
             }
             
-            if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+            if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact && toolbar.items?.count < 3 {
                 toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
             }
         }
