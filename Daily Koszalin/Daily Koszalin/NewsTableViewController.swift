@@ -7,23 +7,49 @@
 //
 
 import UIKit
+import FeedKit
 
-class NewsTableViewController: UITableViewController, XMLParserDelegate {
+class NewsTableViewController: UITableViewController {
 
-    var xmlParser: XMLParser?
+    var news: [News] = []
     
-    
-    func parsingWasFinished() {
-        self.tableView.reloadData()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let url = NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml")
-        xmlParser = XMLParser()
-        xmlParser?.delegate = self
-        xmlParser?.parseURLContent(url!)
+        let rssURLs = ["gk24" : NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
+                       "radiokoszalin" : NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
+                       "naszemiasto" : NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
+                       "koszalin" : NSURL(string: "http://www.koszalin.pl/pl/rss.xml")]
+        
+        parseContentFromURL(rssURLs)
+    }
+    
+    func parseContentFromURL(urls: Dictionary<String, NSURL?>) {
+        
+        func sortAndReloadData() {
+            news.sortInPlace({ $0.pubDate!.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
+            self.tableView.reloadData()
+        }
+        
+        for url in urls.values {
+            FeedParser(URL: url!)?.parse({ (result) in
+                switch result {
+                case .RSS(let rssFeed):
+                    for item in rssFeed.items! {
+                        self.news.append(News(title: item.title, link: item.link, pubDate: item.pubDate))
+                    }
+                case .Atom(let atomFeed):
+                    for item in atomFeed.entries! {
+                        self.news.append(News(title: item.title, link: String(item.links!.first!.attributes!.href!), pubDate: item.updated))
+                    }
+                case .Failure(let error):
+                    print(error)
+                }
+            })
+        }
+        
+        sortAndReloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,28 +66,27 @@ class NewsTableViewController: UITableViewController, XMLParserDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return xmlParser?.arrParsedData.count ?? 0
+        return news.count ?? 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("newsCell", forIndexPath: indexPath)
 
-        let currentDictionary = (xmlParser?.arrParsedData[indexPath.row])! as Dictionary<String, String>
+        let currentNews = news[indexPath.row]
         
-        cell.textLabel?.text = currentDictionary["title"]
+        cell.textLabel?.text = currentNews.title
 
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let dictionary = (xmlParser?.arrParsedData[indexPath.row])! as Dictionary<String, String>
-        let newsLink = dictionary["link"]
-        let pubDate = dictionary["pubDate"]
+        let link = news[indexPath.row].link
+        let pubDate = news[indexPath.row].pubDate
         
         let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as! NewsViewController
- 
-        newsVC.newsURL = NSURL(string: newsLink!)
-        newsVC.publishDate = pubDate
+        
+        newsVC.newsURL = NSURL(string: link!)
+        newsVC.publishDate = String(pubDate!)
         
         showDetailViewController(newsVC, sender: self)
     }

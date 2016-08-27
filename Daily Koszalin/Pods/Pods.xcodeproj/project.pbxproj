@@ -1,0 +1,1009 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		06182B8DC6CA6528F82E9CF509237EC8 /* FeedKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ECA81567B167516B3D147E88CBAAE626 /* FeedKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		062E2A65AE60B05CBAB373D7E2044810 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429E9FF7A8D7EE162496522E8B4B991 /* Parser.swift */; };
+		08DD7747DE2525BCC7C1AC019B039446 /* Pods-Daily KoszalinUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B559DA6C16E524AA644BA3326AC94B43 /* Pods-Daily KoszalinUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0EB5AAD2E1AD7281591919DEE4A99ED2 /* Pods-Daily Koszalin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A79911C3422310417ECAFF3FF74A4A9 /* Pods-Daily Koszalin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		12CE7EFCCFA11BAA5FE2CB112A96F6F3 /* RFC822DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18294474AB032DD4C365C54911481AD5 /* RFC822DateFormatter.swift */; };
+		1A08E6F99E49358754D83D1E9C095A61 /* RSSFeed + Attributes Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F928049BD4DCEB903905E690800AA /* RSSFeed + Attributes Mapper.swift */; };
+		1B845D57B367DC03CE96C0F34157E44A /* AtomFeedSubtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E4503EDFC4041AD9069C68A814C184 /* AtomFeedSubtitle.swift */; };
+		21DD050BA4F3F12BABA3C255194BEDC1 /* RSSFeed + Characters Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552B9EB78425119440842FB1B7546A8 /* RSSFeed + Characters Mapper.swift */; };
+		23A5BA25D045343D64B68406EFE26BBF /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27943BFB6DAF746A4868987A863D536D /* FeedType.swift */; };
+		2A5B055524B19D103B833C1580DD240B /* String + dateFromSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AA4058C7834B88E71D6F2B6AEA4726 /* String + dateFromSpec.swift */; };
+		2B71B7FBAEFF61BF5A149818B7C36CEE /* AtomFeedEntryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6769F5271E821AD213CF9C1717E221ED /* AtomFeedEntryContent.swift */; };
+		386EB54036A0BC21182AFA4418D5A284 /* RSSFeedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF06216B95EAB98FB14D5025A56711A /* RSSFeedTextInput.swift */; };
+		3E9078DB5D84852FA6C72BBD4AAE9D1F /* AtomFeedEntryCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ED44EFC3E8F6C2591295F7AB79CE0 /* AtomFeedEntryCategory.swift */; };
+		404B7B153D5E9DF371D76CC4C0DB2874 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB41E049EB29A8E46F2DBDC8E4567B27 /* FeedParser.swift */; };
+		42B044AB81152B5B83ED6064B8D509A9 /* RSSPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7683585697C436E9160971F5C865FBFF /* RSSPath.swift */; };
+		4839DBBB5D04A8DFE91478499073530D /* Pods-Daily KoszalinUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F93C81645DB8F9F161618C83E388E0E9 /* Pods-Daily KoszalinUITests-dummy.m */; };
+		4B5214E0D263E1E1DA59F2C2D616C1F7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26FD6A082B3A5A94E85161CA8130BF /* Result.swift */; };
+		4F530DF530331DBD0DE22FBE83D92AAB /* RSSFeedCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4BFB04AFACCDFD41E6885B94706425 /* RSSFeedCloud.swift */; };
+		519EE487BA1256D583B9DF15220B00B6 /* AtomFeedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E291FF6AC3D4CB818A2216B7FA4EA4 /* AtomFeedGenerator.swift */; };
+		625CAA52981BF8E113F435D3C6FD2097 /* RFC3339DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEF542300E06CB8E366D3406EEAC5AE /* RFC3339DateFormatter.swift */; };
+		65CEC25DAC20141483F84E26CE0F1A58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		674D98C08981D65C6E7756B1286F1BAE /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A4ED3E0901F1C975EEE9825FD20FBD /* Error.swift */; };
+		7097BC9E65F3A77FAC66FAEAE11607D7 /* AtomPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3669D8BCA59FD7895B6055AAF4F28E6A /* AtomPath.swift */; };
+		7CD7F58A86FEE24AA3F2CAA6E6AE957C /* Pods-Daily KoszalinTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E64772059573459379AA51A02975D7EF /* Pods-Daily KoszalinTests-dummy.m */; };
+		7DD334FB9757900D04BE37CDE48BB40F /* AtomFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6978FFD2D7607B45461F260C14DDDF /* AtomFeed.swift */; };
+		7F52FD351F39D8F407C5D409F06CF50A /* DateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B3A5966CDE35297F64C191A441A35 /* DateSpec.swift */; };
+		889814AEB5009B0279561F2C2D71A37E /* RSSFeedItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A867E86FA42C65DBBF431B5B00F4529 /* RSSFeedItemCategory.swift */; };
+		8F86FBA6DBB24DE0081841B2A5C524CD /* RSSFeedSkipDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A962B4D6FB34F3EA6E3B5DCD3901F /* RSSFeedSkipDay.swift */; };
+		92360AF465331D492F8AD874CD3F8680 /* RSSFeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4461A9F1CCE8966EACEEF2729679C78 /* RSSFeedImage.swift */; };
+		9488A49C982E0F4D8E5549C54A727798 /* SyndicationNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E7A8F7B5B32C09E4DDAED1A95F8FDE /* SyndicationNamespace.swift */; };
+		94E40D8531284EB8EEF9428E5A1C963C /* RSSFeedItemEnclosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6FE8E215989A454912889CFC5E109 /* RSSFeedItemEnclosure.swift */; };
+		97376D6E6B1B3CCFF83ACCC87E9CEAF1 /* RSSFeedItemGUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A228141D52AF5CC5E2760ABB0C5C0AD /* RSSFeedItemGUID.swift */; };
+		978A0C7AF5A58256B289A8E1EF36686C /* AtomFeed + Attributes Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E4BF3977776A7FEE21E27238550443 /* AtomFeed + Attributes Mapper.swift */; };
+		9D718855DAF8F9D90456049C17816FF4 /* RSSFeedItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1545B486C4AB5F1A90726219416D63 /* RSSFeedItemSource.swift */; };
+		A92D38F5DED3A76F4A757C55D9B252A6 /* AtomFeedEntrySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F72D0CFC63EF7516A7FAD209FFE7133 /* AtomFeedEntrySource.swift */; };
+		AAED206A8173EC7F8B507A1858F3DC9F /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A49F61F7A228EAB0739BD961A7C82 /* RSSFeed.swift */; };
+		AB7093593EB815A3BC70451534F8C5F0 /* AtomFeedEntryAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA08FB7F14199DB20904F0D3A1CEF8B /* AtomFeedEntryAuthor.swift */; };
+		AC6A2BAAD23E11A5EB3F28EF5E131EB3 /* DublinCoreNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB643E8ECABF7D6BE075A937457E128E /* DublinCoreNamespace.swift */; };
+		AE40AD362B2A114B979B46FD01390D1E /* AtomFeedEntryLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED49AADC39BB5DCA5E4EBEF1542BFD1 /* AtomFeedEntryLink.swift */; };
+		B2CB2DF6E4F021B51F1E6E195057703A /* ContentNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C72D3261E52D214D50136D13225280C /* ContentNamespace.swift */; };
+		B3D0AC8B2DD1CF70D2337DC94DF89594 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		B9D272F4396DC14F377010BB7C56F83B /* RSSFeedCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FEBA402877B287F1089854757CCB27 /* RSSFeedCategory.swift */; };
+		BBAD885605BE6BD3CFBAF102FD2AAB05 /* FeedKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 79785E30F0D010B4622217F920C367D6 /* FeedKit-dummy.m */; };
+		BF22D9CE9B11D5121891EE66CEBFEDD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		C00E0AC5E1B3E7BC62882132727CFD33 /* ISO8601DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C399AB918E536EC42B13636A0E7A4E /* ISO8601DateFormatter.swift */; };
+		C16E0191A7EC258D0B9E44C10018DC20 /* Pods-Daily KoszalinTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0125079513BAE134BB68FC7FD1DDE59D /* Pods-Daily KoszalinTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC2AE8E85AD3EFB1A5EC4AE21DFE3DF1 /* AtomFeedContributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B700C276DBC213A8DD168204159291 /* AtomFeedContributor.swift */; };
+		CFC63287FCEDCF30FA61B5E1888B456E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		D152953DEAF3C87D1AB7FE4C848620F6 /* AtomFeedAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C0FAA199F41E19CD75841EA6087000 /* AtomFeedAuthor.swift */; };
+		D53EAC2EABEFB14B445954CA18197D63 /* RSSFeedSkipHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D751B917DA9CE604A62C39112667878 /* RSSFeedSkipHour.swift */; };
+		D707D46CF6B2187FD01E15C94336DA84 /* String + bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AE5A55F6F2851258D1FF9BD8C40D7A /* String + bool.swift */; };
+		D7ADDBBFD6EF599E809335E4F3EE10CC /* AtomFeedEntryContributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514BC1F75166384826EF57EA003C02B2 /* AtomFeedEntryContributor.swift */; };
+		E1617B8F4936B533F054C36446F8FE74 /* AtomFeedLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7115D5D870E69F24DE897550CB98D4 /* AtomFeedLink.swift */; };
+		E191411CDAD62316AAFBCB3C3DE1BBC9 /* RSSFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCC33248898F4FF5B8F6AFF1F4E4657 /* RSSFeedItem.swift */; };
+		E81829DD22AFE454C72C79D6D3E27F82 /* SyndicationUpdatePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8A27C2CF89E7BE7BA4505F0F18FE40 /* SyndicationUpdatePeriod.swift */; };
+		EB6F4EFFC9F6CBC80965381F880D72F6 /* AtomFeedEntrySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0643355AB02DB001B958B56F925EDE85 /* AtomFeedEntrySummary.swift */; };
+		F1CF0B3A9A1F19BCE27499E97CAA9450 /* Pods-Daily Koszalin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B843C6C7E039D56758735B919A3B3C53 /* Pods-Daily Koszalin-dummy.m */; };
+		FB4C4FC451B662BA6C503F2647186C78 /* AtomFeedCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780DA21F7D230C3733AEC351F01703BF /* AtomFeedCategory.swift */; };
+		FE4FDF012F9E4DE96083A2772C97C9E9 /* AtomFeed + Characters Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E40416DA40AA55DDEFC9617230EEA3 /* AtomFeed + Characters Mapper.swift */; };
+		FEF556CCAC4045A6D51E4745CD57F69A /* AtomFeedEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E498CC6E24CD565A35DD5EDA74F826 /* AtomFeedEntry.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC0E11B1A6103B25A006E1A1518D219A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1724FA2A2CBDC83BC5ED028A4099F3C1;
+			remoteInfo = FeedKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0125079513BAE134BB68FC7FD1DDE59D /* Pods-Daily KoszalinTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Daily KoszalinTests-umbrella.h"; sourceTree = "<group>"; };
+		041E6DC9C64C6D28B3C3746EE8E881D4 /* Pods-Daily Koszalin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Daily Koszalin.release.xcconfig"; sourceTree = "<group>"; };
+		04ECA5ADA827B9D4A303BBA1F1CAA264 /* Pods_Daily_Koszalin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Daily_Koszalin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0643355AB02DB001B958B56F925EDE85 /* AtomFeedEntrySummary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedEntrySummary.swift; path = Sources/Model/Atom/AtomFeedEntrySummary.swift; sourceTree = "<group>"; };
+		0EA08FB7F14199DB20904F0D3A1CEF8B /* AtomFeedEntryAuthor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedEntryAuthor.swift; path = Sources/Model/Atom/AtomFeedEntryAuthor.swift; sourceTree = "<group>"; };
+		0ED49AADC39BB5DCA5E4EBEF1542BFD1 /* AtomFeedEntryLink.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedEntryLink.swift; path = Sources/Model/Atom/AtomFeedEntryLink.swift; sourceTree = "<group>"; };
+		16E498CC6E24CD565A35DD5EDA74F826 /* AtomFeedEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedEntry.swift; path = Sources/Model/Atom/AtomFeedEntry.swift; sourceTree = "<group>"; };
+		18294474AB032DD4C365C54911481AD5 /* RFC822DateFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RFC822DateFormatter.swift; path = Sources/Dates/RFC822DateFormatter.swift; sourceTree = "<group>"; };
+		19AA4058C7834B88E71D6F2B6AEA4726 /* String + dateFromSpec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String + dateFromSpec.swift"; path = "Sources/Extensions/String + dateFromSpec.swift"; sourceTree = "<group>"; };
+		1A79911C3422310417ECAFF3FF74A4A9 /* Pods-Daily Koszalin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Daily Koszalin-umbrella.h"; sourceTree = "<group>"; };
+		1D751B917DA9CE604A62C39112667878 /* RSSFeedSkipHour.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedSkipHour.swift; path = Sources/Model/RSS/RSSFeedSkipHour.swift; sourceTree = "<group>"; };
+		1F72D0CFC63EF7516A7FAD209FFE7133 /* AtomFeedEntrySource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedEntrySource.swift; path = Sources/Model/Atom/AtomFeedEntrySource.swift; sourceTree = "<group>"; };
+		21D8463323F6597CE6FE34CD63734513 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2341FC845EF946AC2236C1D52C774C91 /* Pods-Daily Koszalin-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Daily Koszalin-acknowledgements.plist"; sourceTree = "<group>"; };
+		27943BFB6DAF746A4868987A863D536D /* FeedType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FeedType.swift; path = Sources/Core/FeedType.swift; sourceTree = "<group>"; };
+		2ABE6FA65D3F4FA6E8CBBE827D79B78E /* Pods-Daily Koszalin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Daily Koszalin.modulemap"; sourceTree = "<group>"; };
+		2CCC33248898F4FF5B8F6AFF1F4E4657 /* RSSFeedItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedItem.swift; path = Sources/Model/RSS/RSSFeedItem.swift; sourceTree = "<group>"; };
+		2DE376E243FA96633AAEECCF83877B0F /* FeedKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FeedKit.modulemap; sourceTree = "<group>"; };
+		30E44EBB625791619A95C4DF7B583190 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3107C1779FBF37CF2E8137156DFD0A54 /* Pods-Daily KoszalinTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Daily KoszalinTests-resources.sh"; sourceTree = "<group>"; };
+		31FEBA402877B287F1089854757CCB27 /* RSSFeedCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedCategory.swift; path = Sources/Model/RSS/RSSFeedCategory.swift; sourceTree = "<group>"; };
+		322DFB79C1ED8C6AEF3138FE7231D2A5 /* Pods-Daily KoszalinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Daily KoszalinTests.release.xcconfig"; sourceTree = "<group>"; };
+		3669D8BCA59FD7895B6055AAF4F28E6A /* AtomPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomPath.swift; path = Sources/Model/Atom/AtomPath.swift; sourceTree = "<group>"; };
+		3A228141D52AF5CC5E2760ABB0C5C0AD /* RSSFeedItemGUID.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedItemGUID.swift; path = Sources/Model/RSS/RSSFeedItemGUID.swift; sourceTree = "<group>"; };
+		3F4BFB04AFACCDFD41E6885B94706425 /* RSSFeedCloud.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedCloud.swift; path = Sources/Model/RSS/RSSFeedCloud.swift; sourceTree = "<group>"; };
+		41AE5A55F6F2851258D1FF9BD8C40D7A /* String + bool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String + bool.swift"; path = "Sources/Extensions/String + bool.swift"; sourceTree = "<group>"; };
+		42AE788903415ADAEE6E26873061CE64 /* FeedKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FeedKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42E7A8F7B5B32C09E4DDAED1A95F8FDE /* SyndicationNamespace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyndicationNamespace.swift; path = Sources/Model/RSS/Modules/Syndication/SyndicationNamespace.swift; sourceTree = "<group>"; };
+		45AE15624EE896477E96D93D00CF25D6 /* Pods-Daily KoszalinTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Daily KoszalinTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		46E291FF6AC3D4CB818A2216B7FA4EA4 /* AtomFeedGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedGenerator.swift; path = Sources/Model/Atom/AtomFeedGenerator.swift; sourceTree = "<group>"; };
+		4D6978FFD2D7607B45461F260C14DDDF /* AtomFeed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeed.swift; path = Sources/Model/Atom/AtomFeed.swift; sourceTree = "<group>"; };
+		4F1E2271E92599FAA1F95B44CFAED175 /* Pods-Daily KoszalinUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Daily KoszalinUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5119ADEA9A2333609C0DBD53F921DB78 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		514BC1F75166384826EF57EA003C02B2 /* AtomFeedEntryContributor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedEntryContributor.swift; path = Sources/Model/Atom/AtomFeedEntryContributor.swift; sourceTree = "<group>"; };
+		514FB6FF0F05252CACAF21EFD2B71EFB /* Pods-Daily Koszalin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Daily Koszalin.debug.xcconfig"; sourceTree = "<group>"; };
+		543A962B4D6FB34F3EA6E3B5DCD3901F /* RSSFeedSkipDay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedSkipDay.swift; path = Sources/Model/RSS/RSSFeedSkipDay.swift; sourceTree = "<group>"; };
+		5552B9EB78425119440842FB1B7546A8 /* RSSFeed + Characters Mapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "RSSFeed + Characters Mapper.swift"; path = "Sources/Model/RSS/Mappers/RSSFeed + Characters Mapper.swift"; sourceTree = "<group>"; };
+		556F928049BD4DCEB903905E690800AA /* RSSFeed + Attributes Mapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "RSSFeed + Attributes Mapper.swift"; path = "Sources/Model/RSS/Mappers/RSSFeed + Attributes Mapper.swift"; sourceTree = "<group>"; };
+		5961F865F931D02AE445F0893980656E /* Pods-Daily KoszalinUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Daily KoszalinUITests.modulemap"; sourceTree = "<group>"; };
+		5A8406E0817E78542BCE715B7FC03BD6 /* Pods-Daily KoszalinUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Daily KoszalinUITests-frameworks.sh"; sourceTree = "<group>"; };
+		5EEF542300E06CB8E366D3406EEAC5AE /* RFC3339DateFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RFC3339DateFormatter.swift; path = Sources/Dates/RFC3339DateFormatter.swift; sourceTree = "<group>"; };
+		5EF06216B95EAB98FB14D5025A56711A /* RSSFeedTextInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedTextInput.swift; path = Sources/Model/RSS/RSSFeedTextInput.swift; sourceTree = "<group>"; };
+		6769F5271E821AD213CF9C1717E221ED /* AtomFeedEntryContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedEntryContent.swift; path = Sources/Model/Atom/AtomFeedEntryContent.swift; sourceTree = "<group>"; };
+		69AAC6178FDC63D9A6D04F371CE2AA2C /* FeedKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FeedKit.xcconfig; sourceTree = "<group>"; };
+		6A867E86FA42C65DBBF431B5B00F4529 /* RSSFeedItemCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedItemCategory.swift; path = Sources/Model/RSS/RSSFeedItemCategory.swift; sourceTree = "<group>"; };
+		6C72D3261E52D214D50136D13225280C /* ContentNamespace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentNamespace.swift; path = Sources/Model/RSS/Modules/Content/ContentNamespace.swift; sourceTree = "<group>"; };
+		73A4ED3E0901F1C975EEE9825FD20FBD /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Sources/Core/Error.swift; sourceTree = "<group>"; };
+		7429E9FF7A8D7EE162496522E8B4B991 /* Parser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Sources/Core/Parser.swift; sourceTree = "<group>"; };
+		74E40416DA40AA55DDEFC9617230EEA3 /* AtomFeed + Characters Mapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AtomFeed + Characters Mapper.swift"; path = "Sources/Model/Atom/Mappers/AtomFeed + Characters Mapper.swift"; sourceTree = "<group>"; };
+		751B3A5966CDE35297F64C191A441A35 /* DateSpec.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateSpec.swift; path = Sources/Dates/DateSpec.swift; sourceTree = "<group>"; };
+		7683585697C436E9160971F5C865FBFF /* RSSPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSPath.swift; path = Sources/Model/RSS/RSSPath.swift; sourceTree = "<group>"; };
+		76C399AB918E536EC42B13636A0E7A4E /* ISO8601DateFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ISO8601DateFormatter.swift; path = Sources/Dates/ISO8601DateFormatter.swift; sourceTree = "<group>"; };
+		780DA21F7D230C3733AEC351F01703BF /* AtomFeedCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedCategory.swift; path = Sources/Model/Atom/AtomFeedCategory.swift; sourceTree = "<group>"; };
+		79785E30F0D010B4622217F920C367D6 /* FeedKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FeedKit-dummy.m"; sourceTree = "<group>"; };
+		8D076ECD3D74F03B833675877B341E8E /* Pods-Daily KoszalinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Daily KoszalinTests.debug.xcconfig"; sourceTree = "<group>"; };
+		90E4503EDFC4041AD9069C68A814C184 /* AtomFeedSubtitle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedSubtitle.swift; path = Sources/Model/Atom/AtomFeedSubtitle.swift; sourceTree = "<group>"; };
+		92FC40D9B5751884A6D68E9356632EF4 /* FeedKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FeedKit-prefix.pch"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		94C0FAA199F41E19CD75841EA6087000 /* AtomFeedAuthor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedAuthor.swift; path = Sources/Model/Atom/AtomFeedAuthor.swift; sourceTree = "<group>"; };
+		9C7115D5D870E69F24DE897550CB98D4 /* AtomFeedLink.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedLink.swift; path = Sources/Model/Atom/AtomFeedLink.swift; sourceTree = "<group>"; };
+		A01ED44EFC3E8F6C2591295F7AB79CE0 /* AtomFeedEntryCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedEntryCategory.swift; path = Sources/Model/Atom/AtomFeedEntryCategory.swift; sourceTree = "<group>"; };
+		A271E6EE9716B2455F3BD008CF708902 /* Pods-Daily KoszalinTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Daily KoszalinTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A39A5C5E6AF4CB50668058359135C780 /* Pods-Daily KoszalinUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Daily KoszalinUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		A4B700C276DBC213A8DD168204159291 /* AtomFeedContributor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AtomFeedContributor.swift; path = Sources/Model/Atom/AtomFeedContributor.swift; sourceTree = "<group>"; };
+		AB643E8ECABF7D6BE075A937457E128E /* DublinCoreNamespace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DublinCoreNamespace.swift; path = "Sources/Model/RSS/Modules/Dublin Core/DublinCoreNamespace.swift"; sourceTree = "<group>"; };
+		AE8A27C2CF89E7BE7BA4505F0F18FE40 /* SyndicationUpdatePeriod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SyndicationUpdatePeriod.swift; path = Sources/Model/RSS/Modules/Syndication/SyndicationUpdatePeriod.swift; sourceTree = "<group>"; };
+		B559DA6C16E524AA644BA3326AC94B43 /* Pods-Daily KoszalinUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Daily KoszalinUITests-umbrella.h"; sourceTree = "<group>"; };
+		B843C6C7E039D56758735B919A3B3C53 /* Pods-Daily Koszalin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Daily Koszalin-dummy.m"; sourceTree = "<group>"; };
+		BB41E049EB29A8E46F2DBDC8E4567B27 /* FeedParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FeedParser.swift; path = Sources/Core/FeedParser.swift; sourceTree = "<group>"; };
+		BF7480645DCAD6671DEFD7DA26B9A294 /* Pods-Daily Koszalin-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Daily Koszalin-resources.sh"; sourceTree = "<group>"; };
+		C22A49F61F7A228EAB0739BD961A7C82 /* RSSFeed.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeed.swift; path = Sources/Model/RSS/RSSFeed.swift; sourceTree = "<group>"; };
+		C41243FC0F99B72A8BE594ED097084C1 /* Pods-Daily KoszalinUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Daily KoszalinUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C4461A9F1CCE8966EACEEF2729679C78 /* RSSFeedImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedImage.swift; path = Sources/Model/RSS/RSSFeedImage.swift; sourceTree = "<group>"; };
+		C81F0974AECA08C13D5777C29F155ABF /* Pods-Daily KoszalinTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Daily KoszalinTests.modulemap"; sourceTree = "<group>"; };
+		CB1545B486C4AB5F1A90726219416D63 /* RSSFeedItemSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedItemSource.swift; path = Sources/Model/RSS/RSSFeedItemSource.swift; sourceTree = "<group>"; };
+		CD26FD6A082B3A5A94E85161CA8130BF /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Sources/Core/Result.swift; sourceTree = "<group>"; };
+		CD9E475D6214F66B157C35AA7723C571 /* Pods-Daily Koszalin-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Daily Koszalin-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CE1E4BB1DF20AB9012F9699D75D9126F /* Pods-Daily KoszalinUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Daily KoszalinUITests-resources.sh"; sourceTree = "<group>"; };
+		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D37F3538D06832C7A30B8DB537EEA47F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E64772059573459379AA51A02975D7EF /* Pods-Daily KoszalinTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Daily KoszalinTests-dummy.m"; sourceTree = "<group>"; };
+		E7E4BF3977776A7FEE21E27238550443 /* AtomFeed + Attributes Mapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AtomFeed + Attributes Mapper.swift"; path = "Sources/Model/Atom/Mappers/AtomFeed + Attributes Mapper.swift"; sourceTree = "<group>"; };
+		E95B613D04288505623D25529BF55F0E /* Pods-Daily Koszalin-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Daily Koszalin-frameworks.sh"; sourceTree = "<group>"; };
+		E9CD4EFC2DD75E612F6A917C4CC19789 /* Pods-Daily KoszalinTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Daily KoszalinTests-frameworks.sh"; sourceTree = "<group>"; };
+		ECA81567B167516B3D147E88CBAAE626 /* FeedKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FeedKit-umbrella.h"; sourceTree = "<group>"; };
+		F8EDE5CD8B8827AA9DCC96C4C6FA2A79 /* Pods-Daily KoszalinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Daily KoszalinUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F8FC1DFF32164E8F2C9F4B4E49836B9E /* Pods_Daily_KoszalinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Daily_KoszalinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F93C81645DB8F9F161618C83E388E0E9 /* Pods-Daily KoszalinUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Daily KoszalinUITests-dummy.m"; sourceTree = "<group>"; };
+		FCA6FE8E215989A454912889CFC5E109 /* RSSFeedItemEnclosure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSFeedItemEnclosure.swift; path = Sources/Model/RSS/RSSFeedItemEnclosure.swift; sourceTree = "<group>"; };
+		FE70E0489B6530FD61A534C4EFF3D31E /* Pods_Daily_KoszalinUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Daily_KoszalinUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2540F3AC6970CC581425D0E8EBE61688 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65CEC25DAC20141483F84E26CE0F1A58 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D648AF87D69714094C738ADABB824D76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3D0AC8B2DD1CF70D2337DC94DF89594 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E348E13DB950A3317025893437D179EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF22D9CE9B11D5121891EE66CEBFEDD8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC06C89F6E87F12AF6A8DA19CCD42F57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC63287FCEDCF30FA61B5E1888B456E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1DDA955A4B7ACC2907CEF5D4A280AE53 /* Pods-Daily KoszalinTests */ = {
+			isa = PBXGroup;
+			children = (
+				21D8463323F6597CE6FE34CD63734513 /* Info.plist */,
+				C81F0974AECA08C13D5777C29F155ABF /* Pods-Daily KoszalinTests.modulemap */,
+				A271E6EE9716B2455F3BD008CF708902 /* Pods-Daily KoszalinTests-acknowledgements.markdown */,
+				45AE15624EE896477E96D93D00CF25D6 /* Pods-Daily KoszalinTests-acknowledgements.plist */,
+				E64772059573459379AA51A02975D7EF /* Pods-Daily KoszalinTests-dummy.m */,
+				E9CD4EFC2DD75E612F6A917C4CC19789 /* Pods-Daily KoszalinTests-frameworks.sh */,
+				3107C1779FBF37CF2E8137156DFD0A54 /* Pods-Daily KoszalinTests-resources.sh */,
+				0125079513BAE134BB68FC7FD1DDE59D /* Pods-Daily KoszalinTests-umbrella.h */,
+				8D076ECD3D74F03B833675877B341E8E /* Pods-Daily KoszalinTests.debug.xcconfig */,
+				322DFB79C1ED8C6AEF3138FE7231D2A5 /* Pods-Daily KoszalinTests.release.xcconfig */,
+			);
+			name = "Pods-Daily KoszalinTests";
+			path = "Target Support Files/Pods-Daily KoszalinTests";
+			sourceTree = "<group>";
+		};
+		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		469B7A0D64925BDBAF7FECE2B14D6026 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				89419D0144549EDA02D45309B83BC0F4 /* Pods-Daily Koszalin */,
+				1DDA955A4B7ACC2907CEF5D4A280AE53 /* Pods-Daily KoszalinTests */,
+				D357DDFDDD75D3A994FB019F66DA3934 /* Pods-Daily KoszalinUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				D87C2D0654A8B93DEFE173A0C7550EB2 /* Pods */,
+				A0AE49996A8D9F390D08BF0DAD2E1781 /* Products */,
+				469B7A0D64925BDBAF7FECE2B14D6026 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		89419D0144549EDA02D45309B83BC0F4 /* Pods-Daily Koszalin */ = {
+			isa = PBXGroup;
+			children = (
+				5119ADEA9A2333609C0DBD53F921DB78 /* Info.plist */,
+				2ABE6FA65D3F4FA6E8CBBE827D79B78E /* Pods-Daily Koszalin.modulemap */,
+				CD9E475D6214F66B157C35AA7723C571 /* Pods-Daily Koszalin-acknowledgements.markdown */,
+				2341FC845EF946AC2236C1D52C774C91 /* Pods-Daily Koszalin-acknowledgements.plist */,
+				B843C6C7E039D56758735B919A3B3C53 /* Pods-Daily Koszalin-dummy.m */,
+				E95B613D04288505623D25529BF55F0E /* Pods-Daily Koszalin-frameworks.sh */,
+				BF7480645DCAD6671DEFD7DA26B9A294 /* Pods-Daily Koszalin-resources.sh */,
+				1A79911C3422310417ECAFF3FF74A4A9 /* Pods-Daily Koszalin-umbrella.h */,
+				514FB6FF0F05252CACAF21EFD2B71EFB /* Pods-Daily Koszalin.debug.xcconfig */,
+				041E6DC9C64C6D28B3C3746EE8E881D4 /* Pods-Daily Koszalin.release.xcconfig */,
+			);
+			name = "Pods-Daily Koszalin";
+			path = "Target Support Files/Pods-Daily Koszalin";
+			sourceTree = "<group>";
+		};
+		A0AE49996A8D9F390D08BF0DAD2E1781 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42AE788903415ADAEE6E26873061CE64 /* FeedKit.framework */,
+				04ECA5ADA827B9D4A303BBA1F1CAA264 /* Pods_Daily_Koszalin.framework */,
+				F8FC1DFF32164E8F2C9F4B4E49836B9E /* Pods_Daily_KoszalinTests.framework */,
+				FE70E0489B6530FD61A534C4EFF3D31E /* Pods_Daily_KoszalinUITests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A948783DD4378BC6E555674754E2A0F9 /* FeedKit */ = {
+			isa = PBXGroup;
+			children = (
+				4D6978FFD2D7607B45461F260C14DDDF /* AtomFeed.swift */,
+				E7E4BF3977776A7FEE21E27238550443 /* AtomFeed + Attributes Mapper.swift */,
+				74E40416DA40AA55DDEFC9617230EEA3 /* AtomFeed + Characters Mapper.swift */,
+				94C0FAA199F41E19CD75841EA6087000 /* AtomFeedAuthor.swift */,
+				780DA21F7D230C3733AEC351F01703BF /* AtomFeedCategory.swift */,
+				A4B700C276DBC213A8DD168204159291 /* AtomFeedContributor.swift */,
+				16E498CC6E24CD565A35DD5EDA74F826 /* AtomFeedEntry.swift */,
+				0EA08FB7F14199DB20904F0D3A1CEF8B /* AtomFeedEntryAuthor.swift */,
+				A01ED44EFC3E8F6C2591295F7AB79CE0 /* AtomFeedEntryCategory.swift */,
+				6769F5271E821AD213CF9C1717E221ED /* AtomFeedEntryContent.swift */,
+				514BC1F75166384826EF57EA003C02B2 /* AtomFeedEntryContributor.swift */,
+				0ED49AADC39BB5DCA5E4EBEF1542BFD1 /* AtomFeedEntryLink.swift */,
+				1F72D0CFC63EF7516A7FAD209FFE7133 /* AtomFeedEntrySource.swift */,
+				0643355AB02DB001B958B56F925EDE85 /* AtomFeedEntrySummary.swift */,
+				46E291FF6AC3D4CB818A2216B7FA4EA4 /* AtomFeedGenerator.swift */,
+				9C7115D5D870E69F24DE897550CB98D4 /* AtomFeedLink.swift */,
+				90E4503EDFC4041AD9069C68A814C184 /* AtomFeedSubtitle.swift */,
+				3669D8BCA59FD7895B6055AAF4F28E6A /* AtomPath.swift */,
+				6C72D3261E52D214D50136D13225280C /* ContentNamespace.swift */,
+				751B3A5966CDE35297F64C191A441A35 /* DateSpec.swift */,
+				AB643E8ECABF7D6BE075A937457E128E /* DublinCoreNamespace.swift */,
+				73A4ED3E0901F1C975EEE9825FD20FBD /* Error.swift */,
+				BB41E049EB29A8E46F2DBDC8E4567B27 /* FeedParser.swift */,
+				27943BFB6DAF746A4868987A863D536D /* FeedType.swift */,
+				76C399AB918E536EC42B13636A0E7A4E /* ISO8601DateFormatter.swift */,
+				7429E9FF7A8D7EE162496522E8B4B991 /* Parser.swift */,
+				CD26FD6A082B3A5A94E85161CA8130BF /* Result.swift */,
+				5EEF542300E06CB8E366D3406EEAC5AE /* RFC3339DateFormatter.swift */,
+				18294474AB032DD4C365C54911481AD5 /* RFC822DateFormatter.swift */,
+				C22A49F61F7A228EAB0739BD961A7C82 /* RSSFeed.swift */,
+				556F928049BD4DCEB903905E690800AA /* RSSFeed + Attributes Mapper.swift */,
+				5552B9EB78425119440842FB1B7546A8 /* RSSFeed + Characters Mapper.swift */,
+				31FEBA402877B287F1089854757CCB27 /* RSSFeedCategory.swift */,
+				3F4BFB04AFACCDFD41E6885B94706425 /* RSSFeedCloud.swift */,
+				C4461A9F1CCE8966EACEEF2729679C78 /* RSSFeedImage.swift */,
+				2CCC33248898F4FF5B8F6AFF1F4E4657 /* RSSFeedItem.swift */,
+				6A867E86FA42C65DBBF431B5B00F4529 /* RSSFeedItemCategory.swift */,
+				FCA6FE8E215989A454912889CFC5E109 /* RSSFeedItemEnclosure.swift */,
+				3A228141D52AF5CC5E2760ABB0C5C0AD /* RSSFeedItemGUID.swift */,
+				CB1545B486C4AB5F1A90726219416D63 /* RSSFeedItemSource.swift */,
+				543A962B4D6FB34F3EA6E3B5DCD3901F /* RSSFeedSkipDay.swift */,
+				1D751B917DA9CE604A62C39112667878 /* RSSFeedSkipHour.swift */,
+				5EF06216B95EAB98FB14D5025A56711A /* RSSFeedTextInput.swift */,
+				7683585697C436E9160971F5C865FBFF /* RSSPath.swift */,
+				41AE5A55F6F2851258D1FF9BD8C40D7A /* String + bool.swift */,
+				19AA4058C7834B88E71D6F2B6AEA4726 /* String + dateFromSpec.swift */,
+				42E7A8F7B5B32C09E4DDAED1A95F8FDE /* SyndicationNamespace.swift */,
+				AE8A27C2CF89E7BE7BA4505F0F18FE40 /* SyndicationUpdatePeriod.swift */,
+				DEB3D2CCF628B0C706D9F55D06CDA2B9 /* Support Files */,
+			);
+			path = FeedKit;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D357DDFDDD75D3A994FB019F66DA3934 /* Pods-Daily KoszalinUITests */ = {
+			isa = PBXGroup;
+			children = (
+				30E44EBB625791619A95C4DF7B583190 /* Info.plist */,
+				5961F865F931D02AE445F0893980656E /* Pods-Daily KoszalinUITests.modulemap */,
+				C41243FC0F99B72A8BE594ED097084C1 /* Pods-Daily KoszalinUITests-acknowledgements.markdown */,
+				A39A5C5E6AF4CB50668058359135C780 /* Pods-Daily KoszalinUITests-acknowledgements.plist */,
+				F93C81645DB8F9F161618C83E388E0E9 /* Pods-Daily KoszalinUITests-dummy.m */,
+				5A8406E0817E78542BCE715B7FC03BD6 /* Pods-Daily KoszalinUITests-frameworks.sh */,
+				CE1E4BB1DF20AB9012F9699D75D9126F /* Pods-Daily KoszalinUITests-resources.sh */,
+				B559DA6C16E524AA644BA3326AC94B43 /* Pods-Daily KoszalinUITests-umbrella.h */,
+				F8EDE5CD8B8827AA9DCC96C4C6FA2A79 /* Pods-Daily KoszalinUITests.debug.xcconfig */,
+				4F1E2271E92599FAA1F95B44CFAED175 /* Pods-Daily KoszalinUITests.release.xcconfig */,
+			);
+			name = "Pods-Daily KoszalinUITests";
+			path = "Target Support Files/Pods-Daily KoszalinUITests";
+			sourceTree = "<group>";
+		};
+		D87C2D0654A8B93DEFE173A0C7550EB2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A948783DD4378BC6E555674754E2A0F9 /* FeedKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DEB3D2CCF628B0C706D9F55D06CDA2B9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2DE376E243FA96633AAEECCF83877B0F /* FeedKit.modulemap */,
+				69AAC6178FDC63D9A6D04F371CE2AA2C /* FeedKit.xcconfig */,
+				79785E30F0D010B4622217F920C367D6 /* FeedKit-dummy.m */,
+				92FC40D9B5751884A6D68E9356632EF4 /* FeedKit-prefix.pch */,
+				ECA81567B167516B3D147E88CBAAE626 /* FeedKit-umbrella.h */,
+				D37F3538D06832C7A30B8DB537EEA47F /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FeedKit";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		23192E99DF5829F8106C9E9590FCE61C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06182B8DC6CA6528F82E9CF509237EC8 /* FeedKit-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FC0A90D02FACFDE01E7241009EC135B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EB5AAD2E1AD7281591919DEE4A99ED2 /* Pods-Daily Koszalin-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E32FAA2B71A642A29F041C2B8B03F8F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08DD7747DE2525BCC7C1AC019B039446 /* Pods-Daily KoszalinUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4D396EB16FDD5B0E09A2BABADA19599 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C16E0191A7EC258D0B9E44C10018DC20 /* Pods-Daily KoszalinTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1724FA2A2CBDC83BC5ED028A4099F3C1 /* FeedKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D203EC6B2D29E187F0DCFFA965915A32 /* Build configuration list for PBXNativeTarget "FeedKit" */;
+			buildPhases = (
+				E899B9E4E668A95424AF88B30A2774FC /* Sources */,
+				D648AF87D69714094C738ADABB824D76 /* Frameworks */,
+				23192E99DF5829F8106C9E9590FCE61C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FeedKit;
+			productName = FeedKit;
+			productReference = 42AE788903415ADAEE6E26873061CE64 /* FeedKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8FB685A75246AF4261D55C48364D2D37 /* Pods-Daily KoszalinUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 560A2DFA9F46BE6F1F0695FDC8AA9777 /* Build configuration list for PBXNativeTarget "Pods-Daily KoszalinUITests" */;
+			buildPhases = (
+				1DF23DD876A859A9C990FCA4673D8C10 /* Sources */,
+				2540F3AC6970CC581425D0E8EBE61688 /* Frameworks */,
+				9E32FAA2B71A642A29F041C2B8B03F8F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Daily KoszalinUITests";
+			productName = "Pods-Daily KoszalinUITests";
+			productReference = FE70E0489B6530FD61A534C4EFF3D31E /* Pods_Daily_KoszalinUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D152950997B87D68E26417903CB6777A /* Pods-Daily KoszalinTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE21EFADD4040F3DD4A9116E18F18E0E /* Build configuration list for PBXNativeTarget "Pods-Daily KoszalinTests" */;
+			buildPhases = (
+				B4970039A6E4C36517DF7FAFEBD2D89A /* Sources */,
+				EC06C89F6E87F12AF6A8DA19CCD42F57 /* Frameworks */,
+				B4D396EB16FDD5B0E09A2BABADA19599 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Daily KoszalinTests";
+			productName = "Pods-Daily KoszalinTests";
+			productReference = F8FC1DFF32164E8F2C9F4B4E49836B9E /* Pods_Daily_KoszalinTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F825017F07A64B474A2BD4F5F9B9F966 /* Pods-Daily Koszalin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B25C12957506F027EB0F4AD4597BD1D3 /* Build configuration list for PBXNativeTarget "Pods-Daily Koszalin" */;
+			buildPhases = (
+				97FFF1B6F88C0A9912E8D06609362CD4 /* Sources */,
+				E348E13DB950A3317025893437D179EC /* Frameworks */,
+				5FC0A90D02FACFDE01E7241009EC135B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B2B29121E90892F784B27DCAB76027BE /* PBXTargetDependency */,
+			);
+			name = "Pods-Daily Koszalin";
+			productName = "Pods-Daily Koszalin";
+			productReference = 04ECA5ADA827B9D4A303BBA1F1CAA264 /* Pods_Daily_Koszalin.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = A0AE49996A8D9F390D08BF0DAD2E1781 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1724FA2A2CBDC83BC5ED028A4099F3C1 /* FeedKit */,
+				F825017F07A64B474A2BD4F5F9B9F966 /* Pods-Daily Koszalin */,
+				D152950997B87D68E26417903CB6777A /* Pods-Daily KoszalinTests */,
+				8FB685A75246AF4261D55C48364D2D37 /* Pods-Daily KoszalinUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1DF23DD876A859A9C990FCA4673D8C10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4839DBBB5D04A8DFE91478499073530D /* Pods-Daily KoszalinUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97FFF1B6F88C0A9912E8D06609362CD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1CF0B3A9A1F19BCE27499E97CAA9450 /* Pods-Daily Koszalin-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4970039A6E4C36517DF7FAFEBD2D89A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CD7F58A86FEE24AA3F2CAA6E6AE957C /* Pods-Daily KoszalinTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E899B9E4E668A95424AF88B30A2774FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				978A0C7AF5A58256B289A8E1EF36686C /* AtomFeed + Attributes Mapper.swift in Sources */,
+				FE4FDF012F9E4DE96083A2772C97C9E9 /* AtomFeed + Characters Mapper.swift in Sources */,
+				7DD334FB9757900D04BE37CDE48BB40F /* AtomFeed.swift in Sources */,
+				D152953DEAF3C87D1AB7FE4C848620F6 /* AtomFeedAuthor.swift in Sources */,
+				FB4C4FC451B662BA6C503F2647186C78 /* AtomFeedCategory.swift in Sources */,
+				CC2AE8E85AD3EFB1A5EC4AE21DFE3DF1 /* AtomFeedContributor.swift in Sources */,
+				FEF556CCAC4045A6D51E4745CD57F69A /* AtomFeedEntry.swift in Sources */,
+				AB7093593EB815A3BC70451534F8C5F0 /* AtomFeedEntryAuthor.swift in Sources */,
+				3E9078DB5D84852FA6C72BBD4AAE9D1F /* AtomFeedEntryCategory.swift in Sources */,
+				2B71B7FBAEFF61BF5A149818B7C36CEE /* AtomFeedEntryContent.swift in Sources */,
+				D7ADDBBFD6EF599E809335E4F3EE10CC /* AtomFeedEntryContributor.swift in Sources */,
+				AE40AD362B2A114B979B46FD01390D1E /* AtomFeedEntryLink.swift in Sources */,
+				A92D38F5DED3A76F4A757C55D9B252A6 /* AtomFeedEntrySource.swift in Sources */,
+				EB6F4EFFC9F6CBC80965381F880D72F6 /* AtomFeedEntrySummary.swift in Sources */,
+				519EE487BA1256D583B9DF15220B00B6 /* AtomFeedGenerator.swift in Sources */,
+				E1617B8F4936B533F054C36446F8FE74 /* AtomFeedLink.swift in Sources */,
+				1B845D57B367DC03CE96C0F34157E44A /* AtomFeedSubtitle.swift in Sources */,
+				7097BC9E65F3A77FAC66FAEAE11607D7 /* AtomPath.swift in Sources */,
+				B2CB2DF6E4F021B51F1E6E195057703A /* ContentNamespace.swift in Sources */,
+				7F52FD351F39D8F407C5D409F06CF50A /* DateSpec.swift in Sources */,
+				AC6A2BAAD23E11A5EB3F28EF5E131EB3 /* DublinCoreNamespace.swift in Sources */,
+				674D98C08981D65C6E7756B1286F1BAE /* Error.swift in Sources */,
+				BBAD885605BE6BD3CFBAF102FD2AAB05 /* FeedKit-dummy.m in Sources */,
+				404B7B153D5E9DF371D76CC4C0DB2874 /* FeedParser.swift in Sources */,
+				23A5BA25D045343D64B68406EFE26BBF /* FeedType.swift in Sources */,
+				C00E0AC5E1B3E7BC62882132727CFD33 /* ISO8601DateFormatter.swift in Sources */,
+				062E2A65AE60B05CBAB373D7E2044810 /* Parser.swift in Sources */,
+				4B5214E0D263E1E1DA59F2C2D616C1F7 /* Result.swift in Sources */,
+				625CAA52981BF8E113F435D3C6FD2097 /* RFC3339DateFormatter.swift in Sources */,
+				12CE7EFCCFA11BAA5FE2CB112A96F6F3 /* RFC822DateFormatter.swift in Sources */,
+				1A08E6F99E49358754D83D1E9C095A61 /* RSSFeed + Attributes Mapper.swift in Sources */,
+				21DD050BA4F3F12BABA3C255194BEDC1 /* RSSFeed + Characters Mapper.swift in Sources */,
+				AAED206A8173EC7F8B507A1858F3DC9F /* RSSFeed.swift in Sources */,
+				B9D272F4396DC14F377010BB7C56F83B /* RSSFeedCategory.swift in Sources */,
+				4F530DF530331DBD0DE22FBE83D92AAB /* RSSFeedCloud.swift in Sources */,
+				92360AF465331D492F8AD874CD3F8680 /* RSSFeedImage.swift in Sources */,
+				E191411CDAD62316AAFBCB3C3DE1BBC9 /* RSSFeedItem.swift in Sources */,
+				889814AEB5009B0279561F2C2D71A37E /* RSSFeedItemCategory.swift in Sources */,
+				94E40D8531284EB8EEF9428E5A1C963C /* RSSFeedItemEnclosure.swift in Sources */,
+				97376D6E6B1B3CCFF83ACCC87E9CEAF1 /* RSSFeedItemGUID.swift in Sources */,
+				9D718855DAF8F9D90456049C17816FF4 /* RSSFeedItemSource.swift in Sources */,
+				8F86FBA6DBB24DE0081841B2A5C524CD /* RSSFeedSkipDay.swift in Sources */,
+				D53EAC2EABEFB14B445954CA18197D63 /* RSSFeedSkipHour.swift in Sources */,
+				386EB54036A0BC21182AFA4418D5A284 /* RSSFeedTextInput.swift in Sources */,
+				42B044AB81152B5B83ED6064B8D509A9 /* RSSPath.swift in Sources */,
+				D707D46CF6B2187FD01E15C94336DA84 /* String + bool.swift in Sources */,
+				2A5B055524B19D103B833C1580DD240B /* String + dateFromSpec.swift in Sources */,
+				9488A49C982E0F4D8E5549C54A727798 /* SyndicationNamespace.swift in Sources */,
+				E81829DD22AFE454C72C79D6D3E27F82 /* SyndicationUpdatePeriod.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B2B29121E90892F784B27DCAB76027BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FeedKit;
+			target = 1724FA2A2CBDC83BC5ED028A4099F3C1 /* FeedKit */;
+			targetProxy = DC0E11B1A6103B25A006E1A1518D219A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		60DF4C8338B7B9EDB9C7F5D2309491B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 514FB6FF0F05252CACAF21EFD2B71EFB /* Pods-Daily Koszalin.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Daily Koszalin/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Daily Koszalin/Pods-Daily Koszalin.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Daily_Koszalin;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		662704ABF7B72F0A488A197F5F40D172 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 322DFB79C1ED8C6AEF3138FE7231D2A5 /* Pods-Daily KoszalinTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Daily KoszalinTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Daily KoszalinTests/Pods-Daily KoszalinTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Daily_KoszalinTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		87F8F35C31E1F966B4AF0D0FB5486C7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69AAC6178FDC63D9A6D04F371CE2AA2C /* FeedKit.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FeedKit/FeedKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FeedKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FeedKit/FeedKit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = FeedKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A8F9CD1B2733260A378D36B7F0B4BB52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D076ECD3D74F03B833675877B341E8E /* Pods-Daily KoszalinTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Daily KoszalinTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Daily KoszalinTests/Pods-Daily KoszalinTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Daily_KoszalinTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B7415D4433E25FE50CA2881786B4565C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 041E6DC9C64C6D28B3C3746EE8E881D4 /* Pods-Daily Koszalin.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Daily Koszalin/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Daily Koszalin/Pods-Daily Koszalin.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Daily_Koszalin;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E12802C870ECB9931CBC25115AFC053F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F1E2271E92599FAA1F95B44CFAED175 /* Pods-Daily KoszalinUITests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Daily KoszalinUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Daily KoszalinUITests/Pods-Daily KoszalinUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Daily_KoszalinUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		ED0CCCD18E702A89AED540A4C17B4022 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69AAC6178FDC63D9A6D04F371CE2AA2C /* FeedKit.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FeedKit/FeedKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FeedKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FeedKit/FeedKit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = FeedKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FEFEE0A809700EAD67D57E696ED7F6AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8EDE5CD8B8827AA9DCC96C4C6FA2A79 /* Pods-Daily KoszalinUITests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Daily KoszalinUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Daily KoszalinUITests/Pods-Daily KoszalinUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Daily_KoszalinUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */,
+				3FA451D268613890FA8A5A03801E11D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		560A2DFA9F46BE6F1F0695FDC8AA9777 /* Build configuration list for PBXNativeTarget "Pods-Daily KoszalinUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEFEE0A809700EAD67D57E696ED7F6AE /* Debug */,
+				E12802C870ECB9931CBC25115AFC053F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B25C12957506F027EB0F4AD4597BD1D3 /* Build configuration list for PBXNativeTarget "Pods-Daily Koszalin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60DF4C8338B7B9EDB9C7F5D2309491B1 /* Debug */,
+				B7415D4433E25FE50CA2881786B4565C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D203EC6B2D29E187F0DCFFA965915A32 /* Build configuration list for PBXNativeTarget "FeedKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87F8F35C31E1F966B4AF0D0FB5486C7F /* Debug */,
+				ED0CCCD18E702A89AED540A4C17B4022 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE21EFADD4040F3DD4A9116E18F18E0E /* Build configuration list for PBXNativeTarget "Pods-Daily KoszalinTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8F9CD1B2733260A378D36B7F0B4BB52 /* Debug */,
+				662704ABF7B72F0A488A197F5F40D172 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

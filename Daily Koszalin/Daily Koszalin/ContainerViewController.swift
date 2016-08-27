@@ -20,8 +20,6 @@ class ContainerViewController: UIViewController {
             self.addChildViewController(viewController)
             self.view.addSubview(viewController.view)
             viewController.didMoveToParentViewController(self)
-            
-            //self.setOverrideTraitCollection(UITraitCollection.init(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: viewController)
         }
     }
     
