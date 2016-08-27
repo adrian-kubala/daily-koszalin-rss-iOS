@@ -42,7 +42,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
             toolbar.items?.removeAtIndex(0)
         }
         
-        if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue {
+        if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue || self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
             toolbar.items?.insert(newsButtonitem, atIndex: 0)
         } else {
             if splitViewController != nil {
