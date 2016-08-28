@@ -12,17 +12,18 @@ import FeedKit
 class NewsTableViewController: UITableViewController {
 
     var news: [News] = []
+    let rssURLs = ["gk24" : NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
+                   "radiokoszalin" : NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
+                   "naszemiasto" : NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
+                   "koszalin" : NSURL(string: "http://www.koszalin.pl/pl/rss.xml")]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let rssURLs = ["gk24" : NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
-                       "radiokoszalin" : NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
-                       "naszemiasto" : NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
-                       "koszalin" : NSURL(string: "http://www.koszalin.pl/pl/rss.xml")]
         
         parseContentFromURL(rssURLs)
+        
+        self.refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func parseContentFromURL(urls: Dictionary<String, NSURL?>) {
@@ -36,11 +37,25 @@ class NewsTableViewController: UITableViewController {
             FeedParser(URL: url!)?.parse({ (result) in
                 switch result {
                 case .RSS(let rssFeed):
-                    for item in rssFeed.items! {
+                    dataLoop: for item in rssFeed.items! {
+                        
+                        for article in self.news {
+                            guard article.title != item.title else {
+                                continue dataLoop
+                            }
+                        }
+
                         self.news.append(News(title: item.title, link: item.link, pubDate: item.pubDate))
                     }
                 case .Atom(let atomFeed):
-                    for item in atomFeed.entries! {
+                    dataLoop: for item in atomFeed.entries! {
+                        
+                        for article in self.news {
+                            guard article.title != item.title else {
+                                continue dataLoop
+                            }
+                        }
+                        
                         self.news.append(News(title: item.title, link: String(item.links!.first!.attributes!.href!), pubDate: item.updated))
                     }
                 case .Failure(let error):
@@ -50,6 +65,12 @@ class NewsTableViewController: UITableViewController {
         }
         
         sortAndReloadData()
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        parseContentFromURL(rssURLs)
+        
+        refreshControl.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {

@@ -65,7 +65,9 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
             if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
                 toolbar.items?.insert(newsButtonitem, atIndex: 0)
             } else {
-                toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
+                if splitViewController != nil {
+                    toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
+                }
             }
         }
     }
