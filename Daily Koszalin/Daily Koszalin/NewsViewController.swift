@@ -90,6 +90,9 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
             
             if webview.hidden == true {
                 webview.hidden = false
+                webview.scalesPageToFit = true
+                webview.contentMode = UIViewContentMode.ScaleAspectFit
+                
                 toolbar.hidden = false
             }
             
