@@ -12,10 +12,10 @@ class ContainerViewController: UIViewController {
     
     var viewController: UISplitViewController!
     
-
+    
     func setEmbeddedViewController(splitViewController: UISplitViewController!) {
-        if splitViewController != nil {
-            viewController = splitViewController
+        if let splitVC = splitViewController {
+            viewController = splitVC
             
             self.addChildViewController(viewController)
             self.view.addSubview(viewController.view)
@@ -23,6 +23,16 @@ class ContainerViewController: UIViewController {
         }
     }
     
+    static func collapseSecondaryVCOntoPrimary() {
+        let splitViewDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        if splitViewDelegate.isCollapsed == false {
+            splitViewDelegate.isCollapsed = true
+        } else {
+            splitViewDelegate.isCollapsed = false
+        }
+    }
+
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         if size.width > size.height {
             self.setOverrideTraitCollection(UITraitCollection.init(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: viewController)

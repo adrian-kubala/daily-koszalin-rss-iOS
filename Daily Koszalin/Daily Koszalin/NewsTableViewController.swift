@@ -109,6 +109,8 @@ class NewsTableViewController: UITableViewController {
         newsVC.newsURL = NSURL(string: link!)
         newsVC.publishDate = String(pubDate!)
         
+        ContainerViewController.collapseSecondaryVCOntoPrimary()
+        
         showDetailViewController(newsVC, sender: self)
     }
     
