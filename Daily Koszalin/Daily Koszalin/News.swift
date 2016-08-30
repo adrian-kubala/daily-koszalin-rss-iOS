@@ -15,4 +15,15 @@ struct News {
     let pubDate: NSDate?
     
     
+    func setPubDateFormat(date: NSDate?) -> String? {
+        
+        let dayTimePeriodFormatter = NSDateFormatter()
+        dayTimePeriodFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
+        
+        let dateString = dayTimePeriodFormatter.stringFromDate(date!)
+        
+        return dateString
+    }
+    
+    
 }

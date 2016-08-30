@@ -26,7 +26,7 @@ class NewsTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
-    func parseContentFromURL(urls: Dictionary<String, NSURL?>) {
+    func parseContentFromURL(urls: [String: NSURL?]) {
         
         func sortAndReloadData() {
             news.sortInPlace({ $0.pubDate!.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
@@ -73,29 +73,21 @@ class NewsTableViewController: UITableViewController {
         refreshControl.endRefreshing()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return news.count ?? 0
+        return news.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("newsCell", forIndexPath: indexPath)
 
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.6)
+        cell.selectedBackgroundView = backgroundView
+        
         let currentNews = news[indexPath.row]
         
         cell.textLabel?.text = currentNews.title
+        cell.detailTextLabel?.text = currentNews.setPubDateFormat(currentNews.pubDate)
 
         return cell
     }
@@ -114,11 +106,5 @@ class NewsTableViewController: UITableViewController {
         showDetailViewController(newsVC, sender: self)
     }
     
-    /*
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
-    }
-    */
-    
-    
+
 }

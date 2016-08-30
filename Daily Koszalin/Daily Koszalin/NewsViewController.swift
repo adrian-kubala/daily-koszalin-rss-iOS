@@ -13,7 +13,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var webview: UIWebView!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var pubDateBtnItem: UIBarButtonItem!
-    
+
     var newsButtonitem : UIBarButtonItem!
     
     var newsURL: NSURL?
@@ -37,15 +37,17 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     func handleFirstViewControllerDisplayModeChangeWithNotification(notification: NSNotification) {
         let displayModeObject = notification.object as? NSNumber
         let nextDisplayMode = displayModeObject?.integerValue
+        //let currentDisplayMode = self.splitViewController?.displayMode
         
+        //removeFirstBarButton(toolbar.items)
         if toolbar.items?.count == 3 {
             toolbar.items?.removeAtIndex(0)
         }
         
         if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue {
-            toolbar.items?.insert(newsButtonitem, atIndex: 0)
+            insertCustomDispModeBtn()
         } else {
-            toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
+            insertDispModeBtn()
         }
     }
     
@@ -53,19 +55,37 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         super.traitCollectionDidChange(previousTraitCollection)
         
         if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Compact{
-            if toolbar.items?.first?.title == "Wiadomości" {
-                toolbar.items?.removeAtIndex(0)
+            if var barItems = toolbar.items {
+                if (barItems.first as UIBarButtonItem?) != nil {
+                    barItems.removeAtIndex(0)
+                }
    
             }
         } else if traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
-            if toolbar.items?.count == 3 {
-                toolbar.items?.removeAtIndex(0)
-            }
+            removeFirstBarButton(toolbar.items)
         
             if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
-                toolbar.items?.insert(newsButtonitem, atIndex: 0)
+                insertCustomDispModeBtn()
             } else {
-                toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
+                insertDispModeBtn()
+            }
+        }
+    }
+    
+    func insertDispModeBtn() {
+        if let splitVC = self.splitViewController {
+            toolbar.items?.insert(splitVC.displayModeButtonItem(), atIndex: 0)
+        }
+    }
+
+    func insertCustomDispModeBtn() {
+        toolbar.items?.insert(newsButtonitem, atIndex: 0)
+    }
+    
+    func removeFirstBarButton(barItems: [UIBarButtonItem]?) {
+        if var items = barItems {
+            if items.count == 3 {
+                items.removeAtIndex(0)
             }
         }
     }
@@ -92,30 +112,30 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
             }
             
             if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
-                toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
+                insertDispModeBtn()
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     @IBAction func showPublishDate(sender: AnyObject) {
         let popoverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idPopoverViewController") as? PopoverViewController
+       
+        guard let popover = popoverViewController, let presentationController = popover.popoverPresentationController else {
+            
+            return
+        }
         
-        popoverViewController?.modalPresentationStyle = UIModalPresentationStyle.Popover
+        popover.modalPresentationStyle = UIModalPresentationStyle.Popover
         
-        popoverViewController?.popoverPresentationController?.delegate = self
+        presentationController.delegate = self
         
-        self.presentViewController(popoverViewController!, animated: true, completion: nil)
+        self.presentViewController(popover, animated: true, completion: nil)
         
-        popoverViewController?.popoverPresentationController?.barButtonItem = pubDateBtnItem
-        popoverViewController?.popoverPresentationController?.permittedArrowDirections = .Any
-        popoverViewController?.preferredContentSize = CGSizeMake(200, 80)
+        presentationController.barButtonItem = pubDateBtnItem
+        presentationController.permittedArrowDirections = .Any
+        popover.preferredContentSize = CGSizeMake(200, 80)
         
-        popoverViewController?.lblMessage.text = publishDate
+        popover.lblMessage.text = publishDate
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {

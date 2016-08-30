@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Override point for customization after application launch.
         
         splitViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idSplitViewController") as? UISplitViewController
+        
+        //let a = splitDelegate()
+        //splitViewController?.delegate = a
+        
         splitViewController?.delegate = self
         
         splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
