@@ -34,8 +34,10 @@ class ContainerViewController: UIViewController {
     }
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        if size.width > size.height {
-            self.setOverrideTraitCollection(UITraitCollection.init(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: viewController)
+        let willBeLandscape = size.width > size.height
+        
+        if willBeLandscape {
+            self.setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: viewController)
         } else {
             self.setOverrideTraitCollection(nil, forChildViewController: viewController)
         }

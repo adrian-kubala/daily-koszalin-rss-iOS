@@ -38,47 +38,42 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let displayModeObject = notification.object as? NSNumber
         let nextDisplayMode = displayModeObject?.integerValue
         
-        if toolbar.items?.count == 3 && splitViewController != nil {
+        if toolbar.items?.count == 3 {
             toolbar.items?.removeAtIndex(0)
         }
         
-        if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue || self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
+        if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue {
             toolbar.items?.insert(newsButtonitem, atIndex: 0)
         } else {
-            if splitViewController != nil {
-                toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
-            }
+            toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
         }
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-        if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
-            let firstItem = toolbar.items?[0]
-            if firstItem?.title == "Wiadomości" {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Compact{
+            if toolbar.items?.first?.title == "Wiadomości" {
                 toolbar.items?.removeAtIndex(0)
+   
             }
         } else if traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
             if toolbar.items?.count == 3 {
                 toolbar.items?.removeAtIndex(0)
             }
-            
+        
             if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
                 toolbar.items?.insert(newsButtonitem, atIndex: 0)
             } else {
-                if splitViewController != nil {
-                    toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
-                }
+                toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
             }
         }
     }
     
     func showNewsTableViewController() {
-        splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
-        
-        if toolbar.items?.count == 3 {
-            toolbar.items?.removeAtIndex(0)
-            toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
-        }
+        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+            }, completion: nil)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -96,7 +91,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 toolbar.hidden = false
             }
             
-            if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact && toolbar.items?.count < 3 {
+            if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
                 toolbar.items?.insert(self.splitViewController!.displayModeButtonItem(), atIndex: 0)
             }
         }
