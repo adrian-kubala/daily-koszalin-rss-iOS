@@ -39,10 +39,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let nextDisplayMode = displayModeObject?.integerValue
         //let currentDisplayMode = self.splitViewController?.displayMode
         
-        //removeFirstBarButton(toolbar.items)
-        if toolbar.items?.count == 3 {
-            toolbar.items?.removeAtIndex(0)
-        }
+        removeFirstBarButton(toolbar)
         
         if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue {
             insertCustomDispModeBtn()
@@ -62,7 +59,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
    
             }
         } else if traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
-            removeFirstBarButton(toolbar.items)
+            removeFirstBarButton(toolbar)
         
             if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
                 insertCustomDispModeBtn()
@@ -82,11 +79,9 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         toolbar.items?.insert(newsButtonitem, atIndex: 0)
     }
     
-    func removeFirstBarButton(barItems: [UIBarButtonItem]?) {
-        if var items = barItems {
-            if items.count == 3 {
-                items.removeAtIndex(0)
-            }
+    func removeFirstBarButton(bar: UIToolbar) {
+        if bar.items?.count == 3 {
+            bar.items?.removeAtIndex(0)
         }
     }
     
