@@ -21,6 +21,10 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let savedNews = loadNewsFromDisk() {
+            news = savedNews
+        }
+        
         parseContentFromURL(rssURLs)
         
         self.refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -30,6 +34,7 @@ class NewsTableViewController: UITableViewController {
         
         func sortAndReloadData() {
             news.sortInPlace({ $0.pubDate!.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
+            saveNewsToDisk()
             self.tableView.reloadData()
         }
         
@@ -63,8 +68,15 @@ class NewsTableViewController: UITableViewController {
                 }
             })
         }
-        
         sortAndReloadData()
+    }
+    
+    func saveNewsToDisk() {
+        NSKeyedArchiver.archiveRootObject(news, toFile: News.ArchiveURL.path!)
+    }
+    
+    func loadNewsFromDisk() -> [News]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(News.ArchiveURL.path!) as? [News]
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
@@ -106,5 +118,5 @@ class NewsTableViewController: UITableViewController {
         showDetailViewController(newsVC, sender: self)
     }
     
-
+    
 }
