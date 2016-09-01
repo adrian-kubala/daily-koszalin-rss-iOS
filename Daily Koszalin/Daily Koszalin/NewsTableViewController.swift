@@ -50,7 +50,7 @@ class NewsTableViewController: UITableViewController {
                             }
                         }
 
-                        self.news.append(News(title: item.title, link: item.link, pubDate: item.pubDate))
+                        self.news.append(News(source: rssFeed.link, title: item.title, link: item.link, pubDate: item.pubDate))
                     }
                 case .Atom(let atomFeed):
                     dataLoop: for item in atomFeed.entries! {
@@ -61,7 +61,7 @@ class NewsTableViewController: UITableViewController {
                             }
                         }
                         
-                        self.news.append(News(title: item.title, link: String(item.links!.first!.attributes!.href!), pubDate: item.updated))
+                        self.news.append(News(source: atomFeed.links!.first!.attributes?.href, title: item.title, link: item.links!.first!.attributes!.href!, pubDate: item.updated))
                     }
                 case .Failure(let error):
                     print(error)
@@ -92,14 +92,15 @@ class NewsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("newsCell", forIndexPath: indexPath)
 
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.6)
-        cell.selectedBackgroundView = backgroundView
+        let newsCell = cell as? TableNewsCell
+        
+        newsCell?.setSelectedBackgroundColor()
         
         let currentNews = news[indexPath.row]
         
-        cell.textLabel?.text = currentNews.title
-        cell.detailTextLabel?.text = currentNews.setPubDateFormat(currentNews.pubDate)
+        newsCell?.setTitle(currentNews.title)
+        newsCell?.setPubDate(currentNews.setPubDateFormat(currentNews.pubDate))
+        newsCell?.setFavIcon(currentNews.source)
 
         return cell
     }
