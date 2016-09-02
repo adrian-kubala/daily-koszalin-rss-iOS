@@ -30,8 +30,25 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsViewController.handleFirstViewControllerDisplayModeChangeWithNotification(_:)), name: "PrimaryVCDisplayModeChangeNotification", object: nil)
     }
     
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let url = newsURL {
+            let request = NSURLRequest(URL: url)
+            webview.loadRequest(request)
+            
+            if webview.hidden == true {
+                webview.hidden = false
+                webview.scalesPageToFit = true
+                webview.contentMode = UIViewContentMode.ScaleAspectFit
+                
+                toolbar.hidden = false
+            }
+            
+            if traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+                insertDispModeBtn()
+            }
+        }
     }
     
     func handleFirstViewControllerDisplayModeChangeWithNotification(notification: NSNotification) {
@@ -46,6 +63,10 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         } else {
             insertDispModeBtn()
         }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
@@ -66,6 +87,12 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
             } else {
                 insertDispModeBtn()
             }
+        }
+    }
+    
+    func removeFirstBarButton(bar: UIToolbar) {
+        if bar.items?.count == 3 {
+            bar.items?.removeAtIndex(0)
         }
     }
     
@@ -91,27 +118,6 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
             }, completion: nil)
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let url = newsURL {
-            let request = NSURLRequest(URL: url)
-            webview.loadRequest(request)
-            
-            if webview.hidden == true {
-                webview.hidden = false
-                webview.scalesPageToFit = true
-                webview.contentMode = UIViewContentMode.ScaleAspectFit
-                
-                toolbar.hidden = false
-            }
-            
-            if traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
-                insertDispModeBtn()
-            }
-        }
     }
 
     @IBAction func showPublishDate(sender: AnyObject) {
