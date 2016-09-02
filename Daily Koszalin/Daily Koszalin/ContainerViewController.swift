@@ -17,8 +17,8 @@ class ContainerViewController: UIViewController {
         if let splitVC = splitViewController {
             viewController = splitVC
             
-            self.addChildViewController(viewController)
-            self.view.addSubview(viewController.view)
+            addChildViewController(viewController)
+            view.addSubview(viewController.view)
             viewController.didMoveToParentViewController(self)
         }
     }
@@ -35,9 +35,9 @@ class ContainerViewController: UIViewController {
         let willBeLandscape = size.width > size.height
         
         if willBeLandscape {
-            self.setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: viewController)
+            setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: viewController)
         } else {
-            self.setOverrideTraitCollection(nil, forChildViewController: viewController)
+            setOverrideTraitCollection(nil, forChildViewController: viewController)
         }
         
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)

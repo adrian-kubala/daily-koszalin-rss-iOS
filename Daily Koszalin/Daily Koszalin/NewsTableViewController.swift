@@ -27,7 +27,7 @@ class NewsTableViewController: UITableViewController {
         
         parseContentFromURL(rssURLs)
         
-        self.refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
@@ -35,7 +35,7 @@ class NewsTableViewController: UITableViewController {
         func sortAndReloadData() {
             news.sortInPlace({ $0.pubDate!.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
             saveNewsToDisk()
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
         
         for url in urls.values {

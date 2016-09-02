@@ -14,10 +14,10 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var pubDateBtnItem: UIBarButtonItem!
 
-    var newsButtonitem : UIBarButtonItem!
+    var newsButtonitem : UIBarButtonItem?
     
-    var newsURL: NSURL?
-    var publishDate: String!
+    var newsURL: NSURL? = nil
+    var publishDate: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     func handleFirstViewControllerDisplayModeChangeWithNotification(notification: NSNotification) {
         let displayModeObject = notification.object as? NSNumber
         let nextDisplayMode = displayModeObject?.integerValue
-        //let currentDisplayMode = self.splitViewController?.displayMode
+        //let currentDisplayMode = splitViewController?.displayMode
         
         removeFirstBarButton(toolbar)
         
@@ -70,13 +70,15 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func insertDispModeBtn() {
-        if let splitVC = self.splitViewController {
+        if let splitVC = splitViewController {
             toolbar.items?.insert(splitVC.displayModeButtonItem(), atIndex: 0)
         }
     }
 
     func insertCustomDispModeBtn() {
-        toolbar.items?.insert(newsButtonitem, atIndex: 0)
+        if let barBtn = newsButtonitem {
+            toolbar.items?.insert(barBtn, atIndex: 0)
+        }
     }
     
     func removeFirstBarButton(bar: UIToolbar) {
@@ -94,8 +96,8 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if newsURL != nil {
-            let request = NSURLRequest(URL: newsURL!)
+        if let url = newsURL {
+            let request = NSURLRequest(URL: url)
             webview.loadRequest(request)
             
             if webview.hidden == true {
@@ -106,7 +108,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 toolbar.hidden = false
             }
             
-            if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+            if traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
                 insertDispModeBtn()
             }
         }
@@ -124,7 +126,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         presentationController.delegate = self
         
-        self.presentViewController(popover, animated: true, completion: nil)
+        presentViewController(popover, animated: true, completion: nil)
         
         presentationController.barButtonItem = pubDateBtnItem
         presentationController.permittedArrowDirections = .Any

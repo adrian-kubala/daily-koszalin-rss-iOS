@@ -17,7 +17,7 @@ class TableNewsCell: UITableViewCell {
     func setSelectedBackgroundColor() {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.6)
-        self.selectedBackgroundView = backgroundView
+        selectedBackgroundView = backgroundView
     }
     
     func setTitle(title: String?) {

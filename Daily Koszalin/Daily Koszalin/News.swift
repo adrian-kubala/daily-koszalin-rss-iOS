@@ -10,10 +10,10 @@ import Foundation
 
 class News: NSObject, NSCoding {
     
-    var source: String?
-    var title: String?
-    var link: String?
-    var pubDate: NSDate?
+    let source: String?
+    let title: String?
+    let link: String?
+    let pubDate: NSDate?
     
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("news")
@@ -31,10 +31,10 @@ class News: NSObject, NSCoding {
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.source, forKey: "source")
-        aCoder.encodeObject(self.title, forKey: "title")
-        aCoder.encodeObject(self.link, forKey: "link")
-        aCoder.encodeObject(self.pubDate, forKey: "pubDate")
+        aCoder.encodeObject(source, forKey: "source")
+        aCoder.encodeObject(title, forKey: "title")
+        aCoder.encodeObject(link, forKey: "link")
+        aCoder.encodeObject(pubDate, forKey: "pubDate")
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
