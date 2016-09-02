@@ -124,7 +124,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let popoverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idPopoverViewController") as? PopoverViewController
        
         guard let popover = popoverViewController, let presentationController = popover.popoverPresentationController else {
-            
+
             return
         }
         

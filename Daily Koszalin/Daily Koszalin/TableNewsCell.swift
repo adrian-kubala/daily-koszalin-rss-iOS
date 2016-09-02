@@ -10,9 +10,9 @@ import UIKit
 
 class TableNewsCell: UITableViewCell {
     
-    @IBOutlet weak var cellTitle: UILabel!
-    @IBOutlet weak var cellDate: UILabel!
-    @IBOutlet weak var cellFavIcon: UIImageView!
+    @IBOutlet var cellTitle: UILabel!
+    @IBOutlet var cellDate: UILabel!
+    @IBOutlet var cellFavIcon: UIImageView!
 
     func setSelectedBackgroundColor() {
         let backgroundView = UIView()

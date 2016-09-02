@@ -189,7 +189,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="lblMessage" destination="FwH-vJ-DPg" id="yPE-zR-zRY"/>
+                        <outlet property="lblMessage" destination="FwH-vJ-DPg" id="F4n-ug-AYS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qn3-Jf-GNF" userLabel="First Responder" sceneMemberID="firstResponder"/>

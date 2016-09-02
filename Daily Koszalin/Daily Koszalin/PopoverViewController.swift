@@ -10,7 +10,10 @@ import UIKit
 
 class PopoverViewController: UIViewController {
 
-    @IBOutlet weak var lblMessage: UILabel!
+    @IBOutlet var lblMessage: UILabel!
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
