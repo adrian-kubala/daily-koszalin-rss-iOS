@@ -6,7 +6,7 @@
 //  Copyright © 2016 Adrian Kubała. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class News: NSObject, NSCoding {
     
@@ -14,19 +14,62 @@ class News: NSObject, NSCoding {
     let title: String?
     let link: String?
     let pubDate: NSDate?
+    static var favIcon: [String: UIImage?] = [:]
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("news")
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
+    static let ArchiveURL = DocumentsDirectory?.URLByAppendingPathComponent("news")
     
+    
+    static func setFavIcon(source: String?) {
+        guard isFavIcon(source) == false else {
+            return
+        }
+        
+        downloadFavIcon(source)
+    }
+    
+    static func downloadFavIcon(url: String?) {
+        if var searchUrl = url {
+            searchUrl = "https://www.google.com/s2/favicons?domain=" + searchUrl
+            
+            if let iconUrl = NSURL(string: searchUrl) {
+                if let data = NSData(contentsOfURL: iconUrl) {
+                    let img = UIImage(data: data)
+                    
+                    if let icon = img {
+                        if let origin = url {
+                            favIcon[origin] = icon
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    static func getFavIcon(source: String?) -> UIImage? {
+        var img = UIImage?()
+        
+        if let origin = source {
+            
+            if let icon = favIcon[origin] {
+                img = icon
+            }
+        }
+        
+        return img
+    }
     
     func setPubDateFormat(date: NSDate?) -> String? {
         
-        let dayTimePeriodFormatter = NSDateFormatter()
-        dayTimePeriodFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
-        dayTimePeriodFormatter.locale = NSLocale(localeIdentifier: "pl_PL")
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
+        dateFormatter.locale = NSLocale(localeIdentifier: "pl_PL")
         
-        let dateString = dayTimePeriodFormatter.stringFromDate(date!)
+        guard let unformattedDate = date else {
+            return nil
+        }
         
+        let dateString = dateFormatter.stringFromDate(unformattedDate)
         return dateString
     }
     
@@ -35,6 +78,17 @@ class News: NSObject, NSCoding {
         aCoder.encodeObject(title, forKey: "title")
         aCoder.encodeObject(link, forKey: "link")
         aCoder.encodeObject(pubDate, forKey: "pubDate")
+        aCoder.encodeObject(News.getFavIcon(source), forKey: "favIcon")
+    }
+    
+    static func isFavIcon(source: String?) -> Bool {
+        let isNot = false
+        if let origin = source {
+            guard favIcon[origin] == nil else {
+                return true
+            }
+        }
+        return isNot
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -42,20 +96,33 @@ class News: NSObject, NSCoding {
         let site = aDecoder.decodeObjectForKey("source") as? String
         
         let label = aDecoder.decodeObjectForKey("title") as? String
-    
+        
         let url = aDecoder.decodeObjectForKey("link") as? String
         
         let date = aDecoder.decodeObjectForKey("pubDate") as? NSDate
         
-        self.init(source: site, title: label, link: url, pubDate: date)
+        let icon = aDecoder.decodeObjectForKey("favIcon") as? UIImage
+        
+        self.init(source: site, title: label, link: url, pubDate: date, favIcon: icon)
     }
-
-    init(source: String?, title: String?, link: String?, pubDate: NSDate?) {
+    
+    init(source: String?, title: String?, link: String?, pubDate: NSDate?, favIcon: UIImage?) {
         self.source = source
         self.title = title
         self.link = link
         self.pubDate = pubDate
+        if let origin = source {
+            News.favIcon[origin] = favIcon
+        }
         
         super.init()
+    }
+    
+    static func getFilePath() -> String? {
+        guard let path = News.ArchiveURL?.path else {
+            return nil
+        }
+        
+        return path
     }
 }

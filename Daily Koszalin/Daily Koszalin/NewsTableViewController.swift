@@ -21,19 +21,19 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
         if let savedNews = loadNewsFromDisk() {
             news = savedNews
         }
         
         parseContentFromURL(rssURLs)
-        
-        refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
         
         func sortAndReloadData() {
-            news.sortInPlace({ $0.pubDate!.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
+            news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
             saveNewsToDisk()
             tableView.reloadData()
         }
@@ -49,8 +49,10 @@ class NewsTableViewController: UITableViewController {
                                 continue dataLoop
                             }
                         }
+                        
+                        News.setFavIcon(rssFeed.link)
 
-                        self.news.append(News(source: rssFeed.link, title: item.title, link: item.link, pubDate: item.pubDate))
+                        self.news.append(News(source: rssFeed.link, title: item.title, link: item.link, pubDate: item.pubDate, favIcon: News.getFavIcon(rssFeed.link)))
                     }
                 case .Atom(let atomFeed):
                     dataLoop: for item in atomFeed.entries! {
@@ -61,7 +63,12 @@ class NewsTableViewController: UITableViewController {
                             }
                         }
                         
-                        self.news.append(News(source: atomFeed.links!.first!.attributes?.href, title: item.title, link: item.links!.first!.attributes!.href!, pubDate: item.updated))
+                        let feedSource = atomFeed.links?.first?.attributes?.href
+                        let itemSource = item.links?.first?.attributes?.href
+                        
+                        News.setFavIcon(feedSource)
+                        
+                        self.news.append(News(source: feedSource, title: item.title, link: itemSource, pubDate: item.updated, favIcon: News.getFavIcon(feedSource)))
                     }
                 case .Failure(let error):
                     print(error)
@@ -72,11 +79,17 @@ class NewsTableViewController: UITableViewController {
     }
     
     func saveNewsToDisk() {
-        NSKeyedArchiver.archiveRootObject(news, toFile: News.ArchiveURL.path!)
+        guard let filePath = News.getFilePath() else {
+            return
+        }
+        NSKeyedArchiver.archiveRootObject(news, toFile: filePath)
     }
     
     func loadNewsFromDisk() -> [News]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(News.ArchiveURL.path!) as? [News]
+        guard let filePath = News.getFilePath() else {
+            return nil
+        }
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [News]
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
@@ -94,13 +107,12 @@ class NewsTableViewController: UITableViewController {
 
         let newsCell = cell as? TableNewsCell
         
-        newsCell?.setSelectedBackgroundColor()
-        
         let currentNews = news[indexPath.row]
         
         newsCell?.setTitle(currentNews.title)
         newsCell?.setPubDate(currentNews.setPubDateFormat(currentNews.pubDate))
         newsCell?.setFavIcon(currentNews.source)
+        newsCell?.setSelectedBackgroundColor()
 
         return cell
     }
@@ -109,14 +121,20 @@ class NewsTableViewController: UITableViewController {
         let link = news[indexPath.row].link
         let pubDate = news[indexPath.row].pubDate
         
-        let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as! NewsViewController
+        let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as? NewsViewController
         
-        newsVC.newsURL = NSURL(string: link!)
-        newsVC.publishDate = String(pubDate!)
+        if let url = link, let date = pubDate {
+            newsVC?.newsURL = NSURL(string: url)
+            newsVC?.publishDate = String(date)
+        }
+        
+        guard let vc = newsVC else {
+            return
+        }
         
         ContainerViewController.collapseSecondaryVCOntoPrimary()
         
-        showDetailViewController(newsVC, sender: self)
+        showDetailViewController(vc, sender: self)
     }
     
     

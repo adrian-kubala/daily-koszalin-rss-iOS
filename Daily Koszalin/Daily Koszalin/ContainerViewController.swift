@@ -24,10 +24,10 @@ class ContainerViewController: UIViewController {
     }
     
     static func collapseSecondaryVCOntoPrimary() {
-        let splitViewDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let splitViewDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
         
-        if splitViewDelegate.isCollapsed == true {
-            splitViewDelegate.isCollapsed = false
+        if splitViewDelegate?.isCollapsed == true {
+            splitViewDelegate?.isCollapsed = false
         }
     }
 

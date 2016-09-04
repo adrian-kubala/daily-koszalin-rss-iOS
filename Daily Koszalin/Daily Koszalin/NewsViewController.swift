@@ -108,12 +108,6 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     }
     
-    func removeFirstBarButton(bar: UIToolbar) {
-        if bar.items?.count == 3 {
-            bar.items?.removeAtIndex(0)
-        }
-    }
-    
     func showNewsTableViewController() {
         UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible

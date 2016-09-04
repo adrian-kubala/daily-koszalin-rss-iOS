@@ -29,14 +29,6 @@ class TableNewsCell: UITableViewCell {
     }
     
     func setFavIcon(source: String?) {
-        if var searchUrl = source {
-            searchUrl = "https://www.google.com/s2/favicons?domain=" + searchUrl
-            if let data = NSData(contentsOfURL: NSURL(string: searchUrl)!) {
-                let favIcon = UIImage(data: data)
-                if let icon = favIcon {
-                    cellFavIcon.image = icon
-                }
-            }
-        }
+        cellFavIcon.image = News.getFavIcon(source)
     }
 }
