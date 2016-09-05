@@ -13,7 +13,4 @@ class PopoverViewController: UIViewController {
     @IBOutlet var lblMessage: UILabel!
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 }

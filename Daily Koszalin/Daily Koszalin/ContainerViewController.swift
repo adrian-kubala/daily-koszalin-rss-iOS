@@ -10,17 +10,18 @@ import UIKit
 
 class ContainerViewController: UIViewController {
     
-    var viewController: UISplitViewController!
+    var viewController: UISplitViewController?
     
     
-    func setEmbeddedViewController(splitViewController: UISplitViewController!) {
-        if let splitVC = splitViewController {
-            viewController = splitVC
-            
-            addChildViewController(viewController)
-            view.addSubview(viewController.view)
-            viewController.didMoveToParentViewController(self)
+    func setEmbeddedViewController(splitViewController: UISplitViewController?) {
+        guard let splitVC = splitViewController else {
+            return
         }
+            viewController = splitVC
+        
+            addChildViewController(splitVC)
+            view.addSubview(splitVC.view)
+            splitVC.didMoveToParentViewController(self)
     }
     
     static func collapseSecondaryVCOntoPrimary() {
@@ -34,10 +35,12 @@ class ContainerViewController: UIViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         let willBeLandscape = size.width > size.height
         
-        if willBeLandscape {
-            setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: viewController)
-        } else {
-            setOverrideTraitCollection(nil, forChildViewController: viewController)
+        if let splitVC = viewController {
+            if willBeLandscape {
+                setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: splitVC)
+            } else {
+                setOverrideTraitCollection(nil, forChildViewController: splitVC)
+            }
         }
         
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)

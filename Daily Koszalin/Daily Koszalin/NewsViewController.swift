@@ -16,7 +16,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
 
     var newsButtonitem : UIBarButtonItem?
     
-    var newsURL: NSURL? = nil
+    var newsURL: NSURL?
     var publishDate: String?
     
     override func viewDidLoad() {

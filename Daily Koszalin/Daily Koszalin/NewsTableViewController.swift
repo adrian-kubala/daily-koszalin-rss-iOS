@@ -36,10 +36,17 @@ class NewsTableViewController: UITableViewController {
             news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
             saveNewsToDisk()
             tableView.reloadData()
+            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.estimatedRowHeight = 80
         }
         
         for url in urls.values {
-            FeedParser(URL: url!)?.parse({ (result) in
+            
+            guard let feedUrl = url else {
+                continue
+            }
+            
+            FeedParser(URL: feedUrl)?.parse({ (result) in
                 switch result {
                 case .RSS(let rssFeed):
                     dataLoop: for item in rssFeed.items! {
@@ -110,7 +117,7 @@ class NewsTableViewController: UITableViewController {
         let currentNews = news[indexPath.row]
         
         newsCell?.setTitle(currentNews.title)
-        newsCell?.setPubDate(currentNews.setPubDateFormat(currentNews.pubDate))
+        newsCell?.setPubDate(currentNews.pubDate)
         newsCell?.setFavIcon(currentNews.source)
         newsCell?.setSelectedBackgroundColor()
 

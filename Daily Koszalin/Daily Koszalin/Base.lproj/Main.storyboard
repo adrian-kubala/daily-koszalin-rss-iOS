@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mfF-SH-SeE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mfF-SH-SeE">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -102,30 +102,39 @@
                                                 <constraint firstAttribute="width" constant="16" id="pwD-eB-UIw"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkJ-mZ-j4z">
-                                            <rect key="frame" x="39" y="49" width="28" height="12"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkJ-mZ-j4z">
+                                            <rect key="frame" x="36" y="31" width="554" height="38"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcH-6h-L3E">
-                                            <rect key="frame" x="39" y="23" width="30" height="18"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcH-6h-L3E">
+                                            <rect key="frame" x="36" y="8" width="554" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="gcH-6h-L3E" secondAttribute="trailing" constant="10" id="1Jh-Fp-yZE"/>
+                                        <constraint firstItem="AkJ-mZ-j4z" firstAttribute="leading" secondItem="e4D-9j-Mq6" secondAttribute="trailing" constant="10" id="1Q4-4n-b19"/>
                                         <constraint firstItem="e4D-9j-Mq6" firstAttribute="centerY" secondItem="hPS-mT-jWN" secondAttribute="centerY" id="6Ga-xT-Wv5"/>
                                         <constraint firstAttribute="bottom" secondItem="e4D-9j-Mq6" secondAttribute="bottom" constant="31" id="7ka-BW-wDM"/>
-                                        <constraint firstItem="AkJ-mZ-j4z" firstAttribute="top" secondItem="gcH-6h-L3E" secondAttribute="bottom" constant="8" symbolic="YES" id="9li-fN-TbG"/>
+                                        <constraint firstItem="AkJ-mZ-j4z" firstAttribute="top" secondItem="gcH-6h-L3E" secondAttribute="bottom" constant="5" id="9li-fN-TbG"/>
+                                        <constraint firstAttribute="trailing" secondItem="AkJ-mZ-j4z" secondAttribute="trailing" constant="10" id="L7o-40-Vzb"/>
                                         <constraint firstAttribute="trailing" secondItem="e4D-9j-Mq6" secondAttribute="trailing" constant="574" id="MxL-tB-YP5"/>
                                         <constraint firstItem="AkJ-mZ-j4z" firstAttribute="leading" secondItem="gcH-6h-L3E" secondAttribute="leading" id="Qcw-BH-pjf"/>
                                         <constraint firstItem="e4D-9j-Mq6" firstAttribute="top" secondItem="hPS-mT-jWN" secondAttribute="top" constant="32" id="Sk3-iA-JUQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="AkJ-mZ-j4z" secondAttribute="bottom" constant="10" id="bQP-oO-itI"/>
                                         <constraint firstItem="e4D-9j-Mq6" firstAttribute="leading" secondItem="hPS-mT-jWN" secondAttribute="leading" constant="10" id="ghv-Io-O0o"/>
-                                        <constraint firstItem="gcH-6h-L3E" firstAttribute="leading" secondItem="e4D-9j-Mq6" secondAttribute="trailing" constant="13" id="oH8-DL-1Ib"/>
-                                        <constraint firstItem="gcH-6h-L3E" firstAttribute="top" secondItem="hPS-mT-jWN" secondAttribute="topMargin" constant="15" id="wRN-dW-DsE"/>
+                                        <constraint firstItem="gcH-6h-L3E" firstAttribute="leading" secondItem="e4D-9j-Mq6" secondAttribute="trailing" constant="10" id="oH8-DL-1Ib"/>
+                                        <constraint firstItem="gcH-6h-L3E" firstAttribute="top" secondItem="hPS-mT-jWN" secondAttribute="topMargin" id="wRN-dW-DsE"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Qcw-BH-pjf"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cellDate" destination="AkJ-mZ-j4z" id="BIi-EI-YBE"/>

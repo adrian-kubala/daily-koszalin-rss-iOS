@@ -21,29 +21,30 @@ class News: NSObject, NSCoding {
     
     
     static func setFavIcon(source: String?) {
-        guard isFavIcon(source) == false else {
+        guard let origin = source where isFavIcon(source) == false else {
             return
         }
         
-        downloadFavIcon(source)
+        let img = downloadFavIcon(source)
+        
+        if let icon = img {
+            favIcon[origin] = icon
+        }
     }
     
-    static func downloadFavIcon(url: String?) {
+    static func downloadFavIcon(url: String?) -> UIImage? {
+        var img = UIImage?()
         if var searchUrl = url {
             searchUrl = "https://www.google.com/s2/favicons?domain=" + searchUrl
             
             if let iconUrl = NSURL(string: searchUrl) {
                 if let data = NSData(contentsOfURL: iconUrl) {
-                    let img = UIImage(data: data)
-                    
-                    if let icon = img {
-                        if let origin = url {
-                            favIcon[origin] = icon
-                        }
-                    }
+                    img = UIImage(data: data)
+                    return img
                 }
             }
         }
+        return nil
     }
     
     static func getFavIcon(source: String?) -> UIImage? {
@@ -57,20 +58,6 @@ class News: NSObject, NSCoding {
         }
         
         return img
-    }
-    
-    func setPubDateFormat(date: NSDate?) -> String? {
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
-        dateFormatter.locale = NSLocale(localeIdentifier: "pl_PL")
-        
-        guard let unformattedDate = date else {
-            return nil
-        }
-        
-        let dateString = dateFormatter.stringFromDate(unformattedDate)
-        return dateString
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

@@ -24,8 +24,22 @@ class TableNewsCell: UITableViewCell {
         cellTitle.text = title
     }
     
-    func setPubDate(date: String?) {
-        cellDate.text = date
+    func setPubDate(date: NSDate?) {
+        cellDate.text = setPubDateFormat(date)
+    }
+    
+    func setPubDateFormat(date: NSDate?) -> String? {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
+        dateFormatter.locale = NSLocale(localeIdentifier: "pl_PL")
+        
+        guard let unformattedDate = date else {
+            return nil
+        }
+        
+        let dateString = dateFormatter.stringFromDate(unformattedDate)
+        return dateString
     }
     
     func setFavIcon(source: String?) {
