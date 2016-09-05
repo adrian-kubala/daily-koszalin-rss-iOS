@@ -14,7 +14,7 @@ class News: NSObject, NSCoding {
     let title: String?
     let link: String?
     let pubDate: NSDate?
-    static var favIcon: [String: UIImage?] = [:]
+    static var favIcons: [String: UIImage?] = [:]
     
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
     static let ArchiveURL = DocumentsDirectory?.URLByAppendingPathComponent("news")
@@ -28,7 +28,7 @@ class News: NSObject, NSCoding {
         let img = downloadFavIcon(source)
         
         if let icon = img {
-            favIcon[origin] = icon
+            favIcons[origin] = icon
         }
     }
     
@@ -52,7 +52,7 @@ class News: NSObject, NSCoding {
         
         if let origin = source {
             
-            if let icon = favIcon[origin] {
+            if let icon = favIcons[origin] {
                 img = icon
             }
         }
@@ -71,7 +71,7 @@ class News: NSObject, NSCoding {
     static func isFavIcon(source: String?) -> Bool {
         let isNot = false
         if let origin = source {
-            guard favIcon[origin] == nil else {
+            guard favIcons[origin] == nil else {
                 return true
             }
         }
@@ -99,7 +99,7 @@ class News: NSObject, NSCoding {
         self.link = link
         self.pubDate = pubDate
         if let origin = source {
-            News.favIcon[origin] = favIcon
+            News.favIcons[origin] = favIcon
         }
         
         super.init()
