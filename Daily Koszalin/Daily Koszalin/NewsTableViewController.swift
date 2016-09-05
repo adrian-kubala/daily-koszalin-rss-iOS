@@ -139,7 +139,8 @@ class NewsTableViewController: UITableViewController {
             return
         }
         
-        ContainerViewController.collapseSecondaryVCOntoPrimary()
+        let appDelegate = UIApplication.sharedApplication().delegate as? EmbeddedSplitViewController
+        appDelegate?.collapseSecondaryVCOntoPrimary()
         
         showDetailViewController(vc, sender: self)
     }

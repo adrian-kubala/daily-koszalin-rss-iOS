@@ -9,44 +9,14 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+
     
-    var splitViewController: UISplitViewController?
-    var isCollapsed = true
-
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        splitViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idSplitViewController") as? UISplitViewController
-        
-        //let a = splitDelegate()
-        //splitViewController?.delegate = a
-        
-        splitViewController?.delegate = self
-        
-        splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
-        
-        let containerViewController = ContainerViewController()
-        containerViewController.setEmbeddedViewController(splitViewController)
-        
-        window?.rootViewController = containerViewController
-        
         return true
-    }
-    
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
-        return isCollapsed
-    }
-    
-    func targetDisplayModeForActionInSplitViewController(svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
-        return UISplitViewControllerDisplayMode.PrimaryHidden
-    }
-    
-    func splitViewController(svc: UISplitViewController, willChangeToDisplayMode displayMode: UISplitViewControllerDisplayMode) {
-        NSNotificationCenter.defaultCenter().postNotificationName("PrimaryVCDisplayModeChangeNotification", object: NSNumber.init(integer: displayMode.rawValue))
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -57,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -73,4 +44,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
 }
-

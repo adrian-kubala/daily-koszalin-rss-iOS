@@ -221,10 +221,10 @@
             </objects>
             <point key="canvasLocation" x="316" y="-283"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Embedded Split View Controller-->
         <scene sceneID="Kwy-xH-44p">
             <objects>
-                <splitViewController storyboardIdentifier="idSplitViewController" id="mfF-SH-SeE" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="idSplitViewController" id="mfF-SH-SeE" customClass="EmbeddedSplitViewController" customModule="Daily_Koszalin" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="NTg-an-jtk" kind="relationship" relationship="masterViewController" id="lhk-lc-l0i"/>
                         <segue destination="IPv-oO-iH4" kind="relationship" relationship="detailViewController" id="Imx-D9-khm"/>

@@ -13,25 +13,19 @@ class ContainerViewController: UIViewController {
     var viewController: UISplitViewController?
     
     
-    func setEmbeddedViewController(splitViewController: UISplitViewController?) {
+    func setEmbeddedViewController(splitViewController: UISplitViewController?, delegate: AppDelegate?) {
         guard let splitVC = splitViewController else {
             return
         }
-            viewController = splitVC
+        viewController = splitVC
         
-            addChildViewController(splitVC)
-            view.addSubview(splitVC.view)
-            splitVC.didMoveToParentViewController(self)
+        addChildViewController(splitVC)
+        view.addSubview(splitVC.view)
+        splitVC.didMoveToParentViewController(self)
+        
+        delegate?.window?.rootViewController = self
     }
     
-    static func collapseSecondaryVCOntoPrimary() {
-        let splitViewDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-        
-        if splitViewDelegate?.isCollapsed == true {
-            splitViewDelegate?.isCollapsed = false
-        }
-    }
-
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         let willBeLandscape = size.width > size.height
         
@@ -45,6 +39,6 @@ class ContainerViewController: UIViewController {
         
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
-
+    
     
 }
