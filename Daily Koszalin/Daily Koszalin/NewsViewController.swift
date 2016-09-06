@@ -44,14 +44,14 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 
                 toolbar.hidden = false
             }
-            
-//            if traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
-//                insertDispModeBtn()
-//            }
-//
-            insertDispModeBtn()
 
+            let currentDisplayMode = splitViewController?.displayMode
             
+            if currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible {
+                insertDispModeBtn()
+            } else {
+                insertCustomDispModeBtn()
+            }
         }
     }
     
@@ -60,41 +60,36 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let nextDisplayMode = displayModeObject?.integerValue
 //        let currentDisplayMode = splitViewController?.displayMode
         
-        removeFirstBarButton(toolbar)
-        
         if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue {
             insertCustomDispModeBtn()
         } else {
             insertDispModeBtn()
         }
-
-        
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    //    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-    //        if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Compact{
-    //            if var barItems = toolbar.items {
-    //                if (barItems.first as UIBarButtonItem?) != nil {
-    //                    barItems.removeAtIndex(0)
-    //                }
-    //
-    //            }
-    //        } else if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
-    //            removeFirstBarButton(toolbar)
-    //
-    //            if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
-    //                insertCustomDispModeBtn()
-    //            } else {
-    //                insertDispModeBtn()
-    //            }
-    //        }
-    //
-    //        super.traitCollectionDidChange(previousTraitCollection)
-    //    }
+        override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+//            if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Compact{
+//                if var barItems = toolbar.items {
+//                    if (barItems.first as UIBarButtonItem?) != nil {
+//                        barItems.removeAtIndex(0)
+//                    }
+//    
+//                }
+//            } else if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
+//    
+//                if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
+//                    insertCustomDispModeBtn()
+//                } else {
+//                    insertDispModeBtn()
+//                }
+//            }
+//    
+            super.traitCollectionDidChange(previousTraitCollection)
+        }
     
     func removeFirstBarButton(bar: UIToolbar) {
         if bar.items?.count == 3 {
@@ -103,12 +98,16 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func insertDispModeBtn() {
+        removeFirstBarButton(toolbar)
+        
         if isToolbarCountLessThanThree(), let splitVC = splitViewController {
             toolbar.items?.insert(splitVC.displayModeButtonItem(), atIndex: 0)
         }
     }
     
     func insertCustomDispModeBtn() {
+        removeFirstBarButton(toolbar)
+        
         if isToolbarCountLessThanThree(), let barBtn = newsButtonitem {
             toolbar.items?.insert(barBtn, atIndex: 0)
         }
