@@ -130,19 +130,17 @@ class NewsTableViewController: UITableViewController {
         
         let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as? NewsViewController
         
-        if let url = link, let date = pubDate {
-            newsVC?.newsURL = NSURL(string: url)
-            newsVC?.publishDate = String(date)
-        }
-        
-        guard let vc = newsVC else {
+        guard let url = link, let date = pubDate, let webViewVC = newsVC else {
             return
         }
         
-        let appDelegate = UIApplication.sharedApplication().delegate as? EmbeddedSplitViewController
-        appDelegate?.collapseSecondaryVCOntoPrimary()
+        webViewVC.newsURL = NSURL(string: url)
+        webViewVC.publishDate = String(date)
         
-        showDetailViewController(vc, sender: self)
+        let mySplitVC = splitViewController as? EmbeddedSplitViewController
+        mySplitVC?.collapseSecondaryVCOntoPrimary()
+        
+        showDetailViewController(webViewVC, sender: self)
     }
     
     

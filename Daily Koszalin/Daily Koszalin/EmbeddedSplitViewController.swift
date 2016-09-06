@@ -14,11 +14,11 @@ class EmbeddedSplitViewController: UISplitViewController, UISplitViewControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
         
         delegate = self
         preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
         
         let containerViewController = ContainerViewController()
         containerViewController.setEmbeddedViewController(self, delegate: appDelegate)
