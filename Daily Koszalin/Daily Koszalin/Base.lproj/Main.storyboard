@@ -205,6 +205,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="A5h-4h-hum">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="VOA-IS-Mlg" kind="relationship" relationship="rootViewController" id="TiD-xu-nFl"/>

@@ -86,9 +86,6 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 }
             }
 
-            
-
-    
             super.traitCollectionDidChange(previousTraitCollection)
         }
     

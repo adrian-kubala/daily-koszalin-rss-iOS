@@ -27,13 +27,19 @@ class ContainerViewController: UIViewController {
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        let willBeLandscape = size.width > size.height
         
-        if let splitVC = viewController {
-            if willBeLandscape {
-                setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: splitVC)
-            } else {
-                setOverrideTraitCollection(nil, forChildViewController: splitVC)
+        
+        if traitCollection.userInterfaceIdiom != UIUserInterfaceIdiom.Pad {
+            
+            if let splitVC = viewController {
+                
+                let willBeLandscape = size.width > size.height
+                
+                if willBeLandscape {
+                    setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: splitVC)
+                } else {
+                    setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Compact), forChildViewController: splitVC)
+                }
             }
         }
         
