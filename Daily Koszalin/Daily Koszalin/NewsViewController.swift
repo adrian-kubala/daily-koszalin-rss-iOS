@@ -65,6 +65,11 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         } else {
             insertDispModeBtn()
         }
+        if traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
+            if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
+                insertCustomDispModeBtn()
+            }
+        }
     }
     
     deinit {
@@ -72,22 +77,18 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
         override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-//            if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Compact{
-//                if var barItems = toolbar.items {
-//                    if (barItems.first as UIBarButtonItem?) != nil {
-//                        barItems.removeAtIndex(0)
-//                    }
-//    
-//                }
-//            } else if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
-//    
-//                if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
-//                    insertCustomDispModeBtn()
-//                } else {
-//                    insertDispModeBtn()
-//                }
-//            }
-//    
+            if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
+    
+                if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
+                    insertCustomDispModeBtn()
+                } else {
+                    insertDispModeBtn()
+                }
+            }
+
+            
+
+    
             super.traitCollectionDidChange(previousTraitCollection)
         }
     
@@ -125,6 +126,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
             }, completion: nil)
+        insertDispModeBtn()
     }
     
     @IBAction func showPublishDate(sender: AnyObject) {
