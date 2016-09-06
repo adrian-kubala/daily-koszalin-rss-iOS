@@ -39,6 +39,6 @@ class EmbeddedSplitViewController: UISplitViewController, UISplitViewControllerD
     }
     
     func splitViewController(svc: UISplitViewController, willChangeToDisplayMode displayMode: UISplitViewControllerDisplayMode) {
-        NSNotificationCenter.defaultCenter().postNotificationName("PrimaryVCDisplayModeChangeNotification", object: NSNumber.init(integer: displayMode.rawValue))
+        NSNotificationCenter.defaultCenter().postNotificationName("DisplayModeChangeNotification", object: NSNumber.init(integer: displayMode.rawValue))
     }
 }

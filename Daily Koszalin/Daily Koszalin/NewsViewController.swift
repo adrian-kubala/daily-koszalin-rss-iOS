@@ -27,7 +27,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(NewsViewController.showNewsTableViewController))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsViewController.handleFirstViewControllerDisplayModeChangeWithNotification(_:)), name: "PrimaryVCDisplayModeChangeNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsViewController.splitViewControllerDisplayModeDidChange(_:)), name: "DisplayModeChangeNotification", object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -51,7 +51,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     }
     
-    func handleFirstViewControllerDisplayModeChangeWithNotification(notification: NSNotification) {
+    func splitViewControllerDisplayModeDidChange(notification: NSNotification) {
         let displayModeObject = notification.object as? NSNumber
         let nextDisplayMode = displayModeObject?.integerValue
         //let currentDisplayMode = splitViewController?.displayMode
@@ -70,8 +70,6 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
         if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Compact{
             if var barItems = toolbar.items {
                 if (barItems.first as UIBarButtonItem?) != nil {
@@ -79,7 +77,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 }
    
             }
-        } else if traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
+        } else if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
             removeFirstBarButton(toolbar)
         
             if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
@@ -88,6 +86,8 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 insertDispModeBtn()
             }
         }
+        
+        super.traitCollectionDidChange(previousTraitCollection)
     }
     
     func removeFirstBarButton(bar: UIToolbar) {
