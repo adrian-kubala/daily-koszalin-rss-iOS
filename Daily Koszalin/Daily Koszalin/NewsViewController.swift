@@ -16,6 +16,7 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet var noNews: UILabel!
     var newsButtonitem : UIBarButtonItem?
     
+    @IBOutlet var webViewIndicator: UIActivityIndicatorView!
     var newsURL: NSURL?
     var publishDate: String?
     
@@ -36,6 +37,7 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
         
         if newsURL != nil {
             noNews.hidden = true
+            webViewIndicator.startAnimating()
         }
     }
     
@@ -46,7 +48,9 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
             let request = NSURLRequest(URL: url)
             webview.loadRequest(request)
             
+            webViewIndicator.stopAnimating()
             if webview.hidden == true {
+                
                 webview.hidden = false
                 webview.scalesPageToFit = true
                 webview.contentMode = UIViewContentMode.ScaleAspectFit

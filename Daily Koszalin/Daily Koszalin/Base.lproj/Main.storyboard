@@ -37,6 +37,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ji1-O6-Rm5">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -47,8 +51,11 @@
                             <constraint firstAttribute="trailing" secondItem="ZbN-qg-zlh" secondAttribute="trailing" id="SiT-si-KLE"/>
                             <constraint firstItem="IL6-2Q-v7P" firstAttribute="centerY" secondItem="H08-i3-M4S" secondAttribute="centerY" id="So7-Wu-YtP"/>
                             <constraint firstItem="ZbN-qg-zlh" firstAttribute="top" secondItem="H08-i3-M4S" secondAttribute="topMargin" constant="556" id="aJf-gq-cWh"/>
+                            <constraint firstItem="Ji1-O6-Rm5" firstAttribute="centerX" secondItem="O7Z-yd-03J" secondAttribute="centerX" id="bcP-TU-byi"/>
                             <constraint firstItem="ZbN-qg-zlh" firstAttribute="leading" secondItem="H08-i3-M4S" secondAttribute="leading" id="dNF-tY-kmk"/>
                             <constraint firstItem="IL6-2Q-v7P" firstAttribute="centerX" secondItem="H08-i3-M4S" secondAttribute="centerX" id="gpi-Jc-S7f"/>
+                            <constraint firstItem="Ji1-O6-Rm5" firstAttribute="centerX" secondItem="H08-i3-M4S" secondAttribute="centerX" id="hcT-PK-NFN"/>
+                            <constraint firstItem="Ji1-O6-Rm5" firstAttribute="centerY" secondItem="H08-i3-M4S" secondAttribute="centerY" id="jEL-NN-qty"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ZbN-qg-zlh" secondAttribute="bottom" id="mul-fA-XLk"/>
                             <constraint firstItem="ZbN-qg-zlh" firstAttribute="leading" secondItem="H08-i3-M4S" secondAttribute="leading" id="oGd-XL-MBS"/>
                             <constraint firstAttribute="trailing" secondItem="O7Z-yd-03J" secondAttribute="trailing" id="wGM-d2-efB"/>
@@ -56,6 +63,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="bcP-TU-byi"/>
                                 <exclude reference="F8g-YK-Fap"/>
                                 <exclude reference="SiT-si-KLE"/>
                                 <exclude reference="aJf-gq-cWh"/>
@@ -66,6 +74,7 @@
                     <connections>
                         <outlet property="noNews" destination="IL6-2Q-v7P" id="Z0B-n6-o88"/>
                         <outlet property="toolbar" destination="ZbN-qg-zlh" id="3nm-A7-xTy"/>
+                        <outlet property="webViewIndicator" destination="Ji1-O6-Rm5" id="tR5-55-fVC"/>
                         <outlet property="webview" destination="O7Z-yd-03J" id="VNE-zz-dqB"/>
                     </connections>
                 </viewController>
