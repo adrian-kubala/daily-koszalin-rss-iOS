@@ -77,11 +77,17 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
         override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+            let currentDisplayMode = splitViewController?.displayMode
+            
             if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
     
                 if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
                     insertCustomDispModeBtn()
                 } else {
+                    insertDispModeBtn()
+                }
+            } else {
+                if currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible  {
                     insertDispModeBtn()
                 }
             }
