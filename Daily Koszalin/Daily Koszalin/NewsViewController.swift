@@ -8,12 +8,12 @@
 
 import UIKit
 
-class NewsViewController: UIViewController, UIPopoverPresentationControllerDelegate, UIWebViewDelegate {
+class NewsViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webview: UIWebView!
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var pubDateBtnItem: UIBarButtonItem!
     
+    @IBOutlet var noNews: UILabel!
     var newsButtonitem : UIBarButtonItem?
     
     var newsURL: NSURL?
@@ -29,6 +29,14 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(NewsViewController.showNewsTableViewController))
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsViewController.splitViewControllerDisplayModeDidChange(_:)), name: "DisplayModeChangeNotification", object: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if newsURL != nil {
+            noNews.hidden = true
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -106,7 +114,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
         }
     
     func removeFirstBarButton(bar: UIToolbar) {
-        if bar.items?.count == 3 {
+        if bar.items?.count == 2 {
             bar.items?.removeAtIndex(0)
         }
     }
@@ -128,7 +136,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func isToolbarCountLessThanThree() -> Bool {
-        if toolbar.items?.count < 3 {
+        if toolbar.items?.count < 2 {
             return true
         } else {
             return false
@@ -140,31 +148,6 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
             self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
             }, completion: nil)
         insertDispModeBtn()
-    }
-    
-    @IBAction func showPublishDate(sender: AnyObject) {
-        let popoverViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idPopoverViewController") as? PopoverViewController
-        
-        guard let popover = popoverViewController, let presentationController = popover.popoverPresentationController else {
-            
-            return
-        }
-        
-        popover.modalPresentationStyle = UIModalPresentationStyle.Popover
-        
-        presentationController.delegate = self
-        
-        presentViewController(popover, animated: true, completion: nil)
-        
-        presentationController.barButtonItem = pubDateBtnItem
-        presentationController.permittedArrowDirections = .Any
-        popover.preferredContentSize = CGSizeMake(200, 80)
-        
-        popover.lblMessage.text = publishDate
-    }
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
     }
     
     

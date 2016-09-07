@@ -31,11 +31,6 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="94i-2P-Z0V"/>
-                                    <barButtonItem title="Data publikacji" id="4he-Xj-o7W">
-                                        <connections>
-                                            <action selector="showPublishDate:" destination="IPv-oO-iH4" id="ach-uT-w4C"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O7Z-yd-03J">
@@ -69,7 +64,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="pubDateBtnItem" destination="4he-Xj-o7W" id="w9m-HZ-GAu"/>
+                        <outlet property="noNews" destination="IL6-2Q-v7P" id="Z0B-n6-o88"/>
                         <outlet property="toolbar" destination="ZbN-qg-zlh" id="3nm-A7-xTy"/>
                         <outlet property="webview" destination="O7Z-yd-03J" id="VNE-zz-dqB"/>
                     </connections>
