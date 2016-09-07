@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class NewsViewController: UIViewController, UIPopoverPresentationControllerDelegate, UIWebViewDelegate {
     
     @IBOutlet weak var webview: UIWebView!
     @IBOutlet weak var toolbar: UIToolbar!
@@ -22,6 +22,7 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        webview.delegate = self
         webview.hidden = true
         toolbar.hidden = true
         
@@ -53,6 +54,16 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 insertCustomDispModeBtn()
             }
         }
+    }
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.LinkClicked {
+            if let url = request.URL {
+                UIApplication.sharedApplication().openURL(url)
+                return false
+            }
+        }
+        return true
     }
     
     func splitViewControllerDisplayModeDidChange(notification: NSNotification) {
