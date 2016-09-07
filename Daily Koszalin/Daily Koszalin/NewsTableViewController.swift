@@ -138,7 +138,7 @@ class NewsTableViewController: UITableViewController {
         webViewVC.publishDate = String(date)
         
         let mySplitVC = splitViewController as? EmbeddedSplitViewController
-        mySplitVC?.collapseSecondaryVCOntoPrimary()
+        mySplitVC?.unCollapseSecondaryVCOntoPrimary()
         
         showDetailViewController(webViewVC, sender: self)
     }

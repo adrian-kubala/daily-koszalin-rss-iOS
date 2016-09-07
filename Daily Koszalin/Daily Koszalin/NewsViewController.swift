@@ -58,7 +58,6 @@ class NewsViewController: UIViewController, UIPopoverPresentationControllerDeleg
     func splitViewControllerDisplayModeDidChange(notification: NSNotification) {
         let displayModeObject = notification.object as? NSNumber
         let nextDisplayMode = displayModeObject?.integerValue
-//        let currentDisplayMode = splitViewController?.displayMode
         
         if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue {
             insertCustomDispModeBtn()

@@ -24,7 +24,7 @@ class EmbeddedSplitViewController: UISplitViewController, UISplitViewControllerD
         containerViewController.setEmbeddedViewController(self, delegate: appDelegate)
     }
     
-    func collapseSecondaryVCOntoPrimary() {
+    func unCollapseSecondaryVCOntoPrimary() {
         if isCollapsing == true {
             isCollapsing = false
         }
