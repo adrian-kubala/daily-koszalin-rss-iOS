@@ -37,8 +37,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ji1-O6-Rm5">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ji1-O6-Rm5">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -148,59 +148,15 @@
                     <navigationItem key="navigationItem" title="Wiadomości z Koszalina i okolic" id="Whr-f4-O3e">
                         <barButtonItem key="backBarButtonItem" title="Wiadomości" id="ioP-gZ-frO"/>
                     </navigationItem>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="084-y1-F8C">
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" alpha="0.59999999999999998" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="084-y1-F8C">
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WsB-FI-OUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1136" y="-283"/>
-        </scene>
-        <!--Popover View Controller-->
-        <scene sceneID="Fcv-5A-9eo">
-            <objects>
-                <viewController storyboardIdentifier="idPopoverViewController" id="PA4-Ll-hdl" customClass="PopoverViewController" customModule="Daily_Koszalin" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZTn-W8-kiE"/>
-                        <viewControllerLayoutGuide type="bottom" id="hNV-ux-rnx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0kO-ak-Vkd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwH-vJ-DPg">
-                                <rect key="frame" x="16" y="20" width="568" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="bZt-vb-uzw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="FwH-vJ-DPg" secondAttribute="trailing" constant="16" id="Uiy-gu-sFR"/>
-                            <constraint firstItem="hNV-ux-rnx" firstAttribute="top" secondItem="FwH-vJ-DPg" secondAttribute="bottom" constant="500" id="YP1-c5-Lkm"/>
-                            <constraint firstItem="FwH-vJ-DPg" firstAttribute="leading" secondItem="0kO-ak-Vkd" secondAttribute="leading" constant="16" id="pMN-On-QGq"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="FwH-vJ-DPg" secondAttribute="bottom" constant="500" id="q3r-EB-PEq"/>
-                            <constraint firstItem="FwH-vJ-DPg" firstAttribute="top" secondItem="0kO-ak-Vkd" secondAttribute="topMargin" constant="20" id="sZv-uO-d00"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="q3r-EB-PEq"/>
-                                <exclude reference="YP1-c5-Lkm"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="lblMessage" destination="FwH-vJ-DPg" id="F4n-ug-AYS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qn3-Jf-GNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1112" y="388"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="k9t-ZL-iBz">

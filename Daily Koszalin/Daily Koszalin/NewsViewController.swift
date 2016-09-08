@@ -48,7 +48,6 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
             let request = NSURLRequest(URL: url)
             webview.loadRequest(request)
             
-            webViewIndicator.stopAnimating()
             if webview.hidden == true {
                 
                 webview.hidden = false
@@ -76,6 +75,10 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
             }
         }
         return true
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        webViewIndicator.stopAnimating()
     }
     
     func splitViewControllerDisplayModeDidChange(notification: NSNotification) {
