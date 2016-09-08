@@ -26,13 +26,10 @@ class NewsTableViewController: UITableViewController {
         if let savedNews = loadNewsFromDisk() {
             news = savedNews
         }
-        
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         
         parseContentFromURL(rssURLs)
         
@@ -50,17 +47,13 @@ class NewsTableViewController: UITableViewController {
         
         for url in urls.values {
             
-            if EmbeddedSplitViewController.isConnectedToNetwork() == false {
-                
-                let splitVC = splitViewController as? EmbeddedSplitViewController
-                
-                splitVC?.showConnectionAlert()
+            if ConnectionManager.sharedInstance.isConnectedToNetwork() == false {
+                ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
                 
                 break
             }
             
             guard let feedUrl = url else {
-
                 continue
             }
             
@@ -100,6 +93,7 @@ class NewsTableViewController: UITableViewController {
                 }
             })
         }
+        
         sortAndReloadData()
     }
     
