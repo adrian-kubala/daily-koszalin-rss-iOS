@@ -41,6 +41,7 @@ class NewsTableViewController: UITableViewController {
         tableView.reloadData()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
+        
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
@@ -136,7 +137,18 @@ class NewsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        
+        if selectedCell?.selected == true {
+            return nil
+        } else {
+            return indexPath
+        }
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         let link = news[indexPath.row].link
         let pubDate = news[indexPath.row].pubDate
         
