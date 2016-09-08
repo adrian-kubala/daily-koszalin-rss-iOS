@@ -81,6 +81,14 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
         webViewIndicator.stopAnimating()
     }
     
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        let alert = UIAlertController(title: "Błąd", message: "Brak połączenia z internetem. Sprawdź swoje połączenie i spróbuj ponownie.", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        presentViewController(alert, animated: true, completion: nil)
+        
+        webViewIndicator.stopAnimating()
+    }
+    
     func splitViewControllerDisplayModeDidChange(notification: NSNotification) {
         let displayModeObject = notification.object as? NSNumber
         let nextDisplayMode = displayModeObject?.integerValue
