@@ -84,9 +84,9 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         
         if error?.localizedDescription == "The Internet connection appears to be offline." {
-            let alert = UIAlertController(title: "Błąd połączenia", message: "Upewnij się, że urządzenie jest podłączone do internetu i spróbuj ponownie.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            let splitVC = splitViewController as? EmbeddedSplitViewController
+            
+            splitVC?.showConnectionAlert()
         }
         
         webViewIndicator.stopAnimating()

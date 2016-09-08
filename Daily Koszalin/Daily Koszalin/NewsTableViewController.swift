@@ -27,22 +27,40 @@ class NewsTableViewController: UITableViewController {
             news = savedNews
         }
         
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
         parseContentFromURL(rssURLs)
+        
+    }
+    
+    private func sortAndReloadData() {
+        news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
+        saveNewsToDisk()
+        tableView.reloadData()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
         
-        func sortAndReloadData() {
-            news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
-            saveNewsToDisk()
-            tableView.reloadData()
-            tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.estimatedRowHeight = 80
-        }
-        
         for url in urls.values {
             
+            if EmbeddedSplitViewController.isConnectedToNetwork() == false {
+                
+                let splitVC = splitViewController as? EmbeddedSplitViewController
+                
+                splitVC?.showConnectionAlert()
+                
+                break
+            }
+            
             guard let feedUrl = url else {
+
                 continue
             }
             
@@ -78,7 +96,7 @@ class NewsTableViewController: UITableViewController {
                         self.news.append(News(source: feedSource, title: item.title, link: itemSource, pubDate: item.updated, favIcon: News.getFavIcon(feedSource)))
                     }
                 case .Failure(let error):
-                    print(error)
+                    print(error.localizedDescription)
                 }
             })
         }
