@@ -82,9 +82,12 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        let alert = UIAlertController(title: "Błąd", message: "Brak połączenia z internetem. Sprawdź swoje połączenie i spróbuj ponownie.", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        
+        if error?.localizedDescription == "The Internet connection appears to be offline." {
+            let alert = UIAlertController(title: "Błąd połączenia", message: "Upewnij się, że urządzenie jest podłączone do internetu i spróbuj ponownie.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        }
         
         webViewIndicator.stopAnimating()
     }
