@@ -133,6 +133,7 @@
                                         <constraint firstItem="e4D-9j-Mq6" firstAttribute="centerY" secondItem="hPS-mT-jWN" secondAttribute="centerY" id="nLp-Ik-knN"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="36" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="cellDate" destination="AkJ-mZ-j4z" id="BIi-EI-YBE"/>
                                     <outlet property="cellFavIcon" destination="e4D-9j-Mq6" id="YyJ-Tt-gd9"/>
