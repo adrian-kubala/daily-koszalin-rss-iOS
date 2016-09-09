@@ -8,6 +8,7 @@
 
 import UIKit
 import FeedKit
+import AlamofireImage
 
 class NewsTableViewController: UITableViewController {
 
@@ -26,9 +27,9 @@ class NewsTableViewController: UITableViewController {
         
         refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
-        if let savedNews = loadNewsFromDisk() {
-            news = savedNews
-        }
+//        if let savedNews = loadNewsFromDisk() {
+//            news = savedNews
+//        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -69,9 +70,10 @@ class NewsTableViewController: UITableViewController {
                             }
                         }
                         
-                        News.setFavIcon(rssFeed.link)
+                        let obj = News(source: rssFeed.link, title: item.title, link: item.link, pubDate: item.pubDate, favIcon: nil)
+                        obj.setFavicon(rssFeed.link)
 
-                        self.news.append(News(source: rssFeed.link, title: item.title, link: item.link, pubDate: item.pubDate, favIcon: News.getFavIcon(rssFeed.link)))
+                        self.news.append(obj)
                     }
                 case .Atom(let atomFeed):
                     dataLoop: for item in atomFeed.entries! {
@@ -85,9 +87,11 @@ class NewsTableViewController: UITableViewController {
                         let feedSource = atomFeed.links?.first?.attributes?.href
                         let itemSource = item.links?.first?.attributes?.href
                         
-                        News.setFavIcon(feedSource)
+                        let obj = News(source: feedSource, title: item.title, link: itemSource, pubDate: item.updated, favIcon: nil)
                         
-                        self.news.append(News(source: feedSource, title: item.title, link: itemSource, pubDate: item.updated, favIcon: News.getFavIcon(feedSource)))
+                        obj.setFavicon(feedSource)
+                        
+                        self.news.append(obj)
                     }
                 case .Failure(let error):
                     print(error.localizedDescription)
@@ -131,7 +135,7 @@ class NewsTableViewController: UITableViewController {
         
         newsCell?.setTitle(currentNews.title)
         newsCell?.setPubDate(currentNews.pubDate)
-        newsCell?.setFavIcon(currentNews.source)
+        newsCell?.setFavIcon(currentNews.favIcon)
         newsCell?.setSelectedBackgroundColor()
 
         return cell

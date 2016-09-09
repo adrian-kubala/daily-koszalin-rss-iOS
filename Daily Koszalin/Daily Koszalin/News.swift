@@ -14,50 +14,19 @@ class News: NSObject, NSCoding {
     let title: String?
     let link: String?
     let pubDate: NSDate?
-    static var favIcons: [String: UIImage?] = [:]
+    var favIcon: UIImage?
     
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
     static let ArchiveURL = DocumentsDirectory?.URLByAppendingPathComponent("news")
     
     
-    static func setFavIcon(source: String?) {
-        guard let origin = source where isFavIcon(source) == false else {
-            return
-        }
+    func setFavicon(source: String?) {
         
-        let img = downloadFavIcon(source)
-        
-        if let icon = img {
-            favIcons[origin] = icon
-        }
-    }
-    
-    static func downloadFavIcon(url: String?) -> UIImage? {
-        var img = UIImage?()
-        if var searchUrl = url {
-            searchUrl = "https://www.google.com/s2/favicons?domain=" + searchUrl
-            
-            if let iconUrl = NSURL(string: searchUrl) {
-                if let data = NSData(contentsOfURL: iconUrl) {
-                    img = UIImage(data: data)
-                    return img
-                }
+        downloadFavIcon(source) { [weak self] img in
+            if let icon = img {
+                self?.favIcon = icon
             }
         }
-        return nil
-    }
-    
-    static func getFavIcon(source: String?) -> UIImage? {
-        var img = UIImage?()
-        
-        if let origin = source {
-            
-            if let icon = favIcons[origin] {
-                img = icon
-            }
-        }
-        
-        return img
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -65,17 +34,7 @@ class News: NSObject, NSCoding {
         aCoder.encodeObject(title, forKey: "title")
         aCoder.encodeObject(link, forKey: "link")
         aCoder.encodeObject(pubDate, forKey: "pubDate")
-        aCoder.encodeObject(News.getFavIcon(source), forKey: "favIcon")
-    }
-    
-    static func isFavIcon(source: String?) -> Bool {
-        let isNot = false
-        if let origin = source {
-            guard favIcons[origin] == nil else {
-                return true
-            }
-        }
-        return isNot
+        aCoder.encodeObject(favIcon, forKey: "favIcon")
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -98,9 +57,7 @@ class News: NSObject, NSCoding {
         self.title = title
         self.link = link
         self.pubDate = pubDate
-        if let origin = source {
-            News.favIcons[origin] = favIcon
-        }
+        self.favIcon = favIcon
         
         super.init()
     }

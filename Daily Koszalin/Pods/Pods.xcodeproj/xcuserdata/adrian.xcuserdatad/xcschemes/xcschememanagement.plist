@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FeedKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,7 +37,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>05094CC4A047119F7ADC14EE74C4881C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>16131564C2E4342B2D872E29997DBCB0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1724FA2A2CBDC83BC5ED028A4099F3C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -38,11 +63,6 @@
 			<true/>
 		</dict>
 		<key>D152950997B87D68E26417903CB6777A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F825017F07A64B474A2BD4F5F9B9F966</key>
 		<dict>
 			<key>primary</key>
 			<true/>

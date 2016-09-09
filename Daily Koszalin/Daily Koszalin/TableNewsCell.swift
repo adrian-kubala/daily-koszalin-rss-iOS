@@ -42,7 +42,7 @@ class TableNewsCell: UITableViewCell {
         return dateString
     }
     
-    func setFavIcon(source: String?) {
-        cellFavIcon.image = News.getFavIcon(source)
+    func setFavIcon(icon: UIImage?) {
+        cellFavIcon.image = icon
     }
 }
