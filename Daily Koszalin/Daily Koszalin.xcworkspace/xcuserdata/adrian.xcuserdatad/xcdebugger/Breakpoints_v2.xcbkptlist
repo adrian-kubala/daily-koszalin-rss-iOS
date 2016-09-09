@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Daily Koszalin/News+DownloadFavIcon.swift"
-            timestampString = "495114809.071432"
+            timestampString = "495116798.172428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "downloadFavIcon(_:completion:)"
             landmarkType = "5">
          </BreakpointContent>

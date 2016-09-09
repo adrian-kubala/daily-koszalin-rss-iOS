@@ -71,7 +71,7 @@ class NewsTableViewController: UITableViewController {
                         }
                         
                         let obj = News(source: rssFeed.link, title: item.title, link: item.link, pubDate: item.pubDate, favIcon: nil)
-                        obj.setFavicon(rssFeed.link)
+                        obj.setupFavIcon(rssFeed.link)
 
                         self.news.append(obj)
                     }
@@ -89,7 +89,7 @@ class NewsTableViewController: UITableViewController {
                         
                         let obj = News(source: feedSource, title: item.title, link: itemSource, pubDate: item.updated, favIcon: nil)
                         
-                        obj.setFavicon(feedSource)
+                        obj.setupFavIcon(feedSource)
                         
                         self.news.append(obj)
                     }

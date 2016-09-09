@@ -20,7 +20,7 @@ class News: NSObject, NSCoding {
     static let ArchiveURL = DocumentsDirectory?.URLByAppendingPathComponent("news")
     
     
-    func setFavicon(source: String?) {
+    func setupFavIcon(source: String?) {
         
         downloadFavIcon(source) { [weak self] img in
             if let icon = img {
