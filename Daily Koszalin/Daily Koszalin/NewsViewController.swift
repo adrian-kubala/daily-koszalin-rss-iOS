@@ -67,15 +67,15 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.LinkClicked {
-            if let url = request.URL {
-                UIApplication.sharedApplication().openURL(url)
-                return false
-            }
-        }
-        return true
-    }
+//    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+//        if navigationType == UIWebViewNavigationType.LinkClicked {
+//            if let url = request.URL {
+//                UIApplication.sharedApplication().openURL(url)
+//                return false
+//            }
+//        }
+//        return true
+//    }
     
     func webViewDidFinishLoad(webView: UIWebView) {
         webViewIndicator.stopAnimating()

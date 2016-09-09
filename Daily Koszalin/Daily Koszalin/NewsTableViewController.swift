@@ -21,6 +21,9 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
+        
         refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         if let savedNews = loadNewsFromDisk() {
@@ -39,9 +42,6 @@ class NewsTableViewController: UITableViewController {
         news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
         saveNewsToDisk()
         tableView.reloadData()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 80
-        
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
