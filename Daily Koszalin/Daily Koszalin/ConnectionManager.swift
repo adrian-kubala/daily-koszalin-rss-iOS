@@ -6,7 +6,7 @@
 //  Copyright © 2016 Adrian Kubała. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import SystemConfiguration
 
 class ConnectionManager {

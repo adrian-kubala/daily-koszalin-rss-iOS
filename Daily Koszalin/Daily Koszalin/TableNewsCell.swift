@@ -34,11 +34,11 @@ class TableNewsCell: UITableViewCell {
         dateFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
         dateFormatter.locale = NSLocale(localeIdentifier: "pl_PL")
         
-        guard let unformattedDate = date else {
+        guard let date = date else {
             return nil
         }
         
-        let dateString = dateFormatter.stringFromDate(unformattedDate)
+        let dateString = dateFormatter.stringFromDate(date)
         return dateString
     }
     
