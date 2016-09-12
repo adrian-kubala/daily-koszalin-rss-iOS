@@ -91,8 +91,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="Wqb-0f-0Ep">
-                            <rect key="frame" x="0.0" y="152" width="600" height="21"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Wqb-0f-0Ep" userLabel="Blank View">
+                            <rect key="frame" x="0.0" y="152" width="600" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </view>
                         <prototypes>

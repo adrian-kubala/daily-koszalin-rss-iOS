@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmbeddedSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
+class EmbeddedSplitViewController: UISplitViewController {
     
     var isCollapsing = true
     
@@ -30,6 +30,11 @@ class EmbeddedSplitViewController: UISplitViewController, UISplitViewControllerD
         }
     }
     
+}
+
+// MARK: - UISplitViewControllerDelegate
+extension EmbeddedSplitViewController: UISplitViewControllerDelegate {
+    
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
         return isCollapsing
     }
@@ -41,6 +46,5 @@ class EmbeddedSplitViewController: UISplitViewController, UISplitViewControllerD
     func splitViewController(svc: UISplitViewController, willChangeToDisplayMode displayMode: UISplitViewControllerDisplayMode) {
         NSNotificationCenter.defaultCenter().postNotificationName("DisplayModeChangeNotification", object: NSNumber.init(integer: displayMode.rawValue))
     }
-    
     
 }
