@@ -142,13 +142,7 @@ class NewsTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        let currentNews: News
-        
-        if searchIsActive() {
-            currentNews = filteredNews[indexPath.row]
-        } else {
-            currentNews = news[indexPath.row]
-        }
+        let currentNews = chooseData(indexPath.row)
         
         newsCell.setTitle(currentNews.title)
         newsCell.setPubDate(currentNews.pubDate)
@@ -156,6 +150,15 @@ class NewsTableViewController: UITableViewController {
         newsCell.setSelectedBackgroundColor()
         
         return newsCell
+    }
+    
+    func chooseData(row: Int) -> News {
+
+        if searchIsActive() {
+            return filteredNews[row]
+        }
+        
+        return news[row]
     }
     
     func searchIsActive() -> Bool {
@@ -196,25 +199,23 @@ class NewsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedNews = chooseData(indexPath.row)
         
-        let link = news[indexPath.row].link
-        let pubDate = news[indexPath.row].pubDate
+        let link = selectedNews.link
         
         let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as? NewsViewController
         
-        guard let url = link, let date = pubDate, let webViewVC = newsVC else {
+        guard let url = link, let webViewVC = newsVC else {
             return
         }
         
         webViewVC.newsURL = NSURL(string: url)
-        webViewVC.publishDate = String(date)
         
         let mySplitVC = splitViewController as? EmbeddedSplitViewController
         mySplitVC?.unCollapseSecondaryVCOntoPrimary()
         
         showDetailViewController(webViewVC, sender: self)
     }
-    
     
 }
 

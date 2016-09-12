@@ -18,7 +18,6 @@ class NewsViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet var webViewIndicator: UIActivityIndicatorView!
     var newsURL: NSURL?
-    var publishDate: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
