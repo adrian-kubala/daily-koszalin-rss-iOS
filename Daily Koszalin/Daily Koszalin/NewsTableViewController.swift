@@ -18,6 +18,10 @@ class NewsTableViewController: UITableViewController {
                    "naszemiasto" : NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                    "koszalin" : NSURL(string: "http://www.koszalin.pl/pl/rss.xml")]
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var filteredNews: [News] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,8 @@ class NewsTableViewController: UITableViewController {
 //        if let savedNews = loadNewsFromDisk() {
 //            news = savedNews
 //        }
+        
+        setupSearchController()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -123,34 +129,72 @@ class NewsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchIsActive() {
+            return filteredNews.count
+        }
         return news.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("newsCell", forIndexPath: indexPath)
-
-        let newsCell = cell as? TableNewsCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("newsCell")
         
-        let currentNews = news[indexPath.row]
+        guard let newsCell = cell as? TableNewsCell else {
+            return UITableViewCell()
+        }
         
-        newsCell?.setTitle(currentNews.title)
-        newsCell?.setPubDate(currentNews.pubDate)
-        newsCell?.setFavIcon(currentNews.favIcon)
-        newsCell?.setSelectedBackgroundColor()
-
-        return cell
+        let currentNews: News
+        
+        if searchIsActive() {
+            currentNews = filteredNews[indexPath.row]
+        } else {
+            currentNews = news[indexPath.row]
+        }
+        
+        newsCell.setTitle(currentNews.title)
+        newsCell.setPubDate(currentNews.pubDate)
+        newsCell.setFavIcon(currentNews.favIcon)
+        newsCell.setSelectedBackgroundColor()
+        
+        return newsCell
+    }
+    
+    func searchIsActive() -> Bool {
+        if searchController.active && searchController.searchBar.text != "" {
+            return true
+        }
+        return false
+    }
+    
+    func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredNews = news.filter { news in
+            if let newsTitle = news.title {
+                return newsTitle.lowercaseString.containsString(searchText.lowercaseString)
+            } else {
+                return false
+            }
+        }
+        
+        tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        let isAlreadySelected = selectedCell?.selected
         
-        if selectedCell?.selected == true {
+        if isAlreadySelected == true {
             return nil
         } else {
             return indexPath
         }
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let link = news[indexPath.row].link
@@ -171,5 +215,16 @@ class NewsTableViewController: UITableViewController {
         showDetailViewController(webViewVC, sender: self)
     }
     
+    
+}
+
+extension NewsTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else {
+            return
+        }
+        filterContentForSearchText(searchText)
+    }
     
 }

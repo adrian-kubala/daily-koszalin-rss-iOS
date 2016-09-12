@@ -154,8 +154,27 @@
                         <attributedString key="attributedTitle"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </refreshControl>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="17V-og-Yqj" id="yf2-K9-5s3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WsB-FI-OUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="pak-M8-uUk">
+                    <connections>
+                        <outlet property="delegate" destination="VOA-IS-Mlg" id="hed-4f-Bn0"/>
+                        <outlet property="searchContentsController" destination="VOA-IS-Mlg" id="Bz6-Y6-Ydi"/>
+                        <outlet property="searchResultsDataSource" destination="VOA-IS-Mlg" id="Uqj-tq-7sb"/>
+                        <outlet property="searchResultsDelegate" destination="VOA-IS-Mlg" id="uDx-Z1-Cea"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="17V-og-Yqj">
+                    <connections>
+                        <outlet property="delegate" destination="VOA-IS-Mlg" id="f6V-zu-eWM"/>
+                        <outlet property="searchContentsController" destination="VOA-IS-Mlg" id="lhU-eI-UrX"/>
+                        <outlet property="searchResultsDataSource" destination="VOA-IS-Mlg" id="76g-by-Z6M"/>
+                        <outlet property="searchResultsDelegate" destination="VOA-IS-Mlg" id="wer-SG-6Rx"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1136" y="-283"/>
         </scene>
