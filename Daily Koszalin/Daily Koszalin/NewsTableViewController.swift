@@ -172,16 +172,41 @@ class NewsTableViewController: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
+        
+        let searchBar = searchController.searchBar
+        tableView.tableHeaderView = searchBar
+        searchBar.autocapitalizationType = .None
+        searchBar.placeholder = "Wyszukaj"
+        searchBar.scopeButtonTitles = ["Wszystkie", "Do 3 dni", "Do 5 dni"]
+        searchBar.delegate = self
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
+    func filterContentForSearchText(searchText: String, scope: String = "Wszystkie") {
         filteredNews = news.filter { news in
-            if let newsTitle = news.title {
-                return newsTitle.lowercaseString.containsString(searchText.lowercaseString)
-            } else {
-                return false
+            
+            if let newsTitle = news.title, let newsDate = news.pubDate {
+                
+                let currentDate = NSDate()
+                let difference = currentDate.daysBetweenDates(newsDate)
+                
+                var dateMatch = false
+                switch scope {
+                case "Do 3 dni":
+                    if difference < 3 {
+                        dateMatch = true
+                    }
+                case "Do 5 dni":
+                    if difference < 5 {
+                        dateMatch = true
+                    }
+                default:
+                    dateMatch = false
+                }
+                
+                let filterMatch = (scope == "Wszystkie") || dateMatch
+                return filterMatch && newsTitle.lowercaseString.containsString(searchText.lowercaseString)
             }
+            return false
         }
         
         tableView.reloadData()
@@ -215,17 +240,6 @@ class NewsTableViewController: UITableViewController {
         mySplitVC?.unCollapseSecondaryVCOntoPrimary()
         
         showDetailViewController(webViewVC, sender: self)
-    }
-    
-}
-
-extension NewsTableViewController: UISearchResultsUpdating {
-    
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else {
-            return
-        }
-        filterContentForSearchText(searchText)
     }
     
 }
