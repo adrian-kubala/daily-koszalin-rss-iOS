@@ -31,9 +31,9 @@ class NewsTableViewController: UITableViewController {
         
         refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
-        if let savedNews = loadNewsFromDisk() {
-            news = savedNews
-        }
+//        if let savedNews = loadNewsFromDisk() {
+//            news = savedNews
+//        }
         
         setupSearchController()
     }
@@ -175,13 +175,13 @@ class NewsTableViewController: UITableViewController {
     }
     
     func searchIsActive() -> Bool {
-        if searchController.active && searchController.searchBar.text != "" {
+        if searchController.active {
             return true
         }
         return false
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "Wszystkie") {
+    func filterContentForSearchText(searchText: String, scope: String) {
         filteredNews = news.filter { news in
             
             if let newsTitle = news.title, let newsDate = news.pubDate {
@@ -204,7 +204,12 @@ class NewsTableViewController: UITableViewController {
                 }
                 
                 let filterMatch = (scope == "Wszystkie") || dateMatch
-                return filterMatch && newsTitle.lowercaseString.containsString(searchText.lowercaseString)
+                
+                if searchText != "" {
+                    return filterMatch && newsTitle.lowercaseString.containsString(searchText.lowercaseString)
+                } else {
+                    return filterMatch
+                }
             }
             return false
         }
