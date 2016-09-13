@@ -67,6 +67,10 @@ class NewsTableViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         
+        setupSearchBar()
+    }
+    
+    func setupSearchBar() {
         let searchBar = searchController.searchBar
         tableView.tableHeaderView = searchBar
         searchBar.autocapitalizationType = .None
@@ -79,7 +83,6 @@ class NewsTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         parseContentFromURL(rssURLs)
-        
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
@@ -135,7 +138,6 @@ class NewsTableViewController: UITableViewController {
                 }
             })
         }
-        
         sortAndReloadData()
     }
     
@@ -232,19 +234,7 @@ class NewsTableViewController: UITableViewController {
             let currentDate = NSDate()
             let difference = currentDate.daysBetweenDates(newsDate)
             
-            var dateMatch = false
-            switch scope {
-            case "Do 3 dni":
-                if difference < 3 {
-                    dateMatch = true
-                }
-            case "Do 5 dni":
-                if difference < 5 {
-                    dateMatch = true
-                }
-            default:
-                dateMatch = false
-            }
+            let dateMatch = doesMatchByDaysDifference(difference, within: scope)
             
             let filterMatch = (scope == "Wszystkie") || dateMatch
             
@@ -254,9 +244,23 @@ class NewsTableViewController: UITableViewController {
                 return filterMatch
             }
         }
-        
         tableView.reloadData()
     }
     
-    
+    func doesMatchByDaysDifference(days: Int, within scope: String) -> Bool {
+        var doesMatch = false
+        switch scope {
+        case "Do 3 dni":
+            if days < 3 {
+                doesMatch = true
+            }
+        case "Do 5 dni":
+            if days < 5 {
+                doesMatch = true
+            }
+        default:
+            doesMatch = false
+        }
+        return doesMatch
+    }
 }

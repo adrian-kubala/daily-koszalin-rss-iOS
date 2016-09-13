@@ -43,6 +43,4 @@ class TableNewsCell: UITableViewCell {
         backgroundView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.6)
         selectedBackgroundView = backgroundView
     }
-    
-    
 }

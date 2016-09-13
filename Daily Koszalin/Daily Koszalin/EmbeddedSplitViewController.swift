@@ -35,7 +35,6 @@ class EmbeddedSplitViewController: UISplitViewController {
 
 // MARK: - UISplitViewControllerDelegate
 extension EmbeddedSplitViewController: UISplitViewControllerDelegate {
-    
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
         return isCollapsing
     }
@@ -47,5 +46,4 @@ extension EmbeddedSplitViewController: UISplitViewControllerDelegate {
     func splitViewController(svc: UISplitViewController, willChangeToDisplayMode displayMode: UISplitViewControllerDisplayMode) {
         NSNotificationCenter.defaultCenter().postNotificationName("DisplayModeChangeNotification", object: NSNumber.init(integer: displayMode.rawValue))
     }
-    
 }
