@@ -93,24 +93,24 @@ class NewsViewController: UIViewController {
         }
     }
     
-        override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-            let currentDisplayMode = splitViewController?.displayMode
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        let currentDisplayMode = splitViewController?.displayMode
+        
+        if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
             
-            if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
-    
-                if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
-                    insertCustomDispModeBtn()
-                } else {
-                    insertDispModeBtn()
-                }
+            if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
+                insertCustomDispModeBtn()
             } else {
-                if currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible  {
-                    insertDispModeBtn()
-                }
+                insertDispModeBtn()
             }
-
-            super.traitCollectionDidChange(previousTraitCollection)
+        } else {
+            if currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible  {
+                insertDispModeBtn()
+            }
         }
+        
+        super.traitCollectionDidChange(previousTraitCollection)
+    }
     
     func removeFirstBarButton(bar: UIToolbar) {
         if bar.items?.count == 2 {

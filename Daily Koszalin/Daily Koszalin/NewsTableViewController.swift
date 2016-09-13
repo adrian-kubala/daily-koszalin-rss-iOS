@@ -13,6 +13,7 @@ import AlamofireImage
 class NewsTableViewController: UITableViewController {
 
     var news: [News] = []
+    var filteredNews: [News] = []
     let rssURLs = ["gk24" : NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                    "radiokoszalin" : NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                    "naszemiasto" : NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
@@ -20,28 +21,21 @@ class NewsTableViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    var filteredNews: [News] = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 80
+        enableSelfSizingCells()
+
+        assignLoadedNews()
         
-        refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        
-//        if let savedNews = loadNewsFromDisk() {
-//            news = savedNews
-//        }
-        
+        setupRefreshControl()
         setupSearchController()
     }
     
-    func handleRefresh(refreshControl: UIRefreshControl) {
-        parseContentFromURL(rssURLs)
-        
-        refreshControl.endRefreshing()
+    func enableSelfSizingCells() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80
     }
     
     func loadNewsFromDisk() -> [News]? {
@@ -49,6 +43,22 @@ class NewsTableViewController: UITableViewController {
             return nil
         }
         return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [News]
+    }
+    
+    func assignLoadedNews() {
+        if let savedNews = loadNewsFromDisk() {
+            news = savedNews
+        }
+    }
+    
+    func setupRefreshControl() {
+        refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        parseContentFromURL(rssURLs)
+        
+        refreshControl.endRefreshing()
     }
     
     func setupSearchController() {
@@ -181,6 +191,36 @@ class NewsTableViewController: UITableViewController {
         return false
     }
     
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        let isAlreadySelected = selectedCell?.selected
+        
+        if isAlreadySelected == true {
+            return nil
+        } else {
+            return indexPath
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedNews = chooseData(indexPath.row)
+        
+        let link = selectedNews.link
+        
+        let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as? NewsViewController
+        
+        guard let url = link, let webViewVC = newsVC else {
+            return
+        }
+        
+        webViewVC.newsURL = NSURL(string: url)
+        
+        let mySplitVC = splitViewController as? EmbeddedSplitViewController
+        mySplitVC?.unCollapseSecondaryVCOntoPrimary()
+        
+        showDetailViewController(webViewVC, sender: self)
+    }
+    
     func filterContentForSearchText(searchText: String, scope: String) {
         filteredNews = news.filter { news in
             
@@ -217,34 +257,5 @@ class NewsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
-        let isAlreadySelected = selectedCell?.selected
-        
-        if isAlreadySelected == true {
-            return nil
-        } else {
-            return indexPath
-        }
-    }
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedNews = chooseData(indexPath.row)
-        
-        let link = selectedNews.link
-        
-        let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as? NewsViewController
-        
-        guard let url = link, let webViewVC = newsVC else {
-            return
-        }
-        
-        webViewVC.newsURL = NSURL(string: url)
-        
-        let mySplitVC = splitViewController as? EmbeddedSplitViewController
-        mySplitVC?.unCollapseSecondaryVCOntoPrimary()
-        
-        showDetailViewController(webViewVC, sender: self)
-    }
     
 }
