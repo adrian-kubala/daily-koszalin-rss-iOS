@@ -225,7 +225,6 @@ class NewsTableViewController: UITableViewController {
     
     func filterContentForSearchText(searchText: String, scope: String) {
         filteredNews = news.filter { news in
-            
             guard let newsTitle = news.title, let newsDate = news.pubDate else {
                 return false
             }
@@ -254,7 +253,6 @@ class NewsTableViewController: UITableViewController {
             } else {
                 return filterMatch
             }
-            
         }
         
         tableView.reloadData()

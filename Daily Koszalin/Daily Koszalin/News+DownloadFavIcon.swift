@@ -13,16 +13,17 @@ import AlamofireImage
 extension News {
     
     func downloadFavIcon(url: String?, completion: (UIImage?) -> ()) {
-
-        if var searchUrl = url {
-            searchUrl = "https://www.google.com/s2/favicons?domain=" + searchUrl
-            
-            Alamofire.request(.GET, searchUrl)
-                .responseImage { response in
-
-                    let img = response.result.value
-                    completion(img)
-            }
+        guard var searchUrl = url else {
+            return
+        }
+        
+        searchUrl = "https://www.google.com/s2/favicons?domain=" + searchUrl
+        
+        Alamofire.request(.GET, searchUrl)
+            .responseImage { response in
+                
+                let img = response.result.value
+                completion(img)
         }
     }
 }

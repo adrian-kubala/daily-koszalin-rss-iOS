@@ -9,25 +9,29 @@
 import UIKit
 
 class NewsViewController: UIViewController {
-    
     @IBOutlet weak var webview: UIWebView!
     @IBOutlet weak var toolbar: UIToolbar!
-    
     @IBOutlet var noNews: UILabel!
-    var newsButtonitem : UIBarButtonItem?
-    
     @IBOutlet var webViewIndicator: UIActivityIndicatorView!
+    
+    var newsButtonitem : UIBarButtonItem?
     var newsURL: NSURL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         webview.delegate = self
-        webview.hidden = true
-        toolbar.hidden = true
+
+        setupNewsButtonItem()
         
+        addNotificationObserver()
+    }
+    
+    func setupNewsButtonItem() {
         newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(NewsViewController.showNewsTableViewController))
-        
+    }
+    
+    func addNotificationObserver() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsViewController.splitViewControllerDisplayModeDidChange(_:)), name: "DisplayModeChangeNotification", object: nil)
     }
     
@@ -47,6 +51,7 @@ class NewsViewController: UIViewController {
         
         if newsURL != nil {
             noNews.hidden = true
+            toolbar.hidden = false
             webViewIndicator.startAnimating()
         }
     }
@@ -54,27 +59,33 @@ class NewsViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let url = newsURL {
-            let request = NSURLRequest(URL: url)
-            webview.loadRequest(request)
-            
-            if webview.hidden == true {
-                
-                webview.hidden = false
-                webview.scalesPageToFit = true
-                webview.contentMode = UIViewContentMode.ScaleAspectFit
-                
-                toolbar.hidden = false
-            }
-
-            let currentDisplayMode = splitViewController?.displayMode
-            
-            if currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible {
-                insertDispModeBtn()
-            } else {
-                insertCustomDispModeBtn()
-            }
+        guard let url = newsURL else {
+            return
         }
+        
+        let request = NSURLRequest(URL: url)
+        webview.loadRequest(request)
+        
+        setupWebView()
+        
+        if displayModeIsAllVisible() {
+            insertDispModeBtn()
+        } else {
+            insertCustomDispModeBtn()
+        }
+    }
+    
+    func setupWebView() {
+        if webview.hidden == true {
+            webview.hidden = false
+            webview.scalesPageToFit = true
+            webview.contentMode = UIViewContentMode.ScaleAspectFit
+        }
+    }
+    
+    func displayModeIsAllVisible() -> Bool {
+        let currentDisplayMode = splitViewController?.displayMode
+        return currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible
     }
     
     func splitViewControllerDisplayModeDidChange(notification: NSNotification) {
@@ -86,27 +97,31 @@ class NewsViewController: UIViewController {
         } else {
             insertDispModeBtn()
         }
-        if traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
-            if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
-                insertCustomDispModeBtn()
-            }
+        
+        guard traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad else {
+            return
+        }
+        
+        if displayModeIsPrimaryHidden() {
+            insertCustomDispModeBtn()
         }
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    func displayModeIsPrimaryHidden() -> Bool {
         let currentDisplayMode = splitViewController?.displayMode
-        
+        return currentDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden
+    }
+    
+    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
             
-            if splitViewController?.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden {
+            if displayModeIsPrimaryHidden() {
                 insertCustomDispModeBtn()
             } else {
                 insertDispModeBtn()
             }
-        } else {
-            if currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible  {
-                insertDispModeBtn()
-            }
+        } else if displayModeIsAllVisible() {
+            insertDispModeBtn()
         }
         
         super.traitCollectionDidChange(previousTraitCollection)
@@ -141,19 +156,15 @@ class NewsViewController: UIViewController {
             return false
         }
     }
-    
-    
 }
 
 // MARK: - UIWebViewDelegate
 extension NewsViewController: UIWebViewDelegate {
-    
     func webViewDidFinishLoad(webView: UIWebView) {
         webViewIndicator.stopAnimating()
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        
         if ConnectionManager.sharedInstance.isConnectedToNetwork() == false {
             ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
         }

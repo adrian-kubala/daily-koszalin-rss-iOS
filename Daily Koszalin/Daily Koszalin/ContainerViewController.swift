@@ -9,9 +9,7 @@
 import UIKit
 
 class ContainerViewController: UIViewController {
-    
     var viewController: UISplitViewController?
-    
     
     func setEmbeddedViewController(splitViewController: UISplitViewController?, delegate: AppDelegate?) {
         guard let splitVC = splitViewController else {

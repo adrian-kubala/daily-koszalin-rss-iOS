@@ -9,7 +9,6 @@
 import UIKit
 
 class EmbeddedSplitViewController: UISplitViewController {
-    
     var isCollapsing = true
     
     override func viewDidLoad() {
@@ -29,7 +28,6 @@ class EmbeddedSplitViewController: UISplitViewController {
             isCollapsing = false
         }
     }
-    
 }
 
 // MARK: - UISplitViewControllerDelegate

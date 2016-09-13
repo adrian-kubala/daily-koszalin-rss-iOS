@@ -27,7 +27,6 @@ extension NewsTableViewController: UISearchResultsUpdating {
 extension NewsTableViewController: UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        
         guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
             return
         }
