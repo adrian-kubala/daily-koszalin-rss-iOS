@@ -31,6 +31,17 @@ class NewsViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsViewController.splitViewControllerDisplayModeDidChange(_:)), name: "DisplayModeChangeNotification", object: nil)
     }
     
+    func showNewsTableViewController() {
+        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+            }, completion: nil)
+        insertDispModeBtn()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -82,10 +93,6 @@ class NewsViewController: UIViewController {
         }
     }
     
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
         override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
             let currentDisplayMode = splitViewController?.displayMode
             
@@ -111,35 +118,28 @@ class NewsViewController: UIViewController {
         }
     }
     
-    func insertDispModeBtn() {
-        removeFirstBarButton(toolbar)
-        
-        if isToolbarCountLessThanThree(), let splitVC = splitViewController {
-            toolbar.items?.insert(splitVC.displayModeButtonItem(), atIndex: 0)
-        }
-    }
-    
     func insertCustomDispModeBtn() {
         removeFirstBarButton(toolbar)
         
-        if isToolbarCountLessThanThree(), let barBtn = newsButtonitem {
+        if isToolbarCountLessThanTwo(), let barBtn = newsButtonitem {
             toolbar.items?.insert(barBtn, atIndex: 0)
         }
     }
     
-    func isToolbarCountLessThanThree() -> Bool {
+    func insertDispModeBtn() {
+        removeFirstBarButton(toolbar)
+        
+        if isToolbarCountLessThanTwo(), let splitVC = splitViewController {
+            toolbar.items?.insert(splitVC.displayModeButtonItem(), atIndex: 0)
+        }
+    }
+    
+    func isToolbarCountLessThanTwo() -> Bool {
         if toolbar.items?.count < 2 {
             return true
         } else {
             return false
         }
-    }
-    
-    func showNewsTableViewController() {
-        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
-            }, completion: nil)
-        insertDispModeBtn()
     }
     
     

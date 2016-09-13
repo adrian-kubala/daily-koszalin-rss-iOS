@@ -31,11 +31,37 @@ class NewsTableViewController: UITableViewController {
         
         refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
-//        if let savedNews = loadNewsFromDisk() {
-//            news = savedNews
-//        }
+        if let savedNews = loadNewsFromDisk() {
+            news = savedNews
+        }
         
         setupSearchController()
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        parseContentFromURL(rssURLs)
+        
+        refreshControl.endRefreshing()
+    }
+    
+    func loadNewsFromDisk() -> [News]? {
+        guard let filePath = News.getFilePath() else {
+            return nil
+        }
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [News]
+    }
+    
+    func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        
+        let searchBar = searchController.searchBar
+        tableView.tableHeaderView = searchBar
+        searchBar.autocapitalizationType = .None
+        searchBar.placeholder = "Wyszukaj"
+        searchBar.scopeButtonTitles = ["Wszystkie", "Do 3 dni", "Do 5 dni"]
+        searchBar.delegate = self
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -43,12 +69,6 @@ class NewsTableViewController: UITableViewController {
         
         parseContentFromURL(rssURLs)
         
-    }
-    
-    private func sortAndReloadData() {
-        news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
-        saveNewsToDisk()
-        tableView.reloadData()
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
@@ -108,24 +128,17 @@ class NewsTableViewController: UITableViewController {
         sortAndReloadData()
     }
     
+    private func sortAndReloadData() {
+        news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
+        saveNewsToDisk()
+        tableView.reloadData()
+    }
+    
     func saveNewsToDisk() {
         guard let filePath = News.getFilePath() else {
             return
         }
         NSKeyedArchiver.archiveRootObject(news, toFile: filePath)
-    }
-    
-    func loadNewsFromDisk() -> [News]? {
-        guard let filePath = News.getFilePath() else {
-            return nil
-        }
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [News]
-    }
-    
-    func handleRefresh(refreshControl: UIRefreshControl) {
-        parseContentFromURL(rssURLs)
-        
-        refreshControl.endRefreshing()
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -166,19 +179,6 @@ class NewsTableViewController: UITableViewController {
             return true
         }
         return false
-    }
-    
-    func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        
-        let searchBar = searchController.searchBar
-        tableView.tableHeaderView = searchBar
-        searchBar.autocapitalizationType = .None
-        searchBar.placeholder = "Wyszukaj"
-        searchBar.scopeButtonTitles = ["Wszystkie", "Do 3 dni", "Do 5 dni"]
-        searchBar.delegate = self
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "Wszystkie") {
