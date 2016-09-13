@@ -27,7 +27,7 @@ class NewsTableViewController: UITableViewController {
         
         enableSelfSizingCells()
 
-        assignLoadedNews()
+//        assignLoadedNews()
         
         setupRefreshControl()
         setupSearchController()
@@ -42,6 +42,7 @@ class NewsTableViewController: UITableViewController {
         guard let filePath = News.getFilePath() else {
             return nil
         }
+        
         return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [News]
     }
     
@@ -82,9 +83,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
-        
         for url in urls.values {
-            
             if ConnectionManager.sharedInstance.isConnectedToNetwork() == false {
                 ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
                 
@@ -104,6 +103,7 @@ class NewsTableViewController: UITableViewController {
                             guard article.title != item.title else {
                                 continue dataLoop
                             }
+                            
                         }
                         
                         let obj = News(source: rssFeed.link, title: item.title, link: item.link, pubDate: item.pubDate, favIcon: nil)
@@ -118,6 +118,7 @@ class NewsTableViewController: UITableViewController {
                             guard article.title != item.title else {
                                 continue dataLoop
                             }
+                            
                         }
                         
                         let feedSource = atomFeed.links?.first?.attributes?.href
@@ -148,6 +149,7 @@ class NewsTableViewController: UITableViewController {
         guard let filePath = News.getFilePath() else {
             return
         }
+        
         NSKeyedArchiver.archiveRootObject(news, toFile: filePath)
     }
 
@@ -155,6 +157,7 @@ class NewsTableViewController: UITableViewController {
         if searchIsActive() {
             return filteredNews.count
         }
+        
         return news.count
     }
 
@@ -176,7 +179,6 @@ class NewsTableViewController: UITableViewController {
     }
     
     func chooseData(row: Int) -> News {
-
         if searchIsActive() {
             return filteredNews[row]
         }
@@ -224,34 +226,35 @@ class NewsTableViewController: UITableViewController {
     func filterContentForSearchText(searchText: String, scope: String) {
         filteredNews = news.filter { news in
             
-            if let newsTitle = news.title, let newsDate = news.pubDate {
-                
-                let currentDate = NSDate()
-                let difference = currentDate.daysBetweenDates(newsDate)
-                
-                var dateMatch = false
-                switch scope {
-                case "Do 3 dni":
-                    if difference < 3 {
-                        dateMatch = true
-                    }
-                case "Do 5 dni":
-                    if difference < 5 {
-                        dateMatch = true
-                    }
-                default:
-                    dateMatch = false
-                }
-                
-                let filterMatch = (scope == "Wszystkie") || dateMatch
-                
-                if searchText != "" {
-                    return filterMatch && newsTitle.lowercaseString.containsString(searchText.lowercaseString)
-                } else {
-                    return filterMatch
-                }
+            guard let newsTitle = news.title, let newsDate = news.pubDate else {
+                return false
             }
-            return false
+            
+            let currentDate = NSDate()
+            let difference = currentDate.daysBetweenDates(newsDate)
+            
+            var dateMatch = false
+            switch scope {
+            case "Do 3 dni":
+                if difference < 3 {
+                    dateMatch = true
+                }
+            case "Do 5 dni":
+                if difference < 5 {
+                    dateMatch = true
+                }
+            default:
+                dateMatch = false
+            }
+            
+            let filterMatch = (scope == "Wszystkie") || dateMatch
+            
+            if searchText != "" {
+                return filterMatch && newsTitle.lowercaseString.containsString(searchText.lowercaseString)
+            } else {
+                return filterMatch
+            }
+            
         }
         
         tableView.reloadData()

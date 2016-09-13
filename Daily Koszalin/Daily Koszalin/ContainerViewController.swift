@@ -17,6 +17,7 @@ class ContainerViewController: UIViewController {
         guard let splitVC = splitViewController else {
             return
         }
+        
         viewController = splitVC
         
         addChildViewController(splitVC)
@@ -27,7 +28,6 @@ class ContainerViewController: UIViewController {
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
         
         if traitCollection.userInterfaceIdiom != UIUserInterfaceIdiom.Pad {
             

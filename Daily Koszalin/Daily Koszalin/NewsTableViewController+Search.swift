@@ -16,6 +16,7 @@ extension NewsTableViewController: UISearchResultsUpdating {
         guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
             return
         }
+        
         let scope = scopeTitles[searchBar.selectedScopeButtonIndex]
         
         filterContentForSearchText(searchText, scope: scope)

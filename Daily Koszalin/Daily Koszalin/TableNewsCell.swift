@@ -13,12 +13,7 @@ class TableNewsCell: UITableViewCell {
     @IBOutlet var cellTitle: UILabel!
     @IBOutlet var cellDate: UILabel!
     @IBOutlet var cellFavIcon: UIImageView!
-
-    func setSelectedBackgroundColor() {
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.6)
-        selectedBackgroundView = backgroundView
-    }
+    
     
     func setTitle(title: String?) {
         cellTitle.text = title
@@ -29,7 +24,6 @@ class TableNewsCell: UITableViewCell {
     }
     
     func setPubDateFormat(date: NSDate?) -> String? {
-        
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
         dateFormatter.locale = NSLocale(localeIdentifier: "pl_PL")
@@ -45,4 +39,12 @@ class TableNewsCell: UITableViewCell {
     func setFavIcon(icon: UIImage?) {
         cellFavIcon.image = icon
     }
+    
+    func setSelectedBackgroundColor() {
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.6)
+        selectedBackgroundView = backgroundView
+    }
+    
+    
 }
