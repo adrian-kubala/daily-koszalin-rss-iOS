@@ -9,7 +9,6 @@
 import UIKit
 
 extension NewsTableViewController: UISearchResultsUpdating {
-    
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchBar = searchController.searchBar
         
@@ -21,11 +20,9 @@ extension NewsTableViewController: UISearchResultsUpdating {
         
         filterContentForSearchText(searchText, scope: scope)
     }
-    
 }
 
 extension NewsTableViewController: UISearchBarDelegate {
-    
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
             return
@@ -33,5 +30,4 @@ extension NewsTableViewController: UISearchBarDelegate {
         
         filterContentForSearchText(searchText, scope: scopeTitles[selectedScope])
     }
-    
 }

@@ -17,10 +17,13 @@ class EmbeddedSplitViewController: UISplitViewController {
         delegate = self
         preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
         
-        let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-        
+        setupRootViewController()
+    }
+    
+    func setupRootViewController() {
         let containerViewController = ContainerViewController()
-        containerViewController.setEmbeddedViewController(self, delegate: appDelegate)
+        containerViewController.setEmbeddedViewController(self)
+        containerViewController.setAsRootViewController()
     }
     
     func unCollapseSecondaryVCOntoPrimary() {

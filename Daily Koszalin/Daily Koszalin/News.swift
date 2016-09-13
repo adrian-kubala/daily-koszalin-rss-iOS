@@ -9,7 +9,6 @@
 import UIKit
 
 class News: NSObject, NSCoding {
-    
     let source: String?
     let title: String?
     let link: String?
@@ -19,9 +18,7 @@ class News: NSObject, NSCoding {
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
     static let ArchiveURL = DocumentsDirectory?.URLByAppendingPathComponent("news")
     
-    
     func setupFavIcon(source: String?) {
-        
         downloadFavIcon(source) { [weak self] img in
             if let icon = img {
                 self?.favIcon = icon
@@ -38,7 +35,6 @@ class News: NSObject, NSCoding {
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
-        
         let site = aDecoder.decodeObjectForKey("source") as? String
         
         let label = aDecoder.decodeObjectForKey("title") as? String

@@ -11,7 +11,7 @@ import UIKit
 class ContainerViewController: UIViewController {
     var viewController: UISplitViewController?
     
-    func setEmbeddedViewController(splitViewController: UISplitViewController?, delegate: AppDelegate?) {
+    func setEmbeddedViewController(splitViewController: UISplitViewController?) {
         guard let splitVC = splitViewController else {
             return
         }
@@ -21,8 +21,11 @@ class ContainerViewController: UIViewController {
         addChildViewController(splitVC)
         view.addSubview(splitVC.view)
         splitVC.didMoveToParentViewController(self)
-        
-        delegate?.window?.rootViewController = self
+    }
+    
+    func setAsRootViewController() {
+        let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+        appDelegate?.window?.rootViewController = self
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -30,7 +33,6 @@ class ContainerViewController: UIViewController {
         if traitCollection.userInterfaceIdiom != UIUserInterfaceIdiom.Pad {
             
             if let splitVC = viewController {
-                
                 let willBeLandscape = size.width > size.height
                 
                 if willBeLandscape {
@@ -40,9 +42,6 @@ class ContainerViewController: UIViewController {
                 }
             }
         }
-        
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
-    
-    
 }

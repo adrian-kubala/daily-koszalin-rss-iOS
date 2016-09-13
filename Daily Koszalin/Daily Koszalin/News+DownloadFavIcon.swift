@@ -11,7 +11,6 @@ import Alamofire
 import AlamofireImage
 
 extension News {
-    
     func downloadFavIcon(url: String?, completion: (UIImage?) -> ()) {
         guard var searchUrl = url else {
             return

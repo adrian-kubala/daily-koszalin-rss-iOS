@@ -9,11 +9,9 @@
 import UIKit
 
 class TableNewsCell: UITableViewCell {
-    
     @IBOutlet var cellTitle: UILabel!
     @IBOutlet var cellDate: UILabel!
     @IBOutlet var cellFavIcon: UIImageView!
-    
     
     func setTitle(title: String?) {
         cellTitle.text = title
