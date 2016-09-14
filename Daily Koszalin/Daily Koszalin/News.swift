@@ -18,10 +18,11 @@ class News: NSObject, NSCoding {
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
     static let ArchiveURL = DocumentsDirectory?.URLByAppendingPathComponent("news")
     
-    func setupFavIcon(source: String?) {
-        downloadFavIcon(source) { [weak self] img in
+    func setupFavIcon(source: String) {
+        DownloadManager.sharedInstance.downloadFavIcon(source) { [weak self] img in
             if let icon = img {
                 self?.favIcon = icon
+                DownloadManager.sharedInstance.cacheImage(icon, from: source)
             }
         }
     }

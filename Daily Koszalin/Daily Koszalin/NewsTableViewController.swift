@@ -21,7 +21,6 @@ class NewsTableViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,15 +78,15 @@ class NewsTableViewController: UITableViewController {
         searchBar.delegate = self
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         parseContentFromURL(rssURLs)
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
         for url in urls.values {
-            if ConnectionManager.sharedInstance.isConnectedToNetwork() == false {
+            guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
                 ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
                 
                 break
@@ -110,8 +109,11 @@ class NewsTableViewController: UITableViewController {
                         }
                         
                         let obj = News(source: rssFeed.link, title: item.title, link: item.link, pubDate: item.pubDate, favIcon: nil)
-                        obj.setupFavIcon(rssFeed.link)
-
+                        
+                        if let feedLink = rssFeed.link {
+                            obj.setupFavIcon(feedLink)
+                        }
+                
                         self.news.append(obj)
                     }
                 case .Atom(let atomFeed):
@@ -128,8 +130,9 @@ class NewsTableViewController: UITableViewController {
                         let itemSource = item.links?.first?.attributes?.href
                         
                         let obj = News(source: feedSource, title: item.title, link: itemSource, pubDate: item.updated, favIcon: nil)
-                        
-                        obj.setupFavIcon(feedSource)
+                        if let link = feedSource {
+                            obj.setupFavIcon(link)
+                        }
                         
                         self.news.append(obj)
                     }
@@ -143,8 +146,13 @@ class NewsTableViewController: UITableViewController {
     
     private func sortAndReloadData() {
         news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
-        saveNewsToDisk()
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        saveNewsToDisk()
     }
     
     func saveNewsToDisk() {
