@@ -13,18 +13,21 @@ class TableNewsCell: UITableViewCell {
     @IBOutlet var cellDate: UILabel!
     @IBOutlet var cellFavIcon: UIImageView!
     
-    func setupWithData(news: News) {
+    func setupWithData(news: News) -> Bool {
         setTitle(news.title)
         setPubDate(news.pubDate)
         setSelectedBackgroundColor()
         
+        var gotIcon = false
         if let favicon = news.favIcon {
             setFavIcon(favicon)
         } else {
             news.favIconDidLoad = { [weak self] in
                 self?.setFavIcon(news.favIcon)
+                gotIcon = true
             }
         }
+        return gotIcon
     }
     
     private func setTitle(title: String?) {

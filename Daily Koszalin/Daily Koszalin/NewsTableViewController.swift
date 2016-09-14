@@ -26,7 +26,7 @@ class NewsTableViewController: UITableViewController {
         
         enableSelfSizingCells()
 
-//        assignLoadedNews()
+        assignLoadedNews()
         
         setupRefreshControl()
         setupSearchController()
@@ -148,20 +148,6 @@ class NewsTableViewController: UITableViewController {
         news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
         tableView.reloadData()
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-//        saveNewsToDisk()
-    }
-    
-    func saveNewsToDisk() {
-        guard let filePath = News.getFilePath() else {
-            return
-        }
-        
-        NSKeyedArchiver.archiveRootObject(news, toFile: filePath)
-    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchIsActive() {
@@ -180,7 +166,11 @@ class NewsTableViewController: UITableViewController {
         
         let currentNews = chooseData(indexPath.row)
         
-        newsCell.setupWithData(currentNews)
+        let isFavIcon = newsCell.setupWithData(currentNews)
+        
+        if isFavIcon {
+            saveNewsToDisk()
+        }
         
         return newsCell
     }
@@ -191,6 +181,14 @@ class NewsTableViewController: UITableViewController {
         }
         
         return news[row]
+    }
+    
+    func saveNewsToDisk() {
+        guard let filePath = News.getFilePath() else {
+            return
+        }
+        
+        NSKeyedArchiver.archiveRootObject(news, toFile: filePath)
     }
     
     func searchIsActive() -> Bool {
