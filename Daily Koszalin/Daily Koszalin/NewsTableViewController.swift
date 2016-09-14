@@ -21,6 +21,12 @@ class NewsTableViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    static var arrayFilePath: String? {
+        let manager = NSFileManager.defaultManager()
+        let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
+        return url?.URLByAppendingPathComponent("news").path
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +50,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     func loadNewsFromDisk() -> [News]? {
-        guard let filePath = News.getFilePath() else {
+        guard let filePath = NewsTableViewController.arrayFilePath else {
             return nil
         }
         
@@ -184,7 +190,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     func saveNewsToDisk() {
-        guard let filePath = News.getFilePath() else {
+        guard let filePath = NewsTableViewController.arrayFilePath else {
             return
         }
         

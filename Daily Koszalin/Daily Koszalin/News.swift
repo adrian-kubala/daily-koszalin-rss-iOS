@@ -15,9 +15,6 @@ class News: NSObject, NSCoding {
     let pubDate: NSDate?
     var favIcon: UIImage?
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
-    static let ArchiveURL = DocumentsDirectory?.URLByAppendingPathComponent("news")
-    
     var favIconDidLoad: (() -> ())?
     
     func setupFavIcon(source: String) {
@@ -59,13 +56,5 @@ class News: NSObject, NSCoding {
         self.favIcon = favIcon
         
         super.init()
-    }
-    
-    static func getFilePath() -> String? {
-        guard let path = News.ArchiveURL?.path else {
-            return nil
-        }
-        
-        return path
     }
 }
