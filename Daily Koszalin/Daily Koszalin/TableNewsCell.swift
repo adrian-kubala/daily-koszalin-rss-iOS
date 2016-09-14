@@ -13,15 +13,29 @@ class TableNewsCell: UITableViewCell {
     @IBOutlet var cellDate: UILabel!
     @IBOutlet var cellFavIcon: UIImageView!
     
-    func setTitle(title: String?) {
+    func setupWithData(news: News) {
+        setTitle(news.title)
+        setPubDate(news.pubDate)
+        setSelectedBackgroundColor()
+        
+        if let favicon = news.favIcon {
+            setFavIcon(favicon)
+        } else {
+            news.favIconDidLoad = { [weak self] in
+                self?.setFavIcon(news.favIcon)
+            }
+        }
+    }
+    
+    private func setTitle(title: String?) {
         cellTitle.text = title
     }
     
-    func setPubDate(date: NSDate?) {
+    private func setPubDate(date: NSDate?) {
         cellDate.text = setPubDateFormat(date)
     }
     
-    func setPubDateFormat(date: NSDate?) -> String? {
+    private func setPubDateFormat(date: NSDate?) -> String? {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
         dateFormatter.locale = NSLocale(localeIdentifier: "pl_PL")
@@ -34,11 +48,11 @@ class TableNewsCell: UITableViewCell {
         return dateString
     }
     
-    func setFavIcon(icon: UIImage?) {
+    private func setFavIcon(icon: UIImage?) {
         cellFavIcon.image = icon
     }
     
-    func setSelectedBackgroundColor() {
+    private func setSelectedBackgroundColor() {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.6)
         selectedBackgroundView = backgroundView

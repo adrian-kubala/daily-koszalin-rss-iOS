@@ -37,18 +37,18 @@ class NewsTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 80
     }
     
+    func assignLoadedNews() {
+        if let savedNews = loadNewsFromDisk() {
+            news = savedNews
+        }
+    }
+    
     func loadNewsFromDisk() -> [News]? {
         guard let filePath = News.getFilePath() else {
             return nil
         }
         
         return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [News]
-    }
-    
-    func assignLoadedNews() {
-        if let savedNews = loadNewsFromDisk() {
-            news = savedNews
-        }
     }
     
     func setupRefreshControl() {
@@ -152,7 +152,7 @@ class NewsTableViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        saveNewsToDisk()
+//        saveNewsToDisk()
     }
     
     func saveNewsToDisk() {
@@ -180,10 +180,7 @@ class NewsTableViewController: UITableViewController {
         
         let currentNews = chooseData(indexPath.row)
         
-        newsCell.setTitle(currentNews.title)
-        newsCell.setPubDate(currentNews.pubDate)
-        newsCell.setFavIcon(currentNews.favIcon)
-        newsCell.setSelectedBackgroundColor()
+        newsCell.setupWithData(currentNews)
         
         return newsCell
     }
