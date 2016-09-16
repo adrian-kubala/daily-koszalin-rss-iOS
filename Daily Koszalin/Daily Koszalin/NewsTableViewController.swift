@@ -204,21 +204,14 @@ class NewsTableViewController: UITableViewController {
     }
     
     func searchIsActive() -> Bool {
-        if searchController.active {
-            return true
-        }
-        return false
+        return searchController.active ? true : false
     }
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
         let isAlreadySelected = selectedCell?.selected
         
-        if isAlreadySelected == true {
-            return nil
-        } else {
-            return indexPath
-        }
+        return isAlreadySelected == true ? nil : indexPath
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

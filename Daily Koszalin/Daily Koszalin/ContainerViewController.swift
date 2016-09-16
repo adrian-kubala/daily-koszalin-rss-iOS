@@ -29,19 +29,26 @@ class ContainerViewController: UIViewController {
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
-        if traitCollection.userInterfaceIdiom != UIUserInterfaceIdiom.Pad {
-            
-            if let splitVC = viewController {
-                let willBeLandscape = size.width > size.height
-                
-                if willBeLandscape {
-                    setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: splitVC)
-                } else {
-                    setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Compact), forChildViewController: splitVC)
-                }
-            }
-        }
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        
+        overrideTraitCollectionOnPhones(size)
+    }
+    
+    func isRunningOnPad() -> Bool {
+        return traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad
+    }
+    
+    func overrideTraitCollectionOnPhones(screenSize: CGSize) {
+        guard !isRunningOnPad(), let splitVC = viewController else {
+            return
+        }
+        
+        let willBeLandscape = screenSize.width > screenSize.height
+        
+        if willBeLandscape {
+            setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: splitVC)
+        } else {
+            setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Compact), forChildViewController: splitVC)
+        }
     }
 }

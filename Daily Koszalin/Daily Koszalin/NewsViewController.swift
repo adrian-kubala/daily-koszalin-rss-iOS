@@ -121,13 +121,13 @@ class NewsViewController: UIViewController {
     }
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
         if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
             insertDisplayModeButton()
         } else if displayModeIsAllVisible() {
             insertDispModeBtn()
         }
-        
-        super.traitCollectionDidChange(previousTraitCollection)
     }
     
     func removeFirstBarButton(bar: UIToolbar) {
@@ -153,11 +153,7 @@ class NewsViewController: UIViewController {
     }
     
     func isToolbarCountLessThanTwo() -> Bool {
-        if toolbar.items?.count < 2 {
-            return true
-        } else {
-            return false
-        }
+        return toolbar.items?.count < 2 ? true : false
     }
 }
 
@@ -168,9 +164,7 @@ extension NewsViewController: UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        if ConnectionManager.sharedInstance.isConnectedToNetwork() == false {
-            ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
-        }
+        ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
         
         webViewIndicator.stopAnimating()
     }

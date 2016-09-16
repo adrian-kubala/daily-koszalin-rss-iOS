@@ -9,6 +9,14 @@ import UIKit
 
 extension ConnectionManager {
     func showAlertIfNeeded(onViewController vc: UIViewController) {
+        guard !isConnectedToNetwork() else {
+            return
+        }
+        
+        showConnectionAlert(onViewController: vc)
+    }
+    
+    func showConnectionAlert(onViewController vc: UIViewController) {
         let alert = UIAlertController(title: "Błąd połączenia", message: "Upewnij się, że urządzenie jest podłączone do internetu i spróbuj ponownie.", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         
