@@ -34,6 +34,8 @@ class NewsTableViewController: UITableViewController {
 
         assignLoadedNews()
         
+        addNotificationObserver()
+        
         setupRefreshControl()
         setupSearchController()
     }
@@ -55,6 +57,20 @@ class NewsTableViewController: UITableViewController {
         }
         
         return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [News]
+    }
+    
+    func addNotificationObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsTableViewController.saveNewsToDisk), name: "AppWillBeInactive", object: nil)
+    }
+    
+    func saveNewsToDisk() {
+        guard let filePath = NewsTableViewController.arrayFilePath else {
+            return
+        }
+        
+        print("saved")
+        
+        NSKeyedArchiver.archiveRootObject(news, toFile: filePath)
     }
     
     func setupRefreshControl() {
@@ -178,11 +194,7 @@ class NewsTableViewController: UITableViewController {
         
         let currentNews = chooseData(indexPath.row)
         
-        let isFavIcon = newsCell.setupWithData(currentNews)
-        
-        if isFavIcon {
-            saveNewsToDisk()
-        }
+        newsCell.setupWithData(currentNews)
         
         return newsCell
     }
@@ -193,14 +205,6 @@ class NewsTableViewController: UITableViewController {
         }
         
         return news[row]
-    }
-    
-    func saveNewsToDisk() {
-        guard let filePath = NewsTableViewController.arrayFilePath else {
-            return
-        }
-        
-        NSKeyedArchiver.archiveRootObject(news, toFile: filePath)
     }
     
     func searchIsActive() -> Bool {
