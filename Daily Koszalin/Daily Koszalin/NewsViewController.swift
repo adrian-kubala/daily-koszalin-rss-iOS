@@ -49,11 +49,13 @@ class NewsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if newsURL != nil {
-            noNews.hidden = true
-            toolbar.hidden = false
-            webViewIndicator.startAnimating()
+        guard newsURL != nil else {
+            return
         }
+        
+        noNews.hidden = true
+        toolbar.hidden = false
+        webViewIndicator.startAnimating()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -68,6 +70,10 @@ class NewsViewController: UIViewController {
         
         setupWebView()
         
+        insertDisplayModeButton()
+    }
+    
+    func insertDisplayModeButton() {
         if displayModeIsAllVisible() {
             insertDispModeBtn()
         } else {
@@ -76,11 +82,13 @@ class NewsViewController: UIViewController {
     }
     
     func setupWebView() {
-        if webview.hidden == true {
-            webview.hidden = false
-            webview.scalesPageToFit = true
-            webview.contentMode = UIViewContentMode.ScaleAspectFit
+        guard webview.hidden == true else {
+            return
         }
+        
+        webview.hidden = false
+        webview.scalesPageToFit = true
+        webview.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
     func displayModeIsAllVisible() -> Bool {
@@ -114,12 +122,7 @@ class NewsViewController: UIViewController {
     
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
-            
-            if displayModeIsPrimaryHidden() {
-                insertCustomDispModeBtn()
-            } else {
-                insertDispModeBtn()
-            }
+            insertDisplayModeButton()
         } else if displayModeIsAllVisible() {
             insertDispModeBtn()
         }
