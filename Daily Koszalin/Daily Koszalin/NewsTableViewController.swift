@@ -38,6 +38,8 @@ class NewsTableViewController: UITableViewController {
         
         setupRefreshControl()
         setupSearchController()
+        
+        parseContentFromURL(rssURLs)
     }
     
     func enableSelfSizingCells() {
@@ -68,8 +70,6 @@ class NewsTableViewController: UITableViewController {
             return
         }
         
-        print("saved")
-        
         NSKeyedArchiver.archiveRootObject(news, toFile: filePath)
     }
     
@@ -98,18 +98,6 @@ class NewsTableViewController: UITableViewController {
         searchBar.placeholder = "Wyszukaj"
         searchBar.scopeButtonTitles = [Filters.All.rawValue, Filters.threeDays.rawValue, Filters.fiveDays.rawValue]
         searchBar.delegate = self
-    }
-    
-    enum Filters: String {
-        case All = "Wszystkie"
-        case threeDays = "Do 3 dni"
-        case fiveDays = "Do 5 dni"
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        parseContentFromURL(rssURLs)
     }
     
     func parseContentFromURL(urls: [String: NSURL?]) {
@@ -273,5 +261,11 @@ class NewsTableViewController: UITableViewController {
             doesMatch = false
         }
         return doesMatch
+    }
+    
+    enum Filters: String {
+        case All = "Wszystkie"
+        case threeDays = "Do 3 dni"
+        case fiveDays = "Do 5 dni"
     }
 }
