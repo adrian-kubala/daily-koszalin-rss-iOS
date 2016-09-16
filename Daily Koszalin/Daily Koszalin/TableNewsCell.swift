@@ -21,6 +21,7 @@ class TableNewsCell: UITableViewCell {
         var gotIcon = false
         if let favicon = news.favIcon {
             setFavIcon(favicon)
+            gotIcon = true
         } else {
             news.favIconDidLoad = { [weak self] in
                 self?.setFavIcon(news.favIcon)

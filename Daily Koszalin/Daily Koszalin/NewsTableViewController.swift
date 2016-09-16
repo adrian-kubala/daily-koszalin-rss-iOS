@@ -80,8 +80,14 @@ class NewsTableViewController: UITableViewController {
         tableView.tableHeaderView = searchBar
         searchBar.autocapitalizationType = .None
         searchBar.placeholder = "Wyszukaj"
-        searchBar.scopeButtonTitles = ["Wszystkie", "Do 3 dni", "Do 5 dni"]
+        searchBar.scopeButtonTitles = [Filters.All.rawValue, Filters.threeDays.rawValue, Filters.fiveDays.rawValue]
         searchBar.delegate = self
+    }
+    
+    enum Filters: String {
+        case All = "Wszystkie"
+        case threeDays = "Do 3 dni"
+        case fiveDays = "Do 5 dni"
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -245,7 +251,7 @@ class NewsTableViewController: UITableViewController {
             
             let dateMatch = doesMatchByDaysDifference(difference, within: scope)
             
-            let filterMatch = (scope == "Wszystkie") || dateMatch
+            let filterMatch = (scope == Filters.All.rawValue) || dateMatch
             
             if searchText != "" {
                 return filterMatch && newsTitle.lowercaseString.containsString(searchText.lowercaseString)
@@ -259,11 +265,11 @@ class NewsTableViewController: UITableViewController {
     func doesMatchByDaysDifference(days: Int, within scope: String) -> Bool {
         var doesMatch = false
         switch scope {
-        case "Do 3 dni":
+        case Filters.threeDays.rawValue:
             if days < 3 {
                 doesMatch = true
             }
-        case "Do 5 dni":
+        case Filters.fiveDays.rawValue:
             if days < 5 {
                 doesMatch = true
             }
