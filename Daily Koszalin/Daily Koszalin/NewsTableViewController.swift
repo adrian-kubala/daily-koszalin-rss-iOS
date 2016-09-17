@@ -113,51 +113,76 @@ class NewsTableViewController: UITableViewController {
             }
             
             FeedParser(URL: feedUrl)?.parse({ (result) in
-                switch result {
-                case .RSS(let rssFeed):
-                    dataLoop: for item in rssFeed.items! {
-                        
-                        for article in self.news {
-                            guard article.title != item.title else {
-                                continue dataLoop
-                            }
-                            
-                        }
-                        
-                        let obj = News(source: rssFeed.link, title: item.title, link: item.link, pubDate: item.pubDate, favIcon: nil)
-                        
-                        if let feedLink = rssFeed.link {
-                            obj.setupFavIcon(feedLink)
-                        }
-                
-                        self.news.append(obj)
-                    }
-                case .Atom(let atomFeed):
-                    dataLoop: for item in atomFeed.entries! {
-                        
-                        for article in self.news {
-                            guard article.title != item.title else {
-                                continue dataLoop
-                            }
-                            
-                        }
-                        
-                        let feedSource = atomFeed.links?.first?.attributes?.href
-                        let itemSource = item.links?.first?.attributes?.href
-                        
-                        let obj = News(source: feedSource, title: item.title, link: itemSource, pubDate: item.updated, favIcon: nil)
-                        if let link = feedSource {
-                            obj.setupFavIcon(link)
-                        }
-                        
-                        self.news.append(obj)
-                    }
-                case .Failure(let error):
-                    print(error.localizedDescription)
-                }
+                self.handleFeed(result)
             })
         }
         sortAndReloadData()
+    }
+    
+    func handleFeed(result: Result) {
+        switch result {
+        case .RSS(let rssFeed):
+            handleRssFeed(rssFeed)
+        case .Atom(let atomFeed):
+            handleAtomFeed(atomFeed)
+        case .Failure(let error):
+            print(error.localizedDescription)
+        }
+    }
+    
+    func handleRssFeed(feed: RSSFeed) {
+        guard let items = feed.items else {
+            return
+        }
+        
+        for item in items {
+            guard isSuchArticle(item.title) == false else {
+                continue
+            }
+            
+            guard let feedLink = feed.link, title = item.title, link = item.link, pubDate = item.pubDate else {
+                continue
+            }
+            
+            let obj = News(source: feed.link, title: item.title, link: item.link, pubDate: item.pubDate, favIcon: nil)
+            obj.setupFavIcon(feedLink)
+            
+            self.news.append(obj)
+        }
+    }
+    
+    func handleAtomFeed(feed: AtomFeed) {
+        guard let items = feed.entries else {
+            return
+        }
+        
+        for item in items {
+            guard isSuchArticle(item.title) == false else {
+                continue
+            }
+            
+            let feedSource = feed.links?.first?.attributes?.href
+            let itemSource = item.links?.first?.attributes?.href
+            
+            guard let feedLink = feedSource, title = item.title, link = itemSource, pubDate = item.updated else {
+                continue
+            }
+            
+            let obj = News(source: feedSource, title: item.title, link: itemSource, pubDate: item.updated, favIcon: nil)
+            obj.setupFavIcon(feedLink)
+            
+            self.news.append(obj)
+        }
+    }
+    
+    func isSuchArticle(title: String?) -> Bool {
+        for article in news {
+            guard article.title != title else {
+                return true
+            }
+        }
+        
+        return false
     }
     
     private func sortAndReloadData() {
