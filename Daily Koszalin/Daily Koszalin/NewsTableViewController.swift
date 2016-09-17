@@ -14,10 +14,10 @@ class NewsTableViewController: UITableViewController {
 
     var news: [News] = []
     var filteredNews: [News] = []
-    let rssURLs = ["gk24" : NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
-                   "radiokoszalin" : NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
-                   "naszemiasto" : NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
-                   "koszalin" : NSURL(string: "http://www.koszalin.pl/pl/rss.xml")]
+    let rssURLs = [NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
+                   NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
+                   NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
+                   NSURL(string: "http://www.koszalin.pl/pl/rss.xml")]
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -39,7 +39,7 @@ class NewsTableViewController: UITableViewController {
         setupRefreshControl()
         setupSearchController()
         
-        parseContentFromURL(rssURLs)
+        parseRSSContent()
     }
     
     func enableSelfSizingCells() {
@@ -79,7 +79,7 @@ class NewsTableViewController: UITableViewController {
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         if ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) {
-            parseContentFromURL(rssURLs)
+            parseRSSContent()
         }
         
         refreshControl.endRefreshing()
@@ -102,8 +102,8 @@ class NewsTableViewController: UITableViewController {
         searchBar.delegate = self
     }
     
-    func parseContentFromURL(urls: [String: NSURL?]) {
-        for url in urls.values {
+    func parseRSSContent() {
+        for url in rssURLs {
             guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
                 break
             }
@@ -144,7 +144,7 @@ class NewsTableViewController: UITableViewController {
                 continue
             }
             
-            let obj = News(source: feed.link, title: item.title, link: item.link, pubDate: item.pubDate, favIcon: nil)
+            let obj = News(source: feedLink, title: title, link: link, pubDate: pubDate)
             obj.setupFavIcon(feedLink)
             
             self.news.append(obj)
@@ -168,7 +168,7 @@ class NewsTableViewController: UITableViewController {
                 continue
             }
             
-            let obj = News(source: feedSource, title: item.title, link: itemSource, pubDate: item.updated, favIcon: nil)
+            let obj = News(source: feedLink, title: title, link: link, pubDate: pubDate)
             obj.setupFavIcon(feedLink)
             
             self.news.append(obj)
@@ -186,7 +186,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     private func sortAndReloadData() {
-        news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
+        news.sortInPlace({ $0.pubDate.compare($1.pubDate) == NSComparisonResult.OrderedDescending })
         tableView.reloadData()
     }
     
@@ -243,11 +243,11 @@ class NewsTableViewController: UITableViewController {
         
         let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as? NewsViewController
         
-        guard let url = link, let webViewVC = newsVC else {
+        guard let webViewVC = newsVC else {
             return
         }
         
-        webViewVC.newsURL = NSURL(string: url)
+        webViewVC.newsURL = NSURL(string: link)
         
         let mySplitVC = splitViewController as? EmbeddedSplitViewController
         mySplitVC?.unCollapseSecondaryVCOntoPrimary()
@@ -257,19 +257,15 @@ class NewsTableViewController: UITableViewController {
     
     func filterContentForSearchText(searchText: String, scope: String) {
         filteredNews = news.filter { news in
-            guard let newsTitle = news.title, let newsDate = news.pubDate else {
-                return false
-            }
-            
             let currentDate = NSDate()
-            let difference = currentDate.daysBetweenDates(newsDate)
+            let difference = currentDate.daysBetweenDates(news.pubDate)
             
             let dateMatch = doesMatchByDaysDifference(difference, within: scope)
             
             let filterMatch = (scope == Filters.All.rawValue) || dateMatch
             
             if searchText != "" {
-                return filterMatch && newsTitle.lowercaseString.containsString(searchText.lowercaseString)
+                return filterMatch && news.title.lowercaseString.containsString(searchText.lowercaseString)
             } else {
                 return filterMatch
             }

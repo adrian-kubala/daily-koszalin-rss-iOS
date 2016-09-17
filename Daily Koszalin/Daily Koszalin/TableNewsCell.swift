@@ -27,22 +27,18 @@ class TableNewsCell: UITableViewCell {
         }
     }
     
-    private func setTitle(title: String?) {
+    private func setTitle(title: String) {
         cellTitle.text = title
     }
     
-    private func setPubDate(date: NSDate?) {
+    private func setPubDate(date: NSDate) {
         cellDate.text = setPubDateFormat(date)
     }
     
-    private func setPubDateFormat(date: NSDate?) -> String? {
+    private func setPubDateFormat(date: NSDate) -> String? {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
         dateFormatter.locale = NSLocale(localeIdentifier: "pl_PL")
-        
-        guard let date = date else {
-            return nil
-        }
         
         let dateString = dateFormatter.stringFromDate(date)
         return dateString
