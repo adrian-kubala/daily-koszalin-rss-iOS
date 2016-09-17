@@ -198,10 +198,10 @@
 				3AB97A091D673DC000ADBF74 /* Assets.xcassets */,
 				3AB97A0B1D673DC000ADBF74 /* LaunchScreen.storyboard */,
 				3AB97A0E1D673DC000ADBF74 /* Info.plist */,
-				3A0A06801D8183820007DBCA /* Singleton */,
 				3A1C9A6B1D7EA11E007C62FA /* Model */,
 				3A1C9A6C1D7EA126007C62FA /* View */,
 				3A1C9A6D1D7EA12E007C62FA /* Controller */,
+				3A0A06801D8183820007DBCA /* Singleton */,
 				3A0A067F1D81833E0007DBCA /* Extensions */,
 			);
 			path = "Daily Koszalin";

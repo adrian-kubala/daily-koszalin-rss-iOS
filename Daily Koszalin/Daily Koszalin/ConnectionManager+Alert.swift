@@ -8,12 +8,13 @@
 import UIKit
 
 extension ConnectionManager {
-    func showAlertIfNeeded(onViewController vc: UIViewController) {
+    func showAlertIfNeeded(onViewController vc: UIViewController) -> Bool {
         guard !isConnectedToNetwork() else {
-            return
+            return true
         }
         
         showConnectionAlert(onViewController: vc)
+        return false
     }
     
     func showConnectionAlert(onViewController vc: UIViewController) {

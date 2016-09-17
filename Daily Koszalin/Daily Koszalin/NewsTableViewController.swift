@@ -62,7 +62,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     func addNotificationObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsTableViewController.saveNewsToDisk), name: "AppWillBeInactive", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsTableViewController.saveNewsToDisk), name: "AppBecameInactive", object: nil)
     }
     
     func saveNewsToDisk() {
@@ -78,7 +78,9 @@ class NewsTableViewController: UITableViewController {
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        parseContentFromURL(rssURLs)
+        if ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) {
+            parseContentFromURL(rssURLs)
+        }
         
         refreshControl.endRefreshing()
     }
@@ -103,8 +105,6 @@ class NewsTableViewController: UITableViewController {
     func parseContentFromURL(urls: [String: NSURL?]) {
         for url in urls.values {
             guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
-                ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
-                
                 break
             }
             
@@ -163,6 +163,12 @@ class NewsTableViewController: UITableViewController {
     private func sortAndReloadData() {
         news.sortInPlace({ $0.pubDate?.compare($1.pubDate!) == NSComparisonResult.OrderedDescending })
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
