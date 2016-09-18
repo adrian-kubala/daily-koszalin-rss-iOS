@@ -34,12 +34,8 @@ class ContainerViewController: UIViewController {
         overrideTraitCollectionOnPhones(size)
     }
     
-    func isRunningOnPad() -> Bool {
-        return traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad
-    }
-    
     func overrideTraitCollectionOnPhones(screenSize: CGSize) {
-        guard !isRunningOnPad(), let splitVC = viewController else {
+        guard isRunningOnPad() == false, let splitVC = viewController else {
             return
         }
         
@@ -50,5 +46,9 @@ class ContainerViewController: UIViewController {
         } else {
             setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Compact), forChildViewController: splitVC)
         }
+    }
+    
+    func isRunningOnPad() -> Bool {
+        return traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad
     }
 }

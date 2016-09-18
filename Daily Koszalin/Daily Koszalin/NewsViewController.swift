@@ -23,7 +23,6 @@ class NewsViewController: UIViewController {
         webview.delegate = self
 
         setupNewsButtonItem()
-        
         addNotificationObserver()
     }
     
