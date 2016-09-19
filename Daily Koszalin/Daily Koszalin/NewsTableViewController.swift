@@ -11,21 +11,19 @@ import FeedKit
 import AlamofireImage
 
 class NewsTableViewController: UITableViewController {
-
+    static var arrayFilePath: String? {
+        let manager = NSFileManager.defaultManager()
+        let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
+        return url?.URLByAppendingPathComponent("news").path
+    }
+    
     var news: [News] = []
     var filteredNews: [News] = []
     let rssURLs = [NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                    NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                    NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                    NSURL(string: "http://www.koszalin.pl/pl/rss.xml")]
-    
     let searchController = UISearchController(searchResultsController: nil)
-    
-    static var arrayFilePath: String? {
-        let manager = NSFileManager.defaultManager()
-        let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
-        return url?.URLByAppendingPathComponent("news").path
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,8 +96,14 @@ class NewsTableViewController: UITableViewController {
         tableView.tableHeaderView = searchBar
         searchBar.autocapitalizationType = .None
         searchBar.placeholder = "Wyszukaj"
-        searchBar.scopeButtonTitles = [Filters.All.rawValue, Filters.threeDays.rawValue, Filters.fiveDays.rawValue]
+        searchBar.scopeButtonTitles = [Filters.all.rawValue, Filters.threeDays.rawValue, Filters.fiveDays.rawValue]
         searchBar.delegate = self
+    }
+    
+    enum Filters: String {
+        case all = "Wszystkie"
+        case threeDays = "Do 3 dni"
+        case fiveDays = "Do 5 dni"
     }
     
     func parseRSSContent() {
@@ -146,7 +150,6 @@ class NewsTableViewController: UITableViewController {
             
             let obj = News(source: feedLink, title: title, link: link, pubDate: pubDate)
             obj.setupFavIcon(feedLink)
-            
             self.news.append(obj)
         }
     }
@@ -170,7 +173,6 @@ class NewsTableViewController: UITableViewController {
             
             let obj = News(source: feedLink, title: title, link: link, pubDate: pubDate)
             obj.setupFavIcon(feedLink)
-            
             self.news.append(obj)
         }
     }
@@ -206,13 +208,11 @@ class NewsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("newsCell")
-        
         guard let newsCell = cell as? TableNewsCell else {
             return UITableViewCell()
         }
         
         let currentNews = chooseData(indexPath.row)
-        
         newsCell.setupWithData(currentNews)
         
         return newsCell
@@ -222,7 +222,6 @@ class NewsTableViewController: UITableViewController {
         if searchIsActive() {
             return filteredNews[row]
         }
-        
         return news[row]
     }
     
@@ -243,26 +242,24 @@ class NewsTableViewController: UITableViewController {
         
         let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as? NewsViewController
         
-        guard let webViewVC = newsVC else {
+        guard let detailVC = newsVC else {
             return
         }
         
-        webViewVC.newsURL = NSURL(string: link)
+        detailVC.newsURL = NSURL(string: link)
         
         let mySplitVC = splitViewController as? EmbeddedSplitViewController
         mySplitVC?.unCollapseSecondaryVCOntoPrimary()
         
-        showDetailViewController(webViewVC, sender: self)
+        showDetailViewController(detailVC, sender: self)
     }
     
     func filterContentForSearchText(searchText: String, scope: String) {
         filteredNews = news.filter { news in
             let currentDate = NSDate()
             let difference = currentDate.daysBetweenDates(news.pubDate)
-            
             let dateMatch = doesMatchByDaysDifference(difference, within: scope)
-            
-            let filterMatch = (scope == Filters.All.rawValue) || dateMatch
+            let filterMatch = (scope == Filters.all.rawValue) || dateMatch
             
             if searchText != "" {
                 return filterMatch && news.title.lowercaseString.containsString(searchText.lowercaseString)
@@ -288,11 +285,5 @@ class NewsTableViewController: UITableViewController {
             doesMatch = false
         }
         return doesMatch
-    }
-    
-    enum Filters: String {
-        case All = "Wszystkie"
-        case threeDays = "Do 3 dni"
-        case fiveDays = "Do 5 dni"
     }
 }

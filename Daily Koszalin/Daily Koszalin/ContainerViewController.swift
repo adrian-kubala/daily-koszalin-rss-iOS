@@ -40,7 +40,6 @@ class ContainerViewController: UIViewController {
         }
         
         let willBeLandscape = screenSize.width > screenSize.height
-        
         if willBeLandscape {
             setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: splitVC)
         } else {

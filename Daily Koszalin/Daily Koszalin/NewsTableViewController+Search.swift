@@ -11,7 +11,6 @@ import UIKit
 extension NewsTableViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        
         guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
             return
         }

@@ -17,15 +17,6 @@ class News: NSObject, NSCoding {
     
     var favIconDidLoad: (() -> ())?
     
-    func setupFavIcon(source: String) {
-        DownloadManager.sharedInstance.downloadFavIcon(source) { [weak self] img in
-            if let icon = img {
-                self?.favIcon = icon
-                self?.favIconDidLoad?()
-            }
-        }
-    }
-    
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(source, forKey: "source")
         aCoder.encodeObject(title, forKey: "title")
@@ -56,5 +47,14 @@ class News: NSObject, NSCoding {
         self.favIcon = favIcon
         
         super.init()
+    }
+    
+    func setupFavIcon(source: String) {
+        DownloadManager.sharedInstance.downloadFavIcon(source) { [weak self] img in
+            if let icon = img {
+                self?.favIcon = icon
+                self?.favIconDidLoad?()
+            }
+        }
     }
 }

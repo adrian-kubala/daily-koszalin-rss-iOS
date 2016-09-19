@@ -64,20 +64,15 @@ class NewsViewController: UIViewController {
             return
         }
         
-        let request = NSURLRequest(URL: url)
-        webview.loadRequest(request)
-        
+        makeRequest(url)
         setupWebView()
         
         insertDisplayModeButton()
     }
     
-    func insertDisplayModeButton() {
-        if displayModeIsAllVisible() {
-            insertDispModeBtn()
-        } else {
-            insertCustomDispModeBtn()
-        }
+    func makeRequest(url: NSURL) {
+        let request = NSURLRequest(URL: url)
+        webview.loadRequest(request)
     }
     
     func setupWebView() {
@@ -88,11 +83,6 @@ class NewsViewController: UIViewController {
         webview.hidden = false
         webview.scalesPageToFit = true
         webview.contentMode = UIViewContentMode.ScaleAspectFit
-    }
-    
-    func displayModeIsAllVisible() -> Bool {
-        let currentDisplayMode = splitViewController?.displayMode
-        return currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible
     }
     
     func splitViewControllerDisplayModeDidChange(notification: NSNotification) {
@@ -114,11 +104,6 @@ class NewsViewController: UIViewController {
         }
     }
     
-    func displayModeIsPrimaryHidden() -> Bool {
-        let currentDisplayMode = splitViewController?.displayMode
-        return currentDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden
-    }
-    
     override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
@@ -129,17 +114,27 @@ class NewsViewController: UIViewController {
         }
     }
     
-    func removeFirstBarButton(bar: UIToolbar) {
-        if bar.items?.count == 2 {
-            bar.items?.removeAtIndex(0)
+    func displayModeIsPrimaryHidden() -> Bool {
+        let currentDisplayMode = splitViewController?.displayMode
+        return currentDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden
+    }
+    
+    func insertDisplayModeButton() {
+        if displayModeIsAllVisible() {
+            insertDispModeBtn()
+        } else {
+            insertCustomDispModeBtn()
         }
     }
     
-    func insertCustomDispModeBtn() {
-        removeFirstBarButton(toolbar)
-        
-        if isToolbarCountLessThanTwo(), let barBtn = newsButtonitem {
-            toolbar.items?.insert(barBtn, atIndex: 0)
+    func displayModeIsAllVisible() -> Bool {
+        let currentDisplayMode = splitViewController?.displayMode
+        return currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible
+    }
+    
+    func removeFirstBarButton(bar: UIToolbar) {
+        if bar.items?.count == 2 {
+            bar.items?.removeAtIndex(0)
         }
     }
     
@@ -148,6 +143,14 @@ class NewsViewController: UIViewController {
         
         if isToolbarCountLessThanTwo(), let splitVC = splitViewController {
             toolbar.items?.insert(splitVC.displayModeButtonItem(), atIndex: 0)
+        }
+    }
+    
+    func insertCustomDispModeBtn() {
+        removeFirstBarButton(toolbar)
+        
+        if isToolbarCountLessThanTwo(), let barBtn = newsButtonitem {
+            toolbar.items?.insert(barBtn, atIndex: 0)
         }
     }
     

@@ -16,15 +16,8 @@ class TableNewsCell: UITableViewCell {
     func setupWithData(news: News) {
         setTitle(news.title)
         setPubDate(news.pubDate)
+        setupFavIcon(news)
         setSelectedBackgroundColor()
-        
-        if let favicon = news.favIcon {
-            setFavIcon(favicon)
-        } else {
-            news.favIconDidLoad = { [weak self] in
-                self?.setFavIcon(news.favIcon)
-            }
-        }
     }
     
     private func setTitle(title: String) {
@@ -42,6 +35,16 @@ class TableNewsCell: UITableViewCell {
         
         let dateString = dateFormatter.stringFromDate(date)
         return dateString
+    }
+    
+    private func setupFavIcon(news: News) {
+        if let favicon = news.favIcon {
+            setFavIcon(favicon)
+        } else {
+            news.favIconDidLoad = { [weak self] in
+                self?.setFavIcon(news.favIcon)
+            }
+        }
     }
     
     private func setFavIcon(icon: UIImage?) {
