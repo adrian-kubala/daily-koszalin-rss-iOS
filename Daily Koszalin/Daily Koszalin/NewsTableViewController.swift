@@ -261,11 +261,14 @@ class NewsTableViewController: UITableViewController {
             let dateMatch = doesMatchByDaysDifference(difference, within: scope)
             let filterMatch = (scope == Filters.all.rawValue) || dateMatch
             
-            if searchText != "" {
-                return filterMatch && news.title.lowercaseString.containsString(searchText.lowercaseString)
-            } else {
+            guard searchText.isEmpty == false else {
                 return filterMatch
             }
+            
+            let lowerCaseTitle = news.title.lowercaseString
+            let lowerCaseSearchText = searchText.lowercaseString
+            let isSuchTitle = lowerCaseTitle.containsString(lowerCaseSearchText)
+            return filterMatch && isSuchTitle
         }
         tableView.reloadData()
     }
