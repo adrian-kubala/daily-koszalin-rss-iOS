@@ -1,5 +1,5 @@
 //
-//  TableNewsCell.swift
+//  ArticleView.swift
 //  Daily Koszalin
 //
 //  Created by Adrian on 01.09.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableNewsCell: UITableViewCell {
+class ArticleView: UITableViewCell {
     @IBOutlet var cellTitle: UILabel!
     @IBOutlet var cellDate: UILabel!
     @IBOutlet var cellFavIcon: UIImageView!

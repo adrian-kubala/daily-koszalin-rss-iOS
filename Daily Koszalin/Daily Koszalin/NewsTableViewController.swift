@@ -208,7 +208,7 @@ class NewsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("newsCell")
-        guard let newsCell = cell as? TableNewsCell else {
+        guard let newsCell = cell as? ArticleView else {
             return UITableViewCell()
         }
         
