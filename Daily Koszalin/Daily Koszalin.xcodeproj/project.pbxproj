@@ -156,7 +156,7 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		3A1C9A6D1D7EA12E007C62FA /* Controller */ = {
+		3A1C9A6D1D7EA12E007C62FA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3AB97A341D67405600ADBF74 /* ContainerViewController.swift */,
@@ -164,7 +164,7 @@
 				3AB97A301D673FF000ADBF74 /* NewsTableViewController.swift */,
 				3AB97A321D67402800ADBF74 /* NewsViewController.swift */,
 			);
-			name = Controller;
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		3AB979F61D673DC000ADBF74 = {
@@ -200,7 +200,7 @@
 				3AB97A0E1D673DC000ADBF74 /* Info.plist */,
 				3A1C9A6B1D7EA11E007C62FA /* Model */,
 				3A1C9A6C1D7EA126007C62FA /* View */,
-				3A1C9A6D1D7EA12E007C62FA /* Controller */,
+				3A1C9A6D1D7EA12E007C62FA /* ViewController */,
 				3A0A06801D8183820007DBCA /* Singleton */,
 				3A0A067F1D81833E0007DBCA /* Extensions */,
 			);

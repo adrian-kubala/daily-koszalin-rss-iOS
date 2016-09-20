@@ -41,10 +41,6 @@ class NewsViewController: UIViewController {
         insertDispModeBtn()
     }
     
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -156,6 +152,10 @@ class NewsViewController: UIViewController {
     
     func isToolbarCountLessThanTwo() -> Bool {
         return toolbar.items?.count < 2 ? true : false
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
 
