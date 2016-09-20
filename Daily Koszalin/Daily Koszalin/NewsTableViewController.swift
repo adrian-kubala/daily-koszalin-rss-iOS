@@ -14,11 +14,11 @@ class NewsTableViewController: UITableViewController {
     static var arrayFilePath: String? {
         let manager = NSFileManager.defaultManager()
         let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
-        return url?.URLByAppendingPathComponent("news").path
+        return url?.URLByAppendingPathComponent("articles").path
     }
     
-    var news: [News] = []
-    var filteredNews: [News] = []
+    var articles: [Article] = []
+    var filteredArticles: [Article] = []
     let rssURLs = [NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                    NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                    NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
@@ -47,16 +47,16 @@ class NewsTableViewController: UITableViewController {
     
     func assignLoadedNews() {
         if let savedNews = loadNewsFromDisk() {
-            news = savedNews
+            articles = savedNews
         }
     }
     
-    func loadNewsFromDisk() -> [News]? {
+    func loadNewsFromDisk() -> [Article]? {
         guard let filePath = NewsTableViewController.arrayFilePath else {
             return nil
         }
         
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [News]
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [Article]
     }
     
     func addNotificationObserver() {
@@ -68,7 +68,7 @@ class NewsTableViewController: UITableViewController {
             return
         }
         
-        NSKeyedArchiver.archiveRootObject(news, toFile: filePath)
+        NSKeyedArchiver.archiveRootObject(articles, toFile: filePath)
     }
     
     func setupRefreshControl() {
@@ -148,9 +148,9 @@ class NewsTableViewController: UITableViewController {
                 continue
             }
             
-            let obj = News(source: feedLink, title: title, link: link, pubDate: pubDate)
+            let obj = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
             obj.setupFavIcon(feedLink)
-            self.news.append(obj)
+            self.articles.append(obj)
         }
     }
     
@@ -171,14 +171,14 @@ class NewsTableViewController: UITableViewController {
                 continue
             }
             
-            let obj = News(source: feedLink, title: title, link: link, pubDate: pubDate)
+            let obj = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
             obj.setupFavIcon(feedLink)
-            self.news.append(obj)
+            self.articles.append(obj)
         }
     }
     
     func isSuchArticle(title: String?) -> Bool {
-        for article in news {
+        for article in articles {
             guard article.title != title else {
                 return true
             }
@@ -188,7 +188,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     private func sortAndReloadData() {
-        news.sortInPlace({ $0.pubDate.compare($1.pubDate) == NSComparisonResult.OrderedDescending })
+        articles.sortInPlace({ $0.pubDate.compare($1.pubDate) == NSComparisonResult.OrderedDescending })
         tableView.reloadData()
     }
     
@@ -200,10 +200,10 @@ class NewsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchIsActive() {
-            return filteredNews.count
+            return filteredArticles.count
         }
         
-        return news.count
+        return articles.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -218,11 +218,11 @@ class NewsTableViewController: UITableViewController {
         return newsCell
     }
     
-    func chooseData(row: Int) -> News {
+    func chooseData(row: Int) -> Article {
         if searchIsActive() {
-            return filteredNews[row]
+            return filteredArticles[row]
         }
-        return news[row]
+        return articles[row]
     }
     
     func searchIsActive() -> Bool {
@@ -255,9 +255,9 @@ class NewsTableViewController: UITableViewController {
     }
     
     func filterContentForSearchText(searchText: String, scope: String) {
-        filteredNews = news.filter { news in
+        filteredArticles = articles.filter { article in
             let currentDate = NSDate()
-            let difference = currentDate.daysBetweenDates(news.pubDate)
+            let difference = currentDate.daysBetweenDates(article.pubDate)
             let dateMatch = doesMatchByDaysDifference(difference, within: scope)
             let filterMatch = (scope == Filters.all.rawValue) || dateMatch
             
@@ -265,7 +265,7 @@ class NewsTableViewController: UITableViewController {
                 return filterMatch
             }
             
-            let lowerCaseTitle = news.title.lowercaseString
+            let lowerCaseTitle = article.title.lowercaseString
             let lowerCaseSearchText = searchText.lowercaseString
             let isSuchTitle = lowerCaseTitle.containsString(lowerCaseSearchText)
             return filterMatch && isSuchTitle

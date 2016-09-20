@@ -13,7 +13,7 @@ class TableNewsCell: UITableViewCell {
     @IBOutlet var cellDate: UILabel!
     @IBOutlet var cellFavIcon: UIImageView!
     
-    func setupWithData(news: News) {
+    func setupWithData(news: Article) {
         setTitle(news.title)
         setPubDate(news.pubDate)
         setupFavIcon(news)
@@ -37,7 +37,7 @@ class TableNewsCell: UITableViewCell {
         return dateString
     }
     
-    private func setupFavIcon(news: News) {
+    private func setupFavIcon(news: Article) {
         if let favicon = news.favIcon {
             setFavIcon(favicon)
         } else {

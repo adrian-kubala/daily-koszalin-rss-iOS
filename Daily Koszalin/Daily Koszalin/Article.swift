@@ -1,5 +1,5 @@
 //
-//  News.swift
+//  Article.swift
 //  Daily Koszalin
 //
 //  Created by Adrian on 27.08.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class News: NSObject, NSCoding {
+class Article: NSObject, NSCoding {
     let source: String
     let title: String
     let link: String
