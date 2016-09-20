@@ -1,5 +1,5 @@
 //
-//  NewsTableViewController+Search.swift
+//  MasterViewController+Search.swift
 //  Daily Koszalin
 //
 //  Created by Adrian on 12.09.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NewsTableViewController: UISearchResultsUpdating {
+extension MasterViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchBar = searchController.searchBar
         guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
@@ -21,7 +21,7 @@ extension NewsTableViewController: UISearchResultsUpdating {
     }
 }
 
-extension NewsTableViewController: UISearchBarDelegate {
+extension MasterViewController: UISearchBarDelegate {
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
             return

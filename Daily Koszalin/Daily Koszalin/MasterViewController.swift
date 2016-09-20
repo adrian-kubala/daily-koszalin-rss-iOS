@@ -1,5 +1,5 @@
 //
-//  NewsTableViewController.swift
+//  MasterViewController.swift
 //  Daily Koszalin
 //
 //  Created by Adrian on 19.08.2016.
@@ -10,7 +10,7 @@ import UIKit
 import FeedKit
 import AlamofireImage
 
-class NewsTableViewController: UITableViewController {
+class MasterViewController: UITableViewController {
     static var arrayFilePath: String? {
         let manager = NSFileManager.defaultManager()
         let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
@@ -52,7 +52,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     func loadNewsFromDisk() -> [Article]? {
-        guard let filePath = NewsTableViewController.arrayFilePath else {
+        guard let filePath = MasterViewController.arrayFilePath else {
             return nil
         }
         
@@ -60,11 +60,11 @@ class NewsTableViewController: UITableViewController {
     }
     
     func addNotificationObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsTableViewController.saveNewsToDisk), name: "AppBecameInactive", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MasterViewController.saveNewsToDisk), name: "AppBecameInactive", object: nil)
     }
     
     func saveNewsToDisk() {
-        guard let filePath = NewsTableViewController.arrayFilePath else {
+        guard let filePath = MasterViewController.arrayFilePath else {
             return
         }
         
@@ -72,7 +72,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     func setupRefreshControl() {
-        refreshControl?.addTarget(self, action: #selector(NewsTableViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(MasterViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
