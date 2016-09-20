@@ -11,10 +11,10 @@ import FeedKit
 import AlamofireImage
 
 class MasterViewController: UITableViewController {
-    static var arrayFilePath: String? {
+    static var dataFilePath: String? {
         let manager = NSFileManager.defaultManager()
         let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
-        return url?.URLByAppendingPathComponent("articles").path
+        return url?.URLByAppendingPathComponent("data").path
     }
     
     typealias Data = Article
@@ -32,7 +32,7 @@ class MasterViewController: UITableViewController {
         enableSelfSizingCells()
 
         assignLoadedNews()
-        
+
         addNotificationObserver()
         
         setupRefreshControl()
@@ -53,7 +53,7 @@ class MasterViewController: UITableViewController {
     }
     
     func loadNewsFromDisk() -> [Article]? {
-        guard let filePath = MasterViewController.arrayFilePath else {
+        guard let filePath = MasterViewController.dataFilePath else {
             return nil
         }
         
@@ -65,7 +65,7 @@ class MasterViewController: UITableViewController {
     }
     
     func saveNewsToDisk() {
-        guard let filePath = MasterViewController.arrayFilePath else {
+        guard let filePath = MasterViewController.dataFilePath else {
             return
         }
         
@@ -241,16 +241,16 @@ class MasterViewController: UITableViewController {
         let selectedNews = chooseData(indexPath.row)
         let link = selectedNews.link
         
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("detailViewController") as? DetailViewController
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("detailViewController")
         
-        guard let detailViewController = viewController else {
+        guard let detailViewController = viewController as? DetailViewController else {
             return
         }
         
         detailViewController.newsURL = NSURL(string: link)
         
-        let mySplitVC = splitViewController as? EmbeddedSplitViewController
-        mySplitVC?.unCollapseSecondaryVCOntoPrimary()
+        let splitVC = splitViewController as? SplitViewController
+        splitVC?.unCollapseSecondaryVCOntoPrimary()
         
         showDetailViewController(detailViewController, sender: self)
     }

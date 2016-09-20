@@ -9,9 +9,9 @@
 import UIKit
 
 class ArticleView: UITableViewCell {
-    @IBOutlet var cellTitle: UILabel!
-    @IBOutlet var cellDate: UILabel!
-    @IBOutlet var cellFavIcon: UIImageView!
+    @IBOutlet var titleView: UILabel!
+    @IBOutlet var dateView: UILabel!
+    @IBOutlet var favIconView: UIImageView!
     
     func setupWithData(news: Article) {
         setTitle(news.title)
@@ -21,11 +21,11 @@ class ArticleView: UITableViewCell {
     }
     
     private func setTitle(title: String) {
-        cellTitle.text = title
+        titleView.text = title
     }
     
     private func setPubDate(date: NSDate) {
-        cellDate.text = setPubDateFormat(date)
+        dateView.text = setPubDateFormat(date)
     }
     
     private func setPubDateFormat(date: NSDate) -> String? {
@@ -48,7 +48,7 @@ class ArticleView: UITableViewCell {
     }
     
     private func setFavIcon(icon: UIImage?) {
-        cellFavIcon.image = icon
+        favIconView.image = icon
     }
     
     private func setSelectedBackgroundColor() {

@@ -11,8 +11,8 @@ import UIKit
 class ContainerViewController: UIViewController {
     var viewController: UISplitViewController?
     
-    func setEmbeddedViewController(splitViewController: UISplitViewController?) {
-        guard let splitVC = splitViewController else {
+    func embedViewController(vc: UISplitViewController?) {
+        guard let splitVC = vc else {
             return
         }
         

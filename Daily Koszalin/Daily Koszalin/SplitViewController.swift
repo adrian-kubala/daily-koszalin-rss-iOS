@@ -1,5 +1,5 @@
 //
-//  EmbeddedSplitViewController.swift
+//  SplitViewController.swift
 //  Daily Koszalin
 //
 //  Created by Adrian on 05.09.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmbeddedSplitViewController: UISplitViewController {
+class SplitViewController: UISplitViewController {
     var isCollapsing = true
     
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class EmbeddedSplitViewController: UISplitViewController {
     
     func setupRootViewController() {
         let containerViewController = ContainerViewController()
-        containerViewController.setEmbeddedViewController(self)
+        containerViewController.embedViewController(self)
         containerViewController.setAsRootViewController()
     }
     
@@ -33,8 +33,7 @@ class EmbeddedSplitViewController: UISplitViewController {
     }
 }
 
-// MARK: - UISplitViewControllerDelegate
-extension EmbeddedSplitViewController: UISplitViewControllerDelegate {
+extension SplitViewController: UISplitViewControllerDelegate {
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
         return isCollapsing
     }
