@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--News View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="81o-cG-MHp">
             <objects>
-                <viewController storyboardIdentifier="idNewsViewController" id="IPv-oO-iH4" customClass="NewsViewController" customModule="Daily_Koszalin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailViewController" id="IPv-oO-iH4" customClass="DetailViewController" customModule="Daily_Koszalin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fed-1a-gnQ"/>
                         <viewControllerLayoutGuide type="bottom" id="8yT-HS-M4W"/>
@@ -96,7 +96,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationLevel="1" indentationWidth="20" reuseIdentifier="newsCell" id="FMC-Nm-LaU" customClass="ArticleView" customModule="Daily_Koszalin" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationLevel="1" indentationWidth="20" reuseIdentifier="articleView" id="FMC-Nm-LaU" customClass="ArticleView" customModule="Daily_Koszalin" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FMC-Nm-LaU" id="hPS-mT-jWN">

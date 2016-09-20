@@ -1,5 +1,5 @@
 //
-//  NewsViewController.swift
+//  DetailViewController.swift
 //  Daily Koszalin
 //
 //  Created by Adrian on 19.08.2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
+class DetailViewController: UIViewController {
     @IBOutlet weak var webview: UIWebView!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet var noNews: UILabel!
@@ -27,11 +27,11 @@ class NewsViewController: UIViewController {
     }
     
     func setupNewsButtonItem() {
-        newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(NewsViewController.showNewsTableViewController))
+        newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(DetailViewController.showNewsTableViewController))
     }
     
     func addNotificationObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewsViewController.splitViewControllerDisplayModeDidChange(_:)), name: "DisplayModeChangeNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DetailViewController.splitViewControllerDisplayModeDidChange(_:)), name: "DisplayModeChangeNotification", object: nil)
     }
     
     func showNewsTableViewController() {
@@ -159,8 +159,7 @@ class NewsViewController: UIViewController {
     }
 }
 
-// MARK: - UIWebViewDelegate
-extension NewsViewController: UIWebViewDelegate {
+extension DetailViewController: UIWebViewDelegate {
     func webViewDidFinishLoad(webView: UIWebView) {
         webViewIndicator.stopAnimating()
     }

@@ -17,7 +17,8 @@ class MasterViewController: UITableViewController {
         return url?.URLByAppendingPathComponent("articles").path
     }
     
-    var articles: [Article] = []
+    typealias Data = Article
+    var articles: [Data] = []
     var filteredArticles: [Article] = []
     let rssURLs = [NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                    NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
@@ -207,15 +208,15 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("newsCell")
-        guard let newsCell = cell as? ArticleView else {
+        let cell = tableView.dequeueReusableCellWithIdentifier("articleView")
+        guard let articleView = cell as? ArticleView else {
             return UITableViewCell()
         }
         
         let currentNews = chooseData(indexPath.row)
-        newsCell.setupWithData(currentNews)
+        articleView.setupWithData(currentNews)
         
-        return newsCell
+        return articleView
     }
     
     func chooseData(row: Int) -> Article {
@@ -240,18 +241,18 @@ class MasterViewController: UITableViewController {
         let selectedNews = chooseData(indexPath.row)
         let link = selectedNews.link
         
-        let newsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idNewsViewController") as? NewsViewController
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("detailViewController") as? DetailViewController
         
-        guard let detailVC = newsVC else {
+        guard let detailViewController = viewController else {
             return
         }
         
-        detailVC.newsURL = NSURL(string: link)
+        detailViewController.newsURL = NSURL(string: link)
         
         let mySplitVC = splitViewController as? EmbeddedSplitViewController
         mySplitVC?.unCollapseSecondaryVCOntoPrimary()
         
-        showDetailViewController(detailVC, sender: self)
+        showDetailViewController(detailViewController, sender: self)
     }
     
     func filterContentForSearchText(searchText: String, scope: String) {
