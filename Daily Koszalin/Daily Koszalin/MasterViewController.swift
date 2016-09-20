@@ -18,8 +18,11 @@ class MasterViewController: UITableViewController {
     }
     
     typealias Data = Article
+    typealias DataView = ArticleView
+    
+    let cellID = "articleView"
     var articles: [Data] = []
-    var filteredArticles: [Article] = []
+    var filteredArticles: [Data] = []
     let rssURLs = [NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                    NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                    NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
@@ -52,12 +55,12 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    func loadNewsFromDisk() -> [Article]? {
+    func loadNewsFromDisk() -> [Data]? {
         guard let filePath = MasterViewController.dataFilePath else {
             return nil
         }
         
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [Article]
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [Data]
     }
     
     func addNotificationObserver() {
@@ -149,7 +152,7 @@ class MasterViewController: UITableViewController {
                 continue
             }
             
-            let obj = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
+            let obj = Data(source: feedLink, title: title, link: link, pubDate: pubDate)
             obj.setupFavIcon(feedLink)
             self.articles.append(obj)
         }
@@ -172,7 +175,7 @@ class MasterViewController: UITableViewController {
                 continue
             }
             
-            let obj = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
+            let obj = Data(source: feedLink, title: title, link: link, pubDate: pubDate)
             obj.setupFavIcon(feedLink)
             self.articles.append(obj)
         }
@@ -208,8 +211,8 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("articleView")
-        guard let articleView = cell as? ArticleView else {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellID)
+        guard let articleView = cell as? DataView else {
             return UITableViewCell()
         }
         
