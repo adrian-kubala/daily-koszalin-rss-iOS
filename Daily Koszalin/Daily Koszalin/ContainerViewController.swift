@@ -9,45 +9,45 @@
 import UIKit
 
 class ContainerViewController: UIViewController {
-    var viewController: UISplitViewController?
-    
-    func embedViewController(vc: UISplitViewController?) {
-        guard let splitVC = vc else {
-            return
-        }
-        
-        viewController = splitVC
-        
-        addChildViewController(splitVC)
-        view.addSubview(splitVC.view)
-        splitVC.didMoveToParentViewController(self)
+  var viewController: UISplitViewController?
+  
+  func embedViewController(vc: UISplitViewController?) {
+    guard let splitVC = vc else {
+      return
     }
     
-    func setAsRootViewController() {
-        let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-        appDelegate?.window?.rootViewController = self
+    viewController = splitVC
+    
+    addChildViewController(splitVC)
+    view.addSubview(splitVC.view)
+    splitVC.didMoveToParentViewController(self)
+  }
+  
+  func setAsRootViewController() {
+    let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+    appDelegate?.window?.rootViewController = self
+  }
+  
+  override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    
+    overrideTraitCollectionOnPhones(size)
+  }
+  
+  func overrideTraitCollectionOnPhones(screenSize: CGSize) {
+    guard isRunningOnPad() == false, let splitVC = viewController else {
+      return
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        
-        overrideTraitCollectionOnPhones(size)
+    let willBeLandscape = screenSize.width > screenSize.height
+    if willBeLandscape {
+      setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: splitVC)
+    } else {
+      setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Compact), forChildViewController: splitVC)
     }
-    
-    func overrideTraitCollectionOnPhones(screenSize: CGSize) {
-        guard isRunningOnPad() == false, let splitVC = viewController else {
-            return
-        }
-        
-        let willBeLandscape = screenSize.width > screenSize.height
-        if willBeLandscape {
-            setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: splitVC)
-        } else {
-            setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Compact), forChildViewController: splitVC)
-        }
-    }
-    
-    func isRunningOnPad() -> Bool {
-        return traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad
-    }
+  }
+  
+  func isRunningOnPad() -> Bool {
+    return traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad
+  }
 }
