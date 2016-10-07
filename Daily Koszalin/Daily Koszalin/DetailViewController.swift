@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-  @IBOutlet weak var webview: UIWebView!
+  @IBOutlet weak var webview: CustomWebView!
   @IBOutlet weak var toolbar: UIToolbar!
   @IBOutlet var noNews: UILabel!
   @IBOutlet var webViewIndicator: UIActivityIndicatorView!
@@ -27,14 +27,14 @@ class DetailViewController: UIViewController {
   }
   
   func setupNewsButtonItem() {
-    newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(DetailViewController.showNewsTableViewController))
+    newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(DetailViewController.showMasterViewController))
   }
   
   func addNotificationObserver() {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DetailViewController.splitViewControllerDisplayModeDidChange(_:)), name: "DisplayModeChangeNotification", object: nil)
   }
   
-  func showNewsTableViewController() {
+  func showMasterViewController() {
     UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
       self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
       }, completion: nil)
@@ -60,25 +60,10 @@ class DetailViewController: UIViewController {
       return
     }
     
-    makeRequest(url)
-    setupWebView()
+    webview.makeRequest(url)
+    webview.setupAppearance()
     
     insertDisplayModeButton()
-  }
-  
-  func makeRequest(url: NSURL) {
-    let request = NSURLRequest(URL: url)
-    webview.loadRequest(request)
-  }
-  
-  func setupWebView() {
-    guard webview.hidden == true else {
-      return
-    }
-    
-    webview.hidden = false
-    webview.scalesPageToFit = true
-    webview.contentMode = UIViewContentMode.ScaleAspectFit
   }
   
   func splitViewControllerDisplayModeDidChange(notification: NSNotification) {

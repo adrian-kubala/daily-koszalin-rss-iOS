@@ -33,14 +33,10 @@ class MasterViewController: UITableViewController {
     super.viewDidLoad()
     
     enableSelfSizingCells()
-    
     assignLoadedNews()
-    
     addNotificationObserver()
-    
     setupRefreshControl()
     setupSearchController()
-    
     parseRSSContent()
   }
   
@@ -192,7 +188,9 @@ class MasterViewController: UITableViewController {
   }
   
   private func sortAndReloadData() {
-    articles.sortInPlace({ $0.pubDate.compare($1.pubDate) == NSComparisonResult.OrderedDescending })
+    articles.sortInPlace({
+      $0.pubDate.compare($1.pubDate) == NSComparisonResult.OrderedDescending
+    })
     tableView.reloadData()
   }
   
