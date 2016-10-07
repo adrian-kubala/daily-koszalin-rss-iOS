@@ -15,7 +15,7 @@ class CustomToolbar: UIToolbar {
     }
   }
   
-  func countIsLessThanTwo() -> Bool {
+  func itemsCountIsLessThanTwo() -> Bool {
     return items?.count < 2 ? true : false
   }
   

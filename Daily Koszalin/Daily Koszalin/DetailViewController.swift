@@ -116,7 +116,7 @@ class DetailViewController: UIViewController {
   func insertDispModeBtn() {
     toolbar.removeFirstItem()
     
-    if toolbar.countIsLessThanTwo(), let splitVC = splitViewController {
+    if toolbar.itemsCountIsLessThanTwo(), let splitVC = splitViewController {
       toolbar.insertItem(splitVC.displayModeButtonItem(), at: 0)
     }
   }
@@ -124,7 +124,7 @@ class DetailViewController: UIViewController {
   func insertCustomDispModeBtn() {
     toolbar.removeFirstItem()
     
-    if toolbar.countIsLessThanTwo(), let barBtn = newsButtonitem {
+    if toolbar.itemsCountIsLessThanTwo(), let barBtn = newsButtonitem {
       toolbar.insertItem(barBtn, at: 0)
     }
   }
