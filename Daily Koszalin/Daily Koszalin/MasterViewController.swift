@@ -14,16 +14,13 @@ class MasterViewController: UITableViewController {
   static var dataFilePath: String? {
     let manager = NSFileManager.defaultManager()
     let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
-    return url?.URLByAppendingPathComponent("data").path
+    return url?.URLByAppendingPathComponent("articles").path
   }
   
-  typealias Data = Article
-  typealias DataView = ArticleView
-  
-  let cellID = "articleView"
-  var articles: [Data] = []
-  var filteredArticles: [Data] = []
-  let rssURLs = [NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
+  let cellId = "articleView"
+  var articles: [Article] = []
+  var filteredArticles: [Article] = []
+  let rssUrls = [NSURL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                  NSURL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                  NSURL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                  NSURL(string: "http://www.koszalin.pl/pl/rss.xml")]
@@ -37,7 +34,7 @@ class MasterViewController: UITableViewController {
     addNotificationObserver()
     setupRefreshControl()
     setupSearchController()
-    parseRSSContent()
+    parseRssContent()
   }
   
   func enableSelfSizingCells() {
@@ -51,12 +48,12 @@ class MasterViewController: UITableViewController {
     }
   }
   
-  func loadNewsFromDisk() -> [Data]? {
+  func loadNewsFromDisk() -> [Article]? {
     guard let filePath = MasterViewController.dataFilePath else {
       return nil
     }
     
-    return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [Data]
+    return NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [Article]
   }
   
   func addNotificationObserver() {
@@ -77,7 +74,7 @@ class MasterViewController: UITableViewController {
   
   func handleRefresh(refreshControl: UIRefreshControl) {
     if ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) {
-      parseRSSContent()
+      parseRssContent()
     }
     
     refreshControl.endRefreshing()
@@ -106,8 +103,8 @@ class MasterViewController: UITableViewController {
     case fiveDays = "Do 5 dni"
   }
   
-  func parseRSSContent() {
-    for url in rssURLs {
+  func parseRssContent() {
+    for url in rssUrls {
       guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
         break
       }
@@ -148,9 +145,9 @@ class MasterViewController: UITableViewController {
         continue
       }
       
-      let obj = Data(source: feedLink, title: title, link: link, pubDate: pubDate)
-      obj.setupFavIcon(feedLink)
-      self.articles.append(obj)
+      let article = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
+      article.setupFavIcon(feedLink)
+      self.articles.append(article)
     }
   }
   
@@ -171,9 +168,9 @@ class MasterViewController: UITableViewController {
         continue
       }
       
-      let obj = Data(source: feedLink, title: title, link: link, pubDate: pubDate)
-      obj.setupFavIcon(feedLink)
-      self.articles.append(obj)
+      let article = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
+      article.setupFavIcon(feedLink)
+      self.articles.append(article)
     }
   }
   
@@ -209,8 +206,8 @@ class MasterViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(cellID)
-    guard let articleView = cell as? DataView else {
+    let cell = tableView.dequeueReusableCellWithIdentifier(cellId)
+    guard let articleView = cell as? ArticleView else {
       return UITableViewCell()
     }
     

@@ -9,10 +9,10 @@
 import Foundation
 
 extension NSDate {
-    func daysBetweenDates(startDate: NSDate) -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day], fromDate: startDate, toDate: self, options: [])
-        
-        return components.day
-    }
+  func daysBetweenDates(startDate: NSDate) -> Int {
+    let calendar = NSCalendar.currentCalendar()
+    let components = calendar.components([.Day], fromDate: startDate, toDate: self, options: [])
+    
+    return components.day
+  }
 }

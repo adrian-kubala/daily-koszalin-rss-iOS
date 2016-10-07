@@ -9,24 +9,24 @@
 import UIKit
 
 extension MasterViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-        guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
-            return
-        }
-        
-        let scope = scopeTitles[searchBar.selectedScopeButtonIndex]
-        
-        filterContentForSearchText(searchText, scope: scope)
+  func updateSearchResultsForSearchController(searchController: UISearchController) {
+    let searchBar = searchController.searchBar
+    guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
+      return
     }
+    
+    let scope = scopeTitles[searchBar.selectedScopeButtonIndex]
+    
+    filterContentForSearchText(searchText, scope: scope)
+  }
 }
 
 extension MasterViewController: UISearchBarDelegate {
-    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
-            return
-        }
-        
-        filterContentForSearchText(searchText, scope: scopeTitles[selectedScope])
+  func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
+      return
     }
+    
+    filterContentForSearchText(searchText, scope: scopeTitles[selectedScope])
+  }
 }
