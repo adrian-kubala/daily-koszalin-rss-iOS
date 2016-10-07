@@ -23,6 +23,7 @@
 		3AB97A331D67402800ADBF74 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A321D67402800ADBF74 /* DetailViewController.swift */; };
 		3AB97A351D67405600ADBF74 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A341D67405600ADBF74 /* ContainerViewController.swift */; };
 		3AE5465B1DA7C30F001C7BE3 /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE5465A1DA7C30F001C7BE3 /* CustomWebView.swift */; };
+		3AE5465D1DA7C784001C7BE3 /* CustomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE5465C1DA7C784001C7BE3 /* CustomToolbar.swift */; };
 		3AF6E69D1D86D51A00C41376 /* MasterViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF6E69C1D86D51A00C41376 /* MasterViewController+Search.swift */; };
 		3AF72FE71D7D79E800AC39BA /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF72FE61D7D79E800AC39BA /* SplitViewController.swift */; };
 		3AF88C4F1D78019000C5F534 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF88C4E1D78019000C5F534 /* ArticleView.swift */; };
@@ -73,6 +74,7 @@
 		3AB97A321D67402800ADBF74 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3AB97A341D67405600ADBF74 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		3AE5465A1DA7C30F001C7BE3 /* CustomWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
+		3AE5465C1DA7C784001C7BE3 /* CustomToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomToolbar.swift; sourceTree = "<group>"; };
 		3AF6E69C1D86D51A00C41376 /* MasterViewController+Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterViewController+Search.swift"; sourceTree = "<group>"; };
 		3AF72FE61D7D79E800AC39BA /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		3AF88C4E1D78019000C5F534 /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				3AF88C4E1D78019000C5F534 /* ArticleView.swift */,
 				3AE5465A1DA7C30F001C7BE3 /* CustomWebView.swift */,
+				3AE5465C1DA7C784001C7BE3 /* CustomToolbar.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				3AB97A031D673DC000ADBF74 /* AppDelegate.swift in Sources */,
 				3A0A067C1D8173BB0007DBCA /* ConnectionManager.swift in Sources */,
 				3A0E8E7D1D719B5A006331C3 /* Article.swift in Sources */,
+				3AE5465D1DA7C784001C7BE3 /* CustomToolbar.swift in Sources */,
 				3AF88C4F1D78019000C5F534 /* ArticleView.swift in Sources */,
 				3AF6E69D1D86D51A00C41376 /* MasterViewController+Search.swift in Sources */,
 				3AE5465B1DA7C30F001C7BE3 /* CustomWebView.swift in Sources */,

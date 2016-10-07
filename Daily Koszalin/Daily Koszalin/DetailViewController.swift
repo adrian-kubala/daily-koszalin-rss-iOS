@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
   @IBOutlet weak var webview: CustomWebView!
-  @IBOutlet weak var toolbar: UIToolbar!
+  @IBOutlet weak var toolbar: CustomToolbar!
   @IBOutlet var noNews: UILabel!
   @IBOutlet var webViewIndicator: UIActivityIndicatorView!
   
@@ -113,30 +113,20 @@ class DetailViewController: UIViewController {
     return currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible
   }
   
-  func removeFirstBarButton(bar: UIToolbar) {
-    if bar.items?.count == 2 {
-      bar.items?.removeAtIndex(0)
-    }
-  }
-  
   func insertDispModeBtn() {
-    removeFirstBarButton(toolbar)
+    toolbar.removeFirstItem()
     
-    if isToolbarCountLessThanTwo(), let splitVC = splitViewController {
-      toolbar.items?.insert(splitVC.displayModeButtonItem(), atIndex: 0)
+    if toolbar.countIsLessThanTwo(), let splitVC = splitViewController {
+      toolbar.insertItem(splitVC.displayModeButtonItem(), at: 0)
     }
   }
   
   func insertCustomDispModeBtn() {
-    removeFirstBarButton(toolbar)
+    toolbar.removeFirstItem()
     
-    if isToolbarCountLessThanTwo(), let barBtn = newsButtonitem {
-      toolbar.items?.insert(barBtn, atIndex: 0)
+    if toolbar.countIsLessThanTwo(), let barBtn = newsButtonitem {
+      toolbar.insertItem(barBtn, at: 0)
     }
-  }
-  
-  func isToolbarCountLessThanTwo() -> Bool {
-    return toolbar.items?.count < 2 ? true : false
   }
   
   deinit {
