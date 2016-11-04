@@ -20,11 +20,9 @@ class DownloadManager {
     }
     
     searchUrl = "https://www.google.com/s2/favicons?domain=" + searchUrl
-    Alamofire.request(.GET, searchUrl)
-      .responseImage { response in
-        
-        let img = response.result.value
-        completion(img)
+    Alamofire.request(searchUrl, method: .get, parameters: ["":""], encoding: URLEncoding.default, headers: nil).responseImage { response in
+      let img = response.result.value
+      completion(img)
     }
   }
 }

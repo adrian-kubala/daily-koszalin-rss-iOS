@@ -122,11 +122,11 @@ class MasterViewController: UITableViewController {
   
   func handleFeed(_ result: Result) {
     switch result {
-    case .RSS(let rssFeed):
+    case .rss(let rssFeed):
       handleRssFeed(rssFeed)
-    case .Atom(let atomFeed):
+    case .atom(let atomFeed):
       handleAtomFeed(atomFeed)
-    case .Failure(let error):
+    case .failure(let error):
       print(error.localizedDescription)
     }
   }

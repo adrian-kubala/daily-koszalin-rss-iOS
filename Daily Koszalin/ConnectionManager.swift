@@ -18,8 +18,14 @@ class ConnectionManager {
     zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
     zeroAddress.sin_family = sa_family_t(AF_INET)
     
+//    let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+//      SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, UnsafePointer($0))
+//    }
+    
     let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
-      SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, UnsafePointer($0))
+      $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+        SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+      }
     }
     
     var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
