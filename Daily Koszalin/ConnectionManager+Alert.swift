@@ -18,9 +18,9 @@ extension ConnectionManager {
   }
   
   func showConnectionAlert(onViewController vc: UIViewController) {
-    let alert = UIAlertController(title: "Błąd połączenia", message: "Upewnij się, że urządzenie jest podłączone do internetu i spróbuj ponownie.", preferredStyle: UIAlertControllerStyle.Alert)
-    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+    let alert = UIAlertController(title: "Błąd połączenia", message: "Upewnij się, że urządzenie jest podłączone do internetu i spróbuj ponownie.", preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
     
-    vc.presentViewController(alert, animated: true, completion: nil)
+    vc.present(alert, animated: true, completion: nil)
   }
 }

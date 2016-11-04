@@ -7,11 +7,22 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class CustomToolbar: UIToolbar {
   func removeFirstItem() {
     if items?.count == 2 {
-      items?.removeAtIndex(0)
+      items?.remove(at: 0)
     }
   }
   
@@ -19,7 +30,7 @@ class CustomToolbar: UIToolbar {
     return items?.count < 2 ? true : false
   }
   
-  func insertItem(item: UIBarButtonItem, at index: Int) {
-    items?.insert(item, atIndex: index)
+  func insertItem(_ item: UIBarButtonItem, at index: Int) {
+    items?.insert(item, at: index)
   }
 }

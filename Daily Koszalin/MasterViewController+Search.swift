@@ -9,7 +9,7 @@
 import UIKit
 
 extension MasterViewController: UISearchResultsUpdating {
-  func updateSearchResultsForSearchController(searchController: UISearchController) {
+  func updateSearchResults(for searchController: UISearchController) {
     let searchBar = searchController.searchBar
     guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
       return
@@ -22,7 +22,7 @@ extension MasterViewController: UISearchResultsUpdating {
 }
 
 extension MasterViewController: UISearchBarDelegate {
-  func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
     guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
       return
     }

@@ -15,7 +15,7 @@ class SplitViewController: UISplitViewController {
     super.viewDidLoad()
     
     delegate = self
-    preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+    preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
     
     setupRootViewController()
   }
@@ -34,15 +34,15 @@ class SplitViewController: UISplitViewController {
 }
 
 extension SplitViewController: UISplitViewControllerDelegate {
-  func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
+  func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
     return isCollapsing
   }
   
-  func targetDisplayModeForActionInSplitViewController(svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
-    return UISplitViewControllerDisplayMode.PrimaryHidden
+  func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
+    return UISplitViewControllerDisplayMode.primaryHidden
   }
   
-  func splitViewController(svc: UISplitViewController, willChangeToDisplayMode displayMode: UISplitViewControllerDisplayMode) {
-    NSNotificationCenter.defaultCenter().postNotificationName("DisplayModeChangeNotification", object: NSNumber.init(integer: displayMode.rawValue))
+  func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewControllerDisplayMode) {
+    NotificationCenter.default.post(name: Notification.Name(rawValue: "DisplayModeChangeNotification"), object: NSNumber.init(value: displayMode.rawValue as Int))
   }
 }

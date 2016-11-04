@@ -12,9 +12,9 @@ import AlamofireImage
 
 class DownloadManager {
   static let sharedInstance = DownloadManager()
-  private init() {}
+  fileprivate init() {}
   
-  func downloadFavIcon(url: String?, completion: (UIImage?) -> ()) {
+  func downloadFavIcon(_ url: String?, completion: @escaping (UIImage?) -> ()) {
     guard var searchUrl = url else {
       return
     }

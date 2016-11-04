@@ -9,18 +9,18 @@
 import UIKit
 
 class CustomWebView: UIWebView {
-  func makeRequest(url: NSURL) {
-    let request = NSURLRequest(URL: url)
+  func makeRequest(_ url: URL) {
+    let request = URLRequest(url: url)
     loadRequest(request)
   }
   
   func setupAppearance() {
-    guard hidden == true else {
+    guard isHidden == true else {
       return
     }
     
-    hidden = false
+    isHidden = false
     scalesPageToFit = true
-    contentMode = UIViewContentMode.ScaleAspectFit
+    contentMode = UIViewContentMode.scaleAspectFit
   }
 }

@@ -11,7 +11,7 @@ import UIKit
 class ContainerViewController: UIViewController {
   var viewController: UISplitViewController?
   
-  func embedViewController(vc: UISplitViewController?) {
+  func embedViewController(_ vc: UISplitViewController?) {
     guard let splitVC = vc else {
       return
     }
@@ -20,34 +20,34 @@ class ContainerViewController: UIViewController {
     
     addChildViewController(splitVC)
     view.addSubview(splitVC.view)
-    splitVC.didMoveToParentViewController(self)
+    splitVC.didMove(toParentViewController: self)
   }
   
   func setAsRootViewController() {
-    let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     appDelegate?.window?.rootViewController = self
   }
   
-  override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-    super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
     
     overrideTraitCollectionOnPhones(size)
   }
   
-  func overrideTraitCollectionOnPhones(screenSize: CGSize) {
+  func overrideTraitCollectionOnPhones(_ screenSize: CGSize) {
     guard isRunningOnPad() == false, let splitVC = viewController else {
       return
     }
     
     let willBeLandscape = screenSize.width > screenSize.height
     if willBeLandscape {
-      setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Regular), forChildViewController: splitVC)
+      setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.regular), forChildViewController: splitVC)
     } else {
-      setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.Compact), forChildViewController: splitVC)
+      setOverrideTraitCollection(UITraitCollection(horizontalSizeClass: UIUserInterfaceSizeClass.compact), forChildViewController: splitVC)
     }
   }
   
   func isRunningOnPad() -> Bool {
-    return traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad
+    return traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.pad
   }
 }

@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
   @IBOutlet var webViewIndicator: UIActivityIndicatorView!
   
   var newsButtonitem : UIBarButtonItem?
-  var newsURL: NSURL?
+  var newsURL: URL?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,33 +27,33 @@ class DetailViewController: UIViewController {
   }
   
   func setupNewsButtonItem() {
-    newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(DetailViewController.showMasterViewController))
+    newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailViewController.showMasterViewController))
   }
   
   func addNotificationObserver() {
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DetailViewController.splitViewControllerDisplayModeDidChange(_:)), name: "DisplayModeChangeNotification", object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(DetailViewController.splitViewControllerDisplayModeDidChange(_:)), name: NSNotification.Name(rawValue: "DisplayModeChangeNotification"), object: nil)
   }
   
   func showMasterViewController() {
-    UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-      self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+    UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+      self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
       }, completion: nil)
     insertDispModeBtn()
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     guard newsURL != nil else {
       return
     }
     
-    noNews.hidden = true
-    toolbar.hidden = false
+    noNews.isHidden = true
+    toolbar.isHidden = false
     webViewIndicator.startAnimating()
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
     guard let url = newsURL else {
@@ -66,17 +66,17 @@ class DetailViewController: UIViewController {
     insertDisplayModeButton()
   }
   
-  func splitViewControllerDisplayModeDidChange(notification: NSNotification) {
+  func splitViewControllerDisplayModeDidChange(_ notification: Notification) {
     let displayModeObject = notification.object as? NSNumber
-    let nextDisplayMode = displayModeObject?.integerValue
+    let nextDisplayMode = displayModeObject?.intValue
     
-    if nextDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden.rawValue {
+    if nextDisplayMode == UISplitViewControllerDisplayMode.primaryHidden.rawValue {
       insertCustomDispModeBtn()
     } else {
       insertDispModeBtn()
     }
     
-    guard traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.Pad else {
+    guard traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.pad else {
       return
     }
     
@@ -85,10 +85,10 @@ class DetailViewController: UIViewController {
     }
   }
   
-  override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     super.traitCollectionDidChange(previousTraitCollection)
     
-    if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.Regular {
+    if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.regular {
       insertDisplayModeButton()
     } else if displayModeIsAllVisible() {
       insertDispModeBtn()
@@ -97,7 +97,7 @@ class DetailViewController: UIViewController {
   
   func displayModeIsPrimaryHidden() -> Bool {
     let currentDisplayMode = splitViewController?.displayMode
-    return currentDisplayMode == UISplitViewControllerDisplayMode.PrimaryHidden
+    return currentDisplayMode == UISplitViewControllerDisplayMode.primaryHidden
   }
   
   func insertDisplayModeButton() {
@@ -110,14 +110,14 @@ class DetailViewController: UIViewController {
   
   func displayModeIsAllVisible() -> Bool {
     let currentDisplayMode = splitViewController?.displayMode
-    return currentDisplayMode == UISplitViewControllerDisplayMode.AllVisible
+    return currentDisplayMode == UISplitViewControllerDisplayMode.allVisible
   }
   
   func insertDispModeBtn() {
     toolbar.removeFirstItem()
     
     if toolbar.itemsCountIsLessThanTwo(), let splitVC = splitViewController {
-      toolbar.insertItem(splitVC.displayModeButtonItem(), at: 0)
+      toolbar.insertItem(splitVC.displayModeButtonItem, at: 0)
     }
   }
   
@@ -130,16 +130,16 @@ class DetailViewController: UIViewController {
   }
   
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.removeObserver(self)
   }
 }
 
 extension DetailViewController: UIWebViewDelegate {
-  func webViewDidFinishLoad(webView: UIWebView) {
+  func webViewDidFinishLoad(_ webView: UIWebView) {
     webViewIndicator.stopAnimating()
   }
   
-  func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+  func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
     ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
     
     webViewIndicator.stopAnimating()

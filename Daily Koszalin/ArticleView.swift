@@ -13,31 +13,31 @@ class ArticleView: UITableViewCell {
   @IBOutlet var dateView: UILabel!
   @IBOutlet var favIconView: UIImageView!
   
-  func setupWithData(news: Article) {
+  func setupWithData(_ news: Article) {
     setTitle(news.title)
-    setPubDate(news.pubDate)
+    setPubDate(news.pubDate as Date)
     setupFavIcon(news)
     setSelectedBackgroundColor()
   }
   
-  private func setTitle(title: String) {
+  fileprivate func setTitle(_ title: String) {
     titleView.text = title
   }
   
-  private func setPubDate(date: NSDate) {
+  fileprivate func setPubDate(_ date: Date) {
     dateView.text = setPubDateFormat(date)
   }
   
-  private func setPubDateFormat(date: NSDate) -> String? {
-    let dateFormatter = NSDateFormatter()
+  fileprivate func setPubDateFormat(_ date: Date) -> String? {
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
-    dateFormatter.locale = NSLocale(localeIdentifier: "pl_PL")
+    dateFormatter.locale = Locale(identifier: "pl_PL")
     
-    let dateString = dateFormatter.stringFromDate(date)
+    let dateString = dateFormatter.string(from: date)
     return dateString
   }
   
-  private func setupFavIcon(news: Article) {
+  fileprivate func setupFavIcon(_ news: Article) {
     if let favicon = news.favIcon {
       setFavIcon(favicon)
     } else {
@@ -47,13 +47,13 @@ class ArticleView: UITableViewCell {
     }
   }
   
-  private func setFavIcon(icon: UIImage?) {
+  fileprivate func setFavIcon(_ icon: UIImage?) {
     favIconView.image = icon
   }
   
-  private func setSelectedBackgroundColor() {
+  fileprivate func setSelectedBackgroundColor() {
     let backgroundView = UIView()
-    backgroundView.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.6)
+    backgroundView.backgroundColor = UIColor.blue.withAlphaComponent(0.6)
     selectedBackgroundView = backgroundView
   }
 }

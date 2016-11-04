@@ -8,11 +8,11 @@
 
 import Foundation
 
-extension NSDate {
-  func daysBetweenDates(startDate: NSDate) -> Int {
-    let calendar = NSCalendar.currentCalendar()
-    let components = calendar.components([.Day], fromDate: startDate, toDate: self, options: [])
+extension Date {
+  func daysBetweenDates(_ startDate: Date) -> Int {
+    let calendar = Calendar.current
+    let components = (calendar as NSCalendar).components([.day], from: startDate, to: self, options: [])
     
-    return components.day
+    return components.day!
   }
 }
