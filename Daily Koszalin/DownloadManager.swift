@@ -14,7 +14,7 @@ class DownloadManager {
   static let sharedInstance = DownloadManager()
   fileprivate init() {}
   
-  func downloadFavIcon(_ url: String?, completion: @escaping (UIImage?) -> ()) {
+  func downloadFavIcon(_ url: String?, completion: @escaping (Data?) -> ()) {
     guard var searchUrl = url else {
       return
     }
@@ -22,7 +22,8 @@ class DownloadManager {
     searchUrl = "https://www.google.com/s2/favicons?domain=" + searchUrl
     Alamofire.request(searchUrl, method: .get, parameters: ["":""], encoding: URLEncoding.default, headers: nil).responseImage { response in
       let img = response.result.value
-      completion(img)
+      let imgData = UIImagePNGRepresentation(img!)
+      completion(imgData)
     }
   }
 }

@@ -47,8 +47,9 @@ class ArticleView: UITableViewCell {
     }
   }
   
-  fileprivate func setFavIcon(_ icon: UIImage?) {
-    favIconView.image = icon
+  fileprivate func setFavIcon(_ data: Data?) {
+    let image = UIImage(data: data!)
+    favIconView.image = image
   }
   
   fileprivate func setSelectedBackgroundColor() {
