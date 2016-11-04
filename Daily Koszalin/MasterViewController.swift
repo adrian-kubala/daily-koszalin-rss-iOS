@@ -20,7 +20,7 @@ class MasterViewController: UITableViewController {
   let cellId = "articleView"
   var articles: [Article] = []
   var filteredArticles: [Article] = []
-  let rssUrls = [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
+  let rssURLs = [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                  URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                  URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                  URL(string: "http://www.koszalin.pl/pl/rss.xml")]
@@ -34,7 +34,7 @@ class MasterViewController: UITableViewController {
     addNotificationObserver()
     setupRefreshControl()
     setupSearchController()
-    parseRssContent()
+    parseRSSContent()
   }
   
   func enableSelfSizingCells() {
@@ -74,7 +74,7 @@ class MasterViewController: UITableViewController {
   
   func handleRefresh(_ refreshControl: UIRefreshControl) {
     if ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) {
-      parseRssContent()
+      parseRSSContent()
     }
     
     refreshControl.endRefreshing()
@@ -103,8 +103,8 @@ class MasterViewController: UITableViewController {
     case fiveDays = "Do 5 dni"
   }
   
-  func parseRssContent() {
-    for url in rssUrls {
+  func parseRSSContent() {
+    for url in rssURLs {
       guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
         break
       }
