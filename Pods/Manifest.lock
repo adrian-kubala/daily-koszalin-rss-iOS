@@ -1,18 +1,18 @@
 PODS:
-  - Alamofire (3.4.1)
-  - AlamofireImage (2.4.1):
-    - Alamofire (~> 3.3)
-  - FeedKit (4.0.0)
+  - Alamofire (4.0.1)
+  - AlamofireImage (3.1.0):
+    - Alamofire (~> 4.0)
+  - FeedKit (5.0.0)
 
 DEPENDENCIES:
-  - AlamofireImage
-  - FeedKit
+  - AlamofireImage (~> 3.1)
+  - FeedKit (~> 5.0)
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  AlamofireImage: 3ccf3347d9ea24580dc11fb892770a0be6a29826
-  FeedKit: 72eaf42c2b2f0e08c8227f81a68709bb6421a3ab
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
+  FeedKit: f3edf3ba14a3aef57caceec91ef77745d10abbbe
 
-PODFILE CHECKSUM: 48630ba458678695cf5240b079566fbe6218f200
+PODFILE CHECKSUM: 73f9bd1b7b360b0ea4db74ac27830cef8deaad5f
 
 COCOAPODS: 1.0.1

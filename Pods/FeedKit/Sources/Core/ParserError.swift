@@ -1,5 +1,5 @@
 //
-//  Error.swift
+//  ParserError.swift
 //
 //  Copyright (c) 2016 Nuno Manuel Dias
 //
@@ -29,10 +29,22 @@ import Foundation
  Error types with `NSError` codes and user info providers
  
  */
-public enum Error {
+public enum ParserError {
     
-    case FeedNotFound
-    case FeedCDATABlockEncodingError(path: String)
+    /**
+     
+     Couldn't parse any known feed from the provided DOM structure
+     
+     */
+    case feedNotFound
+    
+    /**
+     
+     Unable to convert the bytes in `CDATABlock` to Unicode characters using
+     the UTF-8 encoding
+     
+     */
+    case feedCDATABlockEncodingError(path: String)
     
     /**
      
@@ -42,8 +54,8 @@ public enum Error {
     var code: Int {
         
         switch self {
-        case .FeedNotFound: return -1000
-        case .FeedCDATABlockEncodingError: return -10001
+        case .feedNotFound: return -1000
+        case .feedCDATABlockEncodingError: return -10001
         }
         
     }
@@ -56,15 +68,15 @@ public enum Error {
     var userInfo: [String: String] {
         
         switch self {
-        
-        case .FeedNotFound:
+            
+        case .feedNotFound:
             return [
                 NSLocalizedDescriptionKey: "Feed not found",
                 NSLocalizedFailureReasonErrorKey: "Couldn't parse any known feed from the provided DOM structure",
                 NSLocalizedRecoverySuggestionErrorKey: "Provide a valid Atom/RSS DOM structure "
             ]
             
-        case .FeedCDATABlockEncodingError(let path):
+        case .feedCDATABlockEncodingError(let path):
             return [
                 NSLocalizedDescriptionKey: "`CDATAblock` encoding error",
                 NSLocalizedFailureReasonErrorKey: "Unable to convert the bytes in `CDATABlock` to Unicode characters using the UTF-8 encoding at current path: \(path)",

@@ -4,8 +4,8 @@
 target 'Daily Koszalin' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
- pod 'FeedKit'
- pod 'AlamofireImage'
+ pod 'FeedKit', '~> 5.0'
+ pod 'AlamofireImage', '~> 3.1'
   # Pods for Daily Koszalin
 
   target 'Daily KoszalinTests' do

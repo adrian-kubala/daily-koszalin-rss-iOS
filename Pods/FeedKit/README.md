@@ -6,7 +6,7 @@ An RSS and Atom feed parser written in Swift
 [![carthage compatible](https://img.shields.io/badge/carthage-compatible-brightgreen.svg)](https://github.com/Carthage/Carthage)
 [![cocoapods compatible](https://img.shields.io/badge/cocoapods-compatible-brightgreen.svg)](https://cocoapods.org/pods/FeedKit)
 [![cocoapods compatible](https://img.shields.io/cocoapods/v/FeedKit.svg)](https://img.shields.io/cocoapods/v/FeedKit.svg)
-[![language](https://img.shields.io/badge/swift-v2.2-orange.svg)](https://swift.org)
+[![language](https://img.shields.io/badge/swift-v3.0-orange.svg)](https://swift.org)
 [![documentation](https://img.shields.io/cocoapods/metrics/doc-percent/FeedKit.svg)](http://cocoadocs.org/docsets/FeedKit/)
 
 ## Features
@@ -30,7 +30,7 @@ An RSS and Atom feed parser written in Swift
 ![tvos](https://img.shields.io/badge/tvos-9.0%2b-lightgrey.svg)
 ![watchos](https://img.shields.io/badge/watchos-2.0%2b-lightgrey.svg)
 ![mac os](https://img.shields.io/badge/mac%20os-10.9%2b-lightgrey.svg)
-![xcode](https://img.shields.io/badge/xcode-7.3%2b-lightgrey.svg)
+![xcode](https://img.shields.io/badge/xcode-8.0%2b-lightgrey.svg)
 
 ## Installation
 
@@ -56,7 +56,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'MyApp' do
-  pod 'FeedKit', '~> 4.0'
+  pod 'FeedKit', '~> 5.0'
 end
 ```
 
@@ -79,7 +79,7 @@ $ brew install carthage
 To integrate FeedKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "nmdias/FeedKit" ~> 4.0
+github "nmdias/FeedKit" ~> 5.0
 ```
 Build the framework:
 
@@ -87,6 +87,14 @@ Build the framework:
 $ carthage update
 ```
 Then, drag the built `FeedKit.framework` into your Xcode project.
+
+### Manually
+
+Drag `FeedKit.xcodeproj` into your Xcode project.
+
+ > It should appear nested underneath your application's blue project icon.
+ 
+Click on the `+` button under the "Embedded Binaries" section of your app's target and select the `FeedKit.framework` that matches the desired platform.
 
 ## Usage
 
@@ -97,7 +105,7 @@ Then, drag the built `FeedKit.framework` into your Xcode project.
 ```swift
 import FeedKit
 
-let URL = NSURL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")!
+let URL = URL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")!
 
 FeedParser(URL: URL)?.parse({ (result) in
     result.rssFeed // An `RSSFeed` model
@@ -112,7 +120,7 @@ FeedParser(URL: URL)?.parse({ (result) in
 })
 ```
 
-> Aditional initializers can also be found for `NSData` and `NSInputStream` objects.
+> Aditional initializers can also be found for `Data` and `InputStream` objects.
 
 ### Parse Result
 Multiple `FeedType`'s and, or `Error handling` can be acomplished using the `Result` enum
@@ -177,14 +185,14 @@ FeedParser(URL: URL)?.parse({ (result) in
 ### Background Parsing
 
 ```swift
-dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
+DispatchQueue.global(qos: .userInitiated).async {
     // Run parsing in a background thread
     FeedParser(URL: URL)?.parse({ (result) in
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            // Perform updates to the UI
-        })
+        DispatchQueue.main.async {
+            // Perform updates in the main thread when finished
+        }
     })
-})
+}
 ```     
 
 ## License
