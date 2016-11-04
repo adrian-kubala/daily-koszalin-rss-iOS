@@ -145,8 +145,13 @@ class MasterViewController: UITableViewController {
         continue
       }
       
-      let article = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
+      let article = Article()
+      article.source = feedLink
+      article.title = title
+      article.link = link
+      article.pubDate = pubDate
       article.setupFavIcon(feedLink)
+      
       self.articles.append(article)
     }
   }
@@ -168,8 +173,13 @@ class MasterViewController: UITableViewController {
         continue
       }
       
-      let article = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
+      let article = Article()
+      article.source = feedLink
+      article.title = title
+      article.link = link
+      article.pubDate = pubDate
       article.setupFavIcon(feedLink)
+      
       self.articles.append(article)
     }
   }

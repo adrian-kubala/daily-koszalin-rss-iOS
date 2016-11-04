@@ -6,7 +6,6 @@
 //  Copyright © 2016 Adrian Kubała. All rights reserved.
 //
 
-import UIKit
 import RealmSwift
 
 class Article: Object {
@@ -16,13 +15,13 @@ class Article: Object {
   dynamic var pubDate = Date()
   dynamic var favIcon: Data?
   
-  var favIconDidLoad: (() -> ())?
+//  dynamic var favIconDidLoad: (() -> ())?
   
   func setupFavIcon(_ source: String) {
     DownloadManager.sharedInstance.downloadFavIcon(source) { [weak self] img in
       if let icon = img {
         self?.favIcon = icon
-        self?.favIconDidLoad?()
+//        self?.favIconDidLoad?()
       }
     }
   }
