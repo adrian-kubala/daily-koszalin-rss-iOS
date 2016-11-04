@@ -9,14 +9,9 @@
 import UIKit
 import FeedKit
 import AlamofireImage
+import RealmSwift
 
 class MasterViewController: UITableViewController {
-  static var dataFilePath: String? {
-    let manager = FileManager.default
-    let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-    return url?.appendingPathComponent("articles").path
-  }
-  
   let cellId = "articleView"
   var articles: [Article] = []
   var filteredArticles: [Article] = []
@@ -25,6 +20,11 @@ class MasterViewController: UITableViewController {
                  URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                  URL(string: "http://www.koszalin.pl/pl/rss.xml")]
   let searchController = UISearchController(searchResultsController: nil)
+  
+  let realm = try! Realm()
+  var results: Results<Article> {
+    return realm.objects(Article.self)
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,17 +43,7 @@ class MasterViewController: UITableViewController {
   }
   
   func assignLoadedNews() {
-    if let savedNews = loadNewsFromDisk() {
-      articles = savedNews
-    }
-  }
-  
-  func loadNewsFromDisk() -> [Article]? {
-    guard let filePath = MasterViewController.dataFilePath else {
-      return nil
-    }
-    
-    return NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [Article]
+    articles = Array(results)
   }
   
   func addNotificationObserver() {
@@ -61,11 +51,11 @@ class MasterViewController: UITableViewController {
   }
   
   func saveNewsToDisk() {
-    guard let filePath = MasterViewController.dataFilePath else {
-      return
-    }
-    
-    NSKeyedArchiver.archiveRootObject(articles, toFile: filePath)
+//    guard let filePath = MasterViewController.dataFilePath else {
+//      return
+//    }
+//    
+//    NSKeyedArchiver.archiveRootObject(articles, toFile: filePath)
   }
   
   func setupRefreshControl() {
@@ -114,16 +104,16 @@ class MasterViewController: UITableViewController {
       }
       
       FeedParser(URL: feedUrl)?.parse({ (result) in
-        self.handleFeed(result)
+        self.specifyFeed(result)
       })
     }
     sortAndReloadData()
   }
   
-  func handleFeed(_ result: Result) {
+  func specifyFeed(_ result: Result) {
     switch result {
     case .rss(let rssFeed):
-      handleRssFeed(rssFeed)
+      handleRSSFeed(rssFeed)
     case .atom(let atomFeed):
       handleAtomFeed(atomFeed)
     case .failure(let error):
@@ -131,7 +121,7 @@ class MasterViewController: UITableViewController {
     }
   }
   
-  func handleRssFeed(_ feed: RSSFeed) {
+  func handleRSSFeed(_ feed: RSSFeed) {
     guard let items = feed.items else {
       return
     }
@@ -152,7 +142,7 @@ class MasterViewController: UITableViewController {
       article.pubDate = pubDate
       article.setupFavIcon(feedLink)
       
-      self.articles.append(article)
+      updateRealm(with: article)
     }
   }
   
@@ -180,7 +170,7 @@ class MasterViewController: UITableViewController {
       article.pubDate = pubDate
       article.setupFavIcon(feedLink)
       
-      self.articles.append(article)
+      updateRealm(with: article)
     }
   }
   
@@ -192,6 +182,15 @@ class MasterViewController: UITableViewController {
     }
     
     return false
+  }
+  
+  func updateRealm(with object: Object) {
+    self.articles.append(object as! Article)
+    try! realm.write {
+      realm.beginWrite()
+      realm.add(object)
+      try! realm.commitWrite()
+    }
   }
   
   fileprivate func sortAndReloadData() {
