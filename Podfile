@@ -6,6 +6,7 @@ target 'Daily Koszalin' do
   use_frameworks!
  pod 'FeedKit', '~> 5.0'
  pod 'AlamofireImage', '~> 3.1'
+ pod 'RealmSwift', '~> 2.0'
   # Pods for Daily Koszalin
 
   target 'Daily KoszalinTests' do
