@@ -13,8 +13,8 @@ import RealmSwift
 
 class MasterViewController: UITableViewController {
   let cellId = "articleView"
-  var articles: [Article] = []
-  var filteredArticles: [Article] = []
+//  var articles: [Article] = []
+//  var filteredArticles: [Article] = []
   let rssURLs = [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                  URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                  URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
@@ -23,14 +23,14 @@ class MasterViewController: UITableViewController {
   
   let realm = try! Realm()
   var results: Results<Article> {
-    return realm.objects(Article.self)
+    let objects = realm.objects(Article.self)
+    return objects.sorted(byProperty: "pubDate", ascending: false)
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
     enableSelfSizingCells()
-    assignLoadedNews()
     addNotificationObserver()
     setupRefreshControl()
     setupSearchController()
@@ -42,9 +42,9 @@ class MasterViewController: UITableViewController {
     tableView.estimatedRowHeight = 80
   }
   
-  func assignLoadedNews() {
-    articles = Array(results)
-  }
+//  func assignLoadedNews() {
+//    articles = Array(results)
+//  }
   
   func addNotificationObserver() {
     NotificationCenter.default.addObserver(self, selector: #selector(MasterViewController.saveNewsToDisk), name: NSNotification.Name(rawValue: "AppBecameInactive"), object: nil)
@@ -107,7 +107,7 @@ class MasterViewController: UITableViewController {
         self?.specifyFeed(result)
       })
     }
-    sortAndReloadData()
+    tableView.reloadData()
   }
   
   func specifyFeed(_ result: Result) {
@@ -127,10 +127,6 @@ class MasterViewController: UITableViewController {
     }
     
     for item in items {
-      guard isSuchArticle(item.title) == false else {
-        continue
-      }
-      
       guard let feedLink = feed.link, let title = item.title, let link = item.link, let pubDate = item.pubDate else {
         continue
       }
@@ -141,7 +137,6 @@ class MasterViewController: UITableViewController {
       article.link = link
       article.pubDate = pubDate
       article.setupFavIcon(feedLink)
-      articles.append(article)
       
       updateRealm(with: article)
     }
@@ -153,10 +148,6 @@ class MasterViewController: UITableViewController {
     }
     
     for item in items {
-      guard isSuchArticle(item.title) == false else {
-        continue
-      }
-      
       let feedSource = feed.links?.first?.attributes?.href
       let itemSource = item.links?.first?.attributes?.href
       
@@ -170,34 +161,15 @@ class MasterViewController: UITableViewController {
       article.link = link
       article.pubDate = pubDate
       article.setupFavIcon(feedLink)
-      articles.append(article)
       
       updateRealm(with: article)
     }
   }
   
-  func isSuchArticle(_ title: String?) -> Bool {
-    for article in articles {
-      guard article.title != title else {
-        return true
-      }
-    }
-    
-    return false
-  }
-  
   func updateRealm(with object: Object) {
-    
     try! realm.write {
-      realm.add(object)
+      realm.add(object, update: true)
     }
-  }
-  
-  fileprivate func sortAndReloadData() {
-    articles.sort(by: {
-      $0.pubDate.compare($1.pubDate as Date) == ComparisonResult.orderedDescending
-    })
-    tableView.reloadData()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -207,11 +179,11 @@ class MasterViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if searchIsActive() {
-      return filteredArticles.count
-    }
+//    if searchIsActive() {
+//      return filteredArticles.count
+//    }
     
-    return articles.count
+    return results.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -227,10 +199,10 @@ class MasterViewController: UITableViewController {
   }
   
   func chooseData(_ row: Int) -> Article {
-    if searchIsActive() {
-      return filteredArticles[row]
-    }
-    return articles[row]
+//    if searchIsActive() {
+//      return filteredArticles[row]
+//    }
+    return results[row]
   }
   
   func searchIsActive() -> Bool {
@@ -263,22 +235,22 @@ class MasterViewController: UITableViewController {
   }
   
   func filterContentForSearchText(_ searchText: String, scope: String) {
-    filteredArticles = articles.filter { article in
-      let currentDate = Date()
-      let difference = currentDate.daysBetweenDates(article.pubDate)
-      let dateMatch = doesMatchByDaysDifference(difference, within: scope)
-      let filterMatch = (scope == Filters.all.rawValue) || dateMatch
-      
-      guard searchText.isEmpty == false else {
-        return filterMatch
-      }
-      
-      let lowerCaseTitle = article.title.lowercased()
-      let lowerCaseSearchText = searchText.lowercased()
-      let isSuchTitle = lowerCaseTitle.contains(lowerCaseSearchText)
-      return filterMatch && isSuchTitle
-    }
-    tableView.reloadData()
+//    filteredArticles = articles.filter { article in
+//      let currentDate = Date()
+//      let difference = currentDate.daysBetweenDates(article.pubDate)
+//      let dateMatch = doesMatchByDaysDifference(difference, within: scope)
+//      let filterMatch = (scope == Filters.all.rawValue) || dateMatch
+//      
+//      guard searchText.isEmpty == false else {
+//        return filterMatch
+//      }
+//      
+//      let lowerCaseTitle = article.title.lowercased()
+//      let lowerCaseSearchText = searchText.lowercased()
+//      let isSuchTitle = lowerCaseTitle.contains(lowerCaseSearchText)
+//      return filterMatch && isSuchTitle
+//    }
+//    tableView.reloadData()
   }
   
   func doesMatchByDaysDifference(_ days: Int, within scope: String) -> Bool {
