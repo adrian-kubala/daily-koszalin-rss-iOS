@@ -15,14 +15,22 @@ class Article: Object {
   dynamic var pubDate = Date()
   dynamic var favIcon: Data?
   
-//  dynamic var favIconDidLoad: (() -> ())?
+  dynamic var favIconDidLoad: (() -> ())?
   
   func setupFavIcon(_ source: String) {
     DownloadManager.sharedInstance.downloadFavIcon(source) { [weak self] img in
       if let icon = img {
         self?.favIcon = icon
-//        self?.favIconDidLoad?()
+        self?.favIconDidLoad?()
       }
     }
+  }
+  
+  override class func primaryKey() -> String? {
+    return "link"
+  }
+  
+  override class func ignoredProperties() -> [String] {
+    return ["favIconDidLoad"]
   }
 }

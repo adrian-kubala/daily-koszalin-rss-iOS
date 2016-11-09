@@ -41,9 +41,9 @@ class ArticleView: UITableViewCell {
     if let favicon = news.favIcon {
       setFavIcon(favicon)
     } else {
-//      news.favIconDidLoad = { [weak self] in
-//        self?.setFavIcon(news.favIcon)
-//      }
+      news.favIconDidLoad = { [weak self] in
+        self?.setFavIcon(news.favIcon)
+      }
     }
   }
   

@@ -103,8 +103,8 @@ class MasterViewController: UITableViewController {
         continue
       }
       
-      FeedParser(URL: feedUrl)?.parse({ (result) in
-        self.specifyFeed(result)
+      FeedParser(URL: feedUrl)?.parse({ [weak self] (result) in
+        self?.specifyFeed(result)
       })
     }
     sortAndReloadData()
@@ -141,6 +141,7 @@ class MasterViewController: UITableViewController {
       article.link = link
       article.pubDate = pubDate
       article.setupFavIcon(feedLink)
+      articles.append(article)
       
       updateRealm(with: article)
     }
@@ -169,6 +170,7 @@ class MasterViewController: UITableViewController {
       article.link = link
       article.pubDate = pubDate
       article.setupFavIcon(feedLink)
+      articles.append(article)
       
       updateRealm(with: article)
     }
@@ -185,11 +187,9 @@ class MasterViewController: UITableViewController {
   }
   
   func updateRealm(with object: Object) {
-    self.articles.append(object as! Article)
+    
     try! realm.write {
-      realm.beginWrite()
       realm.add(object)
-      try! realm.commitWrite()
     }
   }
   
