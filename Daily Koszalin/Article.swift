@@ -18,10 +18,13 @@ class Article: Object {
   dynamic var favIconDidLoad: (() -> ())?
   
   func setupFavIcon(_ source: String) {
-    DownloadManager.sharedInstance.downloadFavIcon(source) { [weak self] img in
-      if let icon = img {
-        self?.favIcon = icon
-        self?.favIconDidLoad?()
+    DownloadManager.sharedInstance.downloadFavIcon(source) { [weak self] icon in
+      if let icon = icon {
+        let realm = try! Realm()
+        try! realm.write {
+          self?.favIcon = icon
+          self?.favIconDidLoad?()
+        }
       }
     }
   }
