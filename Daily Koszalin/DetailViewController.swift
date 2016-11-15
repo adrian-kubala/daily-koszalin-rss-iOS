@@ -140,7 +140,7 @@ extension DetailViewController: UIWebViewDelegate {
   }
   
   func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-    ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
+    _ = ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
     
     webViewIndicator.stopAnimating()
   }

@@ -99,11 +99,11 @@ class MasterViewController: UITableViewController {
         break
       }
       
-      guard let feedUrl = url else {
+      guard let feedURL = url else {
         continue
       }
       
-      FeedParser(URL: feedUrl)?.parse({ [weak self] (result) in
+      FeedParser(URL: feedURL)?.parse({ [weak self] (result) in
         self?.specifyFeed(result)
       })
     }
@@ -166,16 +166,16 @@ class MasterViewController: UITableViewController {
     }
   }
   
-  func updateRealm(with object: Object) {
-    try! realm.write {
-      realm.add(object, update: true)
-    }
+  func updateRealm(with object: Article) {
+      try! realm.write {
+        realm.add(object, update: true)
+      }
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
+    _ = ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -192,7 +192,7 @@ class MasterViewController: UITableViewController {
       return UITableViewCell()
     }
     
-    let currentNews = chooseData((indexPath as NSIndexPath).row)
+    let currentNews = chooseData(indexPath.row)
     articleView.setupWithData(currentNews)
     
     return articleView
