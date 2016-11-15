@@ -13,10 +13,10 @@ class ArticleView: UITableViewCell {
   @IBOutlet var dateView: UILabel!
   @IBOutlet var favIconView: UIImageView!
   
-  func setupWithData(_ news: Article) {
-    setTitle(news.title)
-    setPubDate(news.pubDate as Date)
-    setupFavIcon(news)
+  func setupWithData(_ article: Article) {
+    setTitle(article.title)
+    setPubDate(article.pubDate as Date)
+    setupFavIcon(article)
     setSelectedBackgroundColor()
   }
   
@@ -37,12 +37,12 @@ class ArticleView: UITableViewCell {
     return dateString
   }
   
-  fileprivate func setupFavIcon(_ news: Article) {
-    if let favicon = news.favIcon {
+  fileprivate func setupFavIcon(_ article: Article) {
+    if let favicon = article.favIcon {
       setFavIcon(favicon)
     } else {
-      news.favIconDidLoad = { [weak self] in
-        self?.setFavIcon(news.favIcon)
+      article.favIconDidLoad = { [weak self] in
+        self?.setFavIcon(article.favIcon)
       }
     }
   }
