@@ -12,7 +12,6 @@ import AlamofireImage
 import RealmSwift
 
 class MasterViewController: UITableViewController {
-  let cellId = "articleView"
   let rssURLs = [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                  URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                  URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
@@ -189,7 +188,7 @@ class MasterViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellId)
+    let cell = tableView.dequeueReusableCell(withIdentifier: "articleView")
     guard let articleView = cell as? ArticleView else {
       return UITableViewCell()
     }
