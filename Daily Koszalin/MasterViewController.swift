@@ -9,29 +9,28 @@
 import UIKit
 import FeedKit
 import AlamofireImage
+import RealmSwift
 
 class MasterViewController: UITableViewController {
-  static var dataFilePath: String? {
-    let manager = FileManager.default
-    let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-    return url?.appendingPathComponent("articles").path
-  }
-  
   let cellId = "articleView"
-  var articles: [Article] = []
-  var filteredArticles: [Article] = []
   let rssURLs = [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                  URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                  URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                  URL(string: "http://www.koszalin.pl/pl/rss.xml")]
   let searchController = UISearchController(searchResultsController: nil)
   
+  let realm = try! Realm()
+  var results: Results<Article> {
+    let objects = realm.objects(Article.self)
+    return objects.sorted(byProperty: "pubDate", ascending: false)
+  }
+  var articles: [Article] = []
+  var filteredArticles: [Article] = []
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
     enableSelfSizingCells()
-    assignLoadedNews()
-    addNotificationObserver()
     setupRefreshControl()
     setupSearchController()
     parseRSSContent()
@@ -40,32 +39,6 @@ class MasterViewController: UITableViewController {
   func enableSelfSizingCells() {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
-  }
-  
-  func assignLoadedNews() {
-    if let savedNews = loadNewsFromDisk() {
-      articles = savedNews
-    }
-  }
-  
-  func loadNewsFromDisk() -> [Article]? {
-    guard let filePath = MasterViewController.dataFilePath else {
-      return nil
-    }
-    
-    return NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [Article]
-  }
-  
-  func addNotificationObserver() {
-    NotificationCenter.default.addObserver(self, selector: #selector(MasterViewController.saveNewsToDisk), name: NSNotification.Name(rawValue: "AppBecameInactive"), object: nil)
-  }
-  
-  func saveNewsToDisk() {
-    guard let filePath = MasterViewController.dataFilePath else {
-      return
-    }
-    
-    NSKeyedArchiver.archiveRootObject(articles, toFile: filePath)
   }
   
   func setupRefreshControl() {
@@ -106,24 +79,25 @@ class MasterViewController: UITableViewController {
   func parseRSSContent() {
     for url in rssURLs {
       guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
+        assignDataFromRealmIfNeeded()
         break
       }
       
-      guard let feedUrl = url else {
+      guard let feedURL = url else {
         continue
       }
       
-      FeedParser(URL: feedUrl)?.parse({ (result) in
-        self.handleFeed(result)
+      FeedParser(URL: feedURL)?.parse({ [weak self] (result) in
+        self?.specifyFeed(result)
       })
     }
-    sortAndReloadData()
+    updateTableView()
   }
   
-  func handleFeed(_ result: Result) {
+  func specifyFeed(_ result: Result) {
     switch result {
     case .rss(let rssFeed):
-      handleRssFeed(rssFeed)
+      handleRSSFeed(rssFeed)
     case .atom(let atomFeed):
       handleAtomFeed(atomFeed)
     case .failure(let error):
@@ -131,23 +105,24 @@ class MasterViewController: UITableViewController {
     }
   }
   
-  func handleRssFeed(_ feed: RSSFeed) {
+  func handleRSSFeed(_ feed: RSSFeed) {
     guard let items = feed.items else {
       return
     }
     
     for item in items {
-      guard isSuchArticle(item.title) == false else {
-        continue
-      }
-      
       guard let feedLink = feed.link, let title = item.title, let link = item.link, let pubDate = item.pubDate else {
         continue
       }
       
-      let article = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
+      let article = Article()
+      article.source = feedLink
+      article.title = title
+      article.link = link
+      article.pubDate = pubDate
       article.setupFavIcon(feedLink)
-      self.articles.append(article)
+      
+      updateRealm(with: article)
     }
   }
   
@@ -157,10 +132,6 @@ class MasterViewController: UITableViewController {
     }
     
     for item in items {
-      guard isSuchArticle(item.title) == false else {
-        continue
-      }
-      
       let feedSource = feed.links?.first?.attributes?.href
       let itemSource = item.links?.first?.attributes?.href
       
@@ -168,41 +139,44 @@ class MasterViewController: UITableViewController {
         continue
       }
       
-      let article = Article(source: feedLink, title: title, link: link, pubDate: pubDate)
+      let article = Article()
+      article.source = feedLink
+      article.title = title
+      article.link = link
+      article.pubDate = pubDate
       article.setupFavIcon(feedLink)
-      self.articles.append(article)
+      
+      updateRealm(with: article)
     }
   }
   
-  func isSuchArticle(_ title: String?) -> Bool {
-    for article in articles {
-      guard article.title != title else {
-        return true
-      }
+  func updateRealm(with object: Object) {
+    let article = object as! Article
+    try! realm.write {
+      realm.add(article, update: true)
+      articles.append(article)
     }
-    
-    return false
   }
   
-  fileprivate func sortAndReloadData() {
-    articles.sort(by: {
-      $0.pubDate.compare($1.pubDate as Date) == ComparisonResult.orderedDescending
-    })
+  func updateTableView() {
+    articles.sort {
+      $0.pubDate > $1.pubDate
+    }
     tableView.reloadData()
+  }
+  
+  func assignDataFromRealmIfNeeded() {
+    articles = Array(results)
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
+    _ = ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if searchIsActive() {
-      return filteredArticles.count
-    }
-    
-    return articles.count
+    return searchIsActive() ? filteredArticles.count : articles.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -211,17 +185,14 @@ class MasterViewController: UITableViewController {
       return UITableViewCell()
     }
     
-    let currentNews = chooseData((indexPath as NSIndexPath).row)
+    let currentNews = chooseData(indexPath.row)
     articleView.setupWithData(currentNews)
     
     return articleView
   }
   
   func chooseData(_ row: Int) -> Article {
-    if searchIsActive() {
-      return filteredArticles[row]
-    }
-    return articles[row]
+    return searchIsActive() ? filteredArticles[row] : articles[row]
   }
   
   func searchIsActive() -> Bool {
