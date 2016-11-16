@@ -115,14 +115,7 @@ class MasterViewController: UITableViewController {
         continue
       }
       
-      let article = Article()
-      article.source = feedLink
-      article.title = title
-      article.link = link
-      article.pubDate = pubDate
-      article.setupFavIcon(feedLink)
-      
-      updateRealm(with: article)
+      prepareArticleForRealm(source: feedLink, title: title, link: link, pubDate: pubDate)
     }
   }
   
@@ -139,15 +132,17 @@ class MasterViewController: UITableViewController {
         continue
       }
       
-      let article = Article()
-      article.source = feedLink
-      article.title = title
-      article.link = link
-      article.pubDate = pubDate
-      article.setupFavIcon(feedLink)
-      
-      updateRealm(with: article)
+      prepareArticleForRealm(source: feedLink, title: title, link: link, pubDate: pubDate)
     }
+  }
+  
+  func prepareArticleForRealm(source: String, title: String, link: String, pubDate: Date) {
+    let article = Article(value: ["source" : source,
+                                  "title" : title,
+                                  "link" : link,
+                                  "pubDate" : pubDate])
+    article.setupFavIcon(source)
+    updateRealm(with: article)
   }
   
   func updateRealm(with object: Object) {
