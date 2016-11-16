@@ -216,6 +216,13 @@ class MasterViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) else {
+      let selectedCell = tableView.cellForRow(at: indexPath)
+      selectedCell?.setSelected(false, animated: true)
+      
+      return
+    }
+    
     let selectedNews = chooseData((indexPath as NSIndexPath).row)
     let link = selectedNews.link
     
