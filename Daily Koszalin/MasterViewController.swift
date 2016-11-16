@@ -31,7 +31,6 @@ class MasterViewController: UITableViewController {
     super.viewDidLoad()
     
     enableSelfSizingCells()
-    addNotificationObserver()
     setupRefreshControl()
     setupSearchController()
     parseRSSContent()
@@ -40,18 +39,6 @@ class MasterViewController: UITableViewController {
   func enableSelfSizingCells() {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
-  }
-  
-  func addNotificationObserver() {
-    NotificationCenter.default.addObserver(self, selector: #selector(MasterViewController.saveNewsToDisk), name: NSNotification.Name(rawValue: "AppBecameInactive"), object: nil)
-  }
-  
-  func saveNewsToDisk() {
-//    guard let filePath = MasterViewController.dataFilePath else {
-//      return
-//    }
-//    
-//    NSKeyedArchiver.archiveRootObject(articles, toFile: filePath)
   }
   
   func setupRefreshControl() {
