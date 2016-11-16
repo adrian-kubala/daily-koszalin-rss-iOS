@@ -147,11 +147,25 @@ class MasterViewController: UITableViewController {
   
   func updateRealm(with object: Object) {
     let article = object as! Article
+    
     try! realm.write {
       realm.add(article, update: true)
+    }
+    
+    if !isSuchArticle(article) {
       articles.append(article)
     }
   }
+  
+  func isSuchArticle(_ article: Article) -> Bool {
+    for existingArticle in articles {
+      if article.link == existingArticle.link {
+        return true
+      }
+    }
+    return false
+  }
+  
   
   func updateTableView() {
     articles.sort {
