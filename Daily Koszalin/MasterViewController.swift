@@ -13,8 +13,6 @@ import RealmSwift
 
 class MasterViewController: UITableViewController {
   let cellId = "articleView"
-  var articles: [Article] = []
-//  var filteredArticles: [Article] = []
   let rssURLs = [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                  URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                  URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
@@ -26,6 +24,8 @@ class MasterViewController: UITableViewController {
     let objects = realm.objects(Article.self)
     return objects.sorted(byProperty: "pubDate", ascending: false)
   }
+  var articles: [Article] = []
+  var filteredArticles: [Article] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -91,7 +91,6 @@ class MasterViewController: UITableViewController {
         self?.specifyFeed(result)
       })
     }
-    
     updateTableView()
   }
   
@@ -177,11 +176,7 @@ class MasterViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    if searchIsActive() {
-//      return filteredArticles.count
-//    }
-    
-    return articles.count
+    return searchIsActive() ? filteredArticles.count : articles.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -197,10 +192,7 @@ class MasterViewController: UITableViewController {
   }
   
   func chooseData(_ row: Int) -> Article {
-//    if searchIsActive() {
-//      return filteredArticles[row]
-//    }
-    return articles[row]
+    return searchIsActive() ? filteredArticles[row] : articles[row]
   }
   
   func searchIsActive() -> Bool {
@@ -233,22 +225,22 @@ class MasterViewController: UITableViewController {
   }
   
   func filterContentForSearchText(_ searchText: String, scope: String) {
-//    filteredArticles = articles.filter { article in
-//      let currentDate = Date()
-//      let difference = currentDate.daysBetweenDates(article.pubDate)
-//      let dateMatch = doesMatchByDaysDifference(difference, within: scope)
-//      let filterMatch = (scope == Filters.all.rawValue) || dateMatch
-//      
-//      guard searchText.isEmpty == false else {
-//        return filterMatch
-//      }
-//      
-//      let lowerCaseTitle = article.title.lowercased()
-//      let lowerCaseSearchText = searchText.lowercased()
-//      let isSuchTitle = lowerCaseTitle.contains(lowerCaseSearchText)
-//      return filterMatch && isSuchTitle
-//    }
-//    tableView.reloadData()
+    filteredArticles = articles.filter { article in
+      let currentDate = Date()
+      let difference = currentDate.daysBetweenDates(article.pubDate)
+      let dateMatch = doesMatchByDaysDifference(difference, within: scope)
+      let filterMatch = (scope == Filters.all.rawValue) || dateMatch
+      
+      guard searchText.isEmpty == false else {
+        return filterMatch
+      }
+      
+      let lowerCaseTitle = article.title.lowercased()
+      let lowerCaseSearchText = searchText.lowercased()
+      let isSuchTitle = lowerCaseTitle.contains(lowerCaseSearchText)
+      return filterMatch && isSuchTitle
+    }
+    tableView.reloadData()
   }
   
   func doesMatchByDaysDifference(_ days: Int, within scope: String) -> Bool {
