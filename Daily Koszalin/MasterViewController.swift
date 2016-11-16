@@ -13,7 +13,7 @@ import RealmSwift
 
 class MasterViewController: UITableViewController {
   let cellId = "articleView"
-//  var articles: [Article] = []
+  var articles: [Article] = []
 //  var filteredArticles: [Article] = []
   let rssURLs = [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                  URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
@@ -41,10 +41,6 @@ class MasterViewController: UITableViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
   }
-  
-//  func assignLoadedNews() {
-//    articles = Array(results)
-//  }
   
   func addNotificationObserver() {
     NotificationCenter.default.addObserver(self, selector: #selector(MasterViewController.saveNewsToDisk), name: NSNotification.Name(rawValue: "AppBecameInactive"), object: nil)
@@ -96,6 +92,7 @@ class MasterViewController: UITableViewController {
   func parseRSSContent() {
     for url in rssURLs {
       guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
+        assignDataFromRealmIfNeeded()
         break
       }
       
@@ -107,7 +104,8 @@ class MasterViewController: UITableViewController {
         self?.specifyFeed(result)
       })
     }
-    tableView.reloadData()
+    
+    updateTableView()
   }
   
   func specifyFeed(_ result: Result) {
@@ -166,10 +164,23 @@ class MasterViewController: UITableViewController {
     }
   }
   
-  func updateRealm(with object: Article) {
-      try! realm.write {
-        realm.add(object, update: true)
-      }
+  func updateRealm(with object: Object) {
+    let article = object as! Article
+    try! realm.write {
+      realm.add(article, update: true)
+      articles.append(article)
+    }
+  }
+  
+  func updateTableView() {
+    articles.sort {
+      $0.pubDate > $1.pubDate
+    }
+    tableView.reloadData()
+  }
+  
+  func assignDataFromRealmIfNeeded() {
+    articles = Array(results)
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -183,7 +194,7 @@ class MasterViewController: UITableViewController {
 //      return filteredArticles.count
 //    }
     
-    return results.count
+    return articles.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -202,7 +213,7 @@ class MasterViewController: UITableViewController {
 //    if searchIsActive() {
 //      return filteredArticles[row]
 //    }
-    return results[row]
+    return articles[row]
   }
   
   func searchIsActive() -> Bool {
