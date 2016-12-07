@@ -27,6 +27,7 @@
 		3AF6E69D1D86D51A00C41376 /* MasterViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF6E69C1D86D51A00C41376 /* MasterViewController+Search.swift */; };
 		3AF72FE71D7D79E800AC39BA /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF72FE61D7D79E800AC39BA /* SplitViewController.swift */; };
 		3AF88C4F1D78019000C5F534 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF88C4E1D78019000C5F534 /* ArticleView.swift */; };
+		3AFE3FD61DF8C94D003494F1 /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE3FD51DF8C94D003494F1 /* RSSParser.swift */; };
 		3AFEAD051D87272A00034DAD /* NSDate+Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEAD041D87272A00034DAD /* NSDate+Difference.swift */; };
 		97E36D59F66A570C9A217237 /* Pods_Daily_KoszalinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA91AC98EC51D43352122AF1 /* Pods_Daily_KoszalinTests.framework */; };
 		C0350F05953705C68FB64CC2 /* Pods_Daily_Koszalin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374AD637BC98175477EE9B71 /* Pods_Daily_Koszalin.framework */; };
@@ -78,6 +79,7 @@
 		3AF6E69C1D86D51A00C41376 /* MasterViewController+Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterViewController+Search.swift"; sourceTree = "<group>"; };
 		3AF72FE61D7D79E800AC39BA /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		3AF88C4E1D78019000C5F534 /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
+		3AFE3FD51DF8C94D003494F1 /* RSSParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
 		3AFEAD041D87272A00034DAD /* NSDate+Difference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Difference.swift"; sourceTree = "<group>"; };
 		45A831896C007DA7C61D2A8E /* Pods_Daily_KoszalinUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Daily_KoszalinUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		460F9C1EA65D939E3DCB2B5B /* Pods-Daily KoszalinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Daily KoszalinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Daily KoszalinTests/Pods-Daily KoszalinTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				3A0E8E7C1D719B5A006331C3 /* Article.swift */,
+				3AFE3FD51DF8C94D003494F1 /* RSSParser.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				TargetAttributes = {
 					3AB979FE1D673DC000ADBF74 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = HW92KBAU77;
 						LastSwiftMigration = 0800;
 					};
 					3AB97A121D673DC000ADBF74 = {
@@ -530,6 +534,7 @@
 				3AB97A311D673FF000ADBF74 /* MasterViewController.swift in Sources */,
 				3A8D42E51D892F5200D94139 /* DownloadManager.swift in Sources */,
 				3AB97A351D67405600ADBF74 /* ContainerViewController.swift in Sources */,
+				3AFE3FD61DF8C94D003494F1 /* RSSParser.swift in Sources */,
 				3AF72FE71D7D79E800AC39BA /* SplitViewController.swift in Sources */,
 				3AB97A031D673DC000ADBF74 /* AppDelegate.swift in Sources */,
 				3A0A067C1D8173BB0007DBCA /* ConnectionManager.swift in Sources */,
@@ -690,6 +695,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HW92KBAU77;
 				INFOPLIST_FILE = "Daily Koszalin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-Koszalin";
@@ -704,6 +710,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HW92KBAU77;
 				INFOPLIST_FILE = "Daily Koszalin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-Koszalin";
