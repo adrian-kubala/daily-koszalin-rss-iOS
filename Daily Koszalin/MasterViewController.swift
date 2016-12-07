@@ -86,9 +86,9 @@ class MasterViewController: UITableViewController {
         continue
       }
       
-      FeedParser(URL: feedURL)?.parse({ [weak self] (result) in
+      FeedParser(URL: feedURL)?.parse { [weak self] (result) in
         self?.specifyFeed(result)
-      })
+      }
     }
     updateTableView()
   }
