@@ -76,83 +76,26 @@ class MasterViewController: UITableViewController {
   }
   
   func parseRSSContent() {
-    for url in rssURLs {
       guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
         assignDataFromRealmIfNeeded()
-        break
+        return
       }
-      
-      guard let feedURL = url else {
-        continue
-      }
-      
-      FeedParser(URL: feedURL)?.parse { [weak self] (result) in
-        self?.specifyFeed(result)
-      }
-    }
+    
+    let parser = RSSParser(urls: rssURLs)
+    let result = parser.parse()
+    updateRealm(with: result)
     updateTableView()
   }
   
-  func specifyFeed(_ result: Result) {
-    switch result {
-    case .rss(let rssFeed):
-      handleRSSFeed(rssFeed)
-    case .atom(let atomFeed):
-      handleAtomFeed(atomFeed)
-    case .failure(let error):
-      print(error.localizedDescription)
-    }
-  }
-  
-  func handleRSSFeed(_ feed: RSSFeed) {
-    guard let items = feed.items else {
-      return
-    }
-    
-    for item in items {
-      guard let feedLink = feed.link, let title = item.title, let link = item.link, let pubDate = item.pubDate else {
-        continue
+  func updateRealm(with objects: [Article]) {
+    for object in objects {
+      try! realm.write {
+        realm.add(objects, update: true)
       }
       
-      prepareArticleForRealm(source: feedLink, title: title, link: link, pubDate: pubDate)
-    }
-  }
-  
-  func handleAtomFeed(_ feed: AtomFeed) {
-    guard let items = feed.entries else {
-      return
-    }
-    
-    for item in items {
-      let feedSource = feed.links?.first?.attributes?.href
-      let itemSource = item.links?.first?.attributes?.href
-      
-      guard let feedLink = feedSource, let title = item.title, let link = itemSource, let pubDate = item.updated else {
-        continue
+      if !isSuchArticle(object) {
+        articles.append(object)
       }
-      
-      prepareArticleForRealm(source: feedLink, title: title, link: link, pubDate: pubDate)
-    }
-  }
-  
-  func prepareArticleForRealm(source: String, title: String, link: String, pubDate: Date) {
-    let article = Article(value: ["source" : source,
-                                  "title" : title,
-                                  "link" : link,
-                                  "pubDate" : pubDate])
-    article.setupFavIcon(source)
-    updateRealm(with: article)
-  }
-  
-  func updateRealm(with object: Object) {
-    let article = object as! Article
-    
-    try! realm.write {
-      realm.add(article, update: true)
-    }
-    
-    if !isSuchArticle(article) {
-      articles.append(article)
     }
   }
   

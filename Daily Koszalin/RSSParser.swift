@@ -10,24 +10,28 @@ import Foundation
 import FeedKit
 
 class RSSParser {
-  var parsedFeed: Feed?
+  private var feedSources: [URL] = []
+  private var articles: [Article] = []
   
-  struct Feed {
-    var source: String
-    var title: String
-    var link: String
-    var pubDate: Date
+  init(urls: [URL?]) {
+    for url in urls {
+      if let url = url {
+        feedSources.append(url)
+      }
+    }
   }
   
-  func parse(_ url: URL) -> Feed? {
-    FeedParser(URL: url)?.parse { [weak self] (result) in
-      self?.specifyFeed(result)
+  func parse() -> [Article] {
+    for source in feedSources {
+      FeedParser(URL: source)?.parse { [weak self] (result) in
+        self?.specifyFeed(result)
+      }
     }
     
-    return parsedFeed
+    return articles
   }
   
-  func specifyFeed(_ result: Result) {
+  private func specifyFeed(_ result: Result) {
     switch result {
     case .rss(let rssFeed):
       handleRSSFeed(rssFeed)
@@ -38,7 +42,7 @@ class RSSParser {
     }
   }
   
-  func handleRSSFeed(_ feed: RSSFeed) {
+  private func handleRSSFeed(_ feed: RSSFeed) {
     guard let items = feed.items else {
       return
     }
@@ -48,11 +52,11 @@ class RSSParser {
         continue
       }
       
-      parsedFeed = Feed(source: feedLink, title: title, link: link, pubDate: pubDate)
+      prepareArticleForRealm(source: feedLink, title: title, link: link, pubDate: pubDate)
     }
   }
   
-  func handleAtomFeed(_ feed: AtomFeed) {
+  private func handleAtomFeed(_ feed: AtomFeed) {
     guard let items = feed.entries else {
       return
     }
@@ -65,7 +69,17 @@ class RSSParser {
         continue
       }
       
-      parsedFeed = Feed(source: feedLink, title: title, link: link, pubDate: pubDate)
+      prepareArticleForRealm(source: feedLink, title: title, link: link, pubDate: pubDate)
     }
+  }
+  
+  private func prepareArticleForRealm(source: String, title: String, link: String, pubDate: Date) {
+    let article = Article(value: ["source" : source,
+                                  "title" : title,
+                                  "link" : link,
+                                  "pubDate" : pubDate])
+    article.setupFavIcon(source)
+    
+    articles.append(article)
   }
 }
