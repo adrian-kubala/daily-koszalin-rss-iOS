@@ -12,10 +12,7 @@ import AlamofireImage
 import RealmSwift
 
 class MasterViewController: UITableViewController {
-  let rssURLs = [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
-                 URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
-                 URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
-                 URL(string: "http://www.koszalin.pl/pl/rss.xml")]
+  var parser: RSSParser!
   let searchController = UISearchController(searchResultsController: nil)
   
   let realm = try! Realm()
@@ -25,14 +22,14 @@ class MasterViewController: UITableViewController {
   }
   var articles: [Article] = []
   var filteredArticles: [Article] = []
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     enableSelfSizingCells()
     setupRefreshControl()
     setupSearchController()
-    parseRSSContent()
+    setupParser()
   }
   
   func enableSelfSizingCells() {
@@ -75,13 +72,20 @@ class MasterViewController: UITableViewController {
     case fiveDays = "Do 5 dni"
   }
   
+  private func setupParser() {
+    parser = RSSParser(urls: [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
+                              URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
+                              URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
+                              URL(string: "http://www.koszalin.pl/pl/rss.xml")])
+    parseRSSContent()
+  }
+  
   func parseRSSContent() {
-      guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
-        assignDataFromRealmIfNeeded()
-        return
-      }
+    guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
+      assignDataFromRealmIfNeeded()
+      return
+    }
     
-    let parser = RSSParser(urls: rssURLs)
     let result = parser.parse()
     updateRealm(with: result)
     updateTableView()
