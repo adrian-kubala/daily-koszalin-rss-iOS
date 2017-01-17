@@ -32,16 +32,16 @@ class MasterViewController: UITableViewController {
     setupParser()
   }
   
-  func enableSelfSizingCells() {
+  private func enableSelfSizingCells() {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 80
   }
   
-  func setupRefreshControl() {
+  private func setupRefreshControl() {
     refreshControl?.addTarget(self, action: #selector(MasterViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
   }
   
-  func handleRefresh(_ refreshControl: UIRefreshControl) {
+  @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
     if ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) {
       parseRSSContent()
     }
@@ -49,7 +49,7 @@ class MasterViewController: UITableViewController {
     refreshControl.endRefreshing()
   }
   
-  func setupSearchController() {
+  private func setupSearchController() {
     searchController.searchResultsUpdater = self
     searchController.dimsBackgroundDuringPresentation = false
     definesPresentationContext = true
@@ -57,7 +57,7 @@ class MasterViewController: UITableViewController {
     setupSearchBar()
   }
   
-  func setupSearchBar() {
+  private func setupSearchBar() {
     let searchBar = searchController.searchBar
     tableView.tableHeaderView = searchBar
     searchBar.autocapitalizationType = .none
@@ -66,7 +66,7 @@ class MasterViewController: UITableViewController {
     searchBar.delegate = self
   }
   
-  enum Filters: String {
+  private enum Filters: String {
     case all = "Wszystkie"
     case threeDays = "Do 3 dni"
     case fiveDays = "Do 5 dni"
@@ -80,7 +80,7 @@ class MasterViewController: UITableViewController {
     parseRSSContent()
   }
   
-  func parseRSSContent() {
+  private func parseRSSContent() {
     guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
       assignDataFromRealmIfNeeded()
       return
@@ -91,7 +91,7 @@ class MasterViewController: UITableViewController {
     updateTableView()
   }
   
-  func updateRealm(with objects: [Article]) {
+  private func updateRealm(with objects: [Article]) {
     for object in objects {
       try! realm.write {
         realm.add(objects, update: true)
@@ -103,7 +103,7 @@ class MasterViewController: UITableViewController {
     }
   }
   
-  func isSuchArticle(_ article: Article) -> Bool {
+  private func isSuchArticle(_ article: Article) -> Bool {
     for existingArticle in articles {
       if article.link == existingArticle.link {
         return true
@@ -113,14 +113,14 @@ class MasterViewController: UITableViewController {
   }
   
   
-  func updateTableView() {
+  private func updateTableView() {
     articles.sort {
       $0.pubDate > $1.pubDate
     }
     tableView.reloadData()
   }
   
-  func assignDataFromRealmIfNeeded() {
+  private func assignDataFromRealmIfNeeded() {
     articles = Array(results)
   }
   
@@ -146,11 +146,11 @@ class MasterViewController: UITableViewController {
     return articleView
   }
   
-  func chooseData(_ row: Int) -> Article {
+  private func chooseData(_ row: Int) -> Article {
     return searchIsActive() ? filteredArticles[row] : articles[row]
   }
   
-  func searchIsActive() -> Bool {
+  private func searchIsActive() -> Bool {
     return searchController.isActive ? true : false
   }
   
@@ -205,7 +205,7 @@ class MasterViewController: UITableViewController {
     tableView.reloadData()
   }
   
-  func doesMatchByDaysDifference(_ days: Int, within scope: String) -> Bool {
+  private func doesMatchByDaysDifference(_ days: Int, within scope: String) -> Bool {
     var doesMatch = false
     switch scope {
     case Filters.threeDays.rawValue:
