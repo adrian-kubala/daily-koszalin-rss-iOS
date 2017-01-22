@@ -324,7 +324,7 @@
 				TargetAttributes = {
 					3AB979FE1D673DC000ADBF74 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = HW92KBAU77;
+						DevelopmentTeam = E84ETWJ5XP;
 						LastSwiftMigration = 0800;
 					};
 					3AB97A121D673DC000ADBF74 = {
@@ -695,10 +695,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HW92KBAU77;
+				DEVELOPMENT_TEAM = E84ETWJ5XP;
 				INFOPLIST_FILE = "Daily Koszalin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-Koszalin";
+				PRODUCT_BUNDLE_IDENTIFIER = kubala.adrian.DailyKoszalin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -710,10 +710,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HW92KBAU77;
+				DEVELOPMENT_TEAM = E84ETWJ5XP;
 				INFOPLIST_FILE = "Daily Koszalin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "kubala.adrian.Daily-Koszalin";
+				PRODUCT_BUNDLE_IDENTIFIER = kubala.adrian.DailyKoszalin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
