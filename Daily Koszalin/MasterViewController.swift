@@ -42,11 +42,9 @@ class MasterViewController: UITableViewController {
   }
   
   @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
-    if ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) {
-      parseRSSContent()
+    parseRSSContent { 
+      refreshControl.endRefreshing()
     }
-    
-    refreshControl.endRefreshing()
   }
   
   private func setupSearchController() {
@@ -77,26 +75,40 @@ class MasterViewController: UITableViewController {
                               URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                               URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                               URL(string: "http://www.koszalin.pl/pl/rss.xml")])
-    parseRSSContent()
+    parseRSSContent { }
   }
   
-  private func parseRSSContent() {
-    guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
-      assignDataFromRealmIfNeeded()
-      return
+  private func parseRSSContent(completion: @escaping () -> Void) {
+    DispatchQueue.global(qos: .background).async {
+      var result: [Article] = []
+      let isParsed: Bool
+      
+      if !ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) {
+        isParsed = false
+      } else {
+        isParsed = true
+        result = self.parser.parse()
+      }
+      
+      DispatchQueue.main.async {
+        if !isParsed {
+          self.assignDataFromRealmIfNeeded()
+        } else {
+          self.updateRealm(with: result)
+        }
+        
+        self.updateTableView()
+        completion()
+      }
     }
-    
-    let result = parser.parse()
-    updateRealm(with: result)
-    updateTableView()
   }
   
   private func updateRealm(with objects: [Article]) {
+    try! realm.write {
+      realm.add(objects, update: true)
+    }
+    
     for object in objects {
-      try! realm.write {
-        realm.add(objects, update: true)
-      }
-      
       if !isSuchArticle(object) {
         articles.append(object)
       }
