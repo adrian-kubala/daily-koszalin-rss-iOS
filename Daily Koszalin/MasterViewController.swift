@@ -30,6 +30,7 @@ class MasterViewController: UITableViewController {
     setupRefreshControl()
     setupSearchController()
     setupParser()
+    tableView.scrollBelowView(searchController.searchBar)
   }
   
   private func enableSelfSizingCells() {
@@ -42,7 +43,7 @@ class MasterViewController: UITableViewController {
   }
   
   @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
-    parseRSSContent { 
+    parseRSSContent {
       refreshControl.endRefreshing()
     }
   }
