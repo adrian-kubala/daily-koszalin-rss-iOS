@@ -26,16 +26,15 @@ class MasterViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    enableSelfSizingCells()
     setupRefreshControl()
     setupSearchController()
+    setupTableView()
     setupParser()
-    tableView.scrollBelowView(searchController.searchBar)
   }
   
-  private func enableSelfSizingCells() {
-    tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 80
+  private func setupTableView() {
+    tableView.enableSelfSizingCells(withEstimatedHeight: 80)
+    tableView.scrollBelowView(searchController.searchBar)
   }
   
   private func setupRefreshControl() {
