@@ -59,7 +59,7 @@ class MasterViewController: UITableViewController {
     let searchBar = searchController.searchBar
     tableView.tableHeaderView = searchBar
     searchBar.autocapitalizationType = .none
-    searchBar.placeholder = "Wyszukaj"
+    searchBar.placeholder = "Szukaj"
     searchBar.scopeButtonTitles = [Filters.all.rawValue, Filters.threeDays.rawValue, Filters.fiveDays.rawValue]
     searchBar.delegate = self
   }
@@ -72,7 +72,6 @@ class MasterViewController: UITableViewController {
   
   private func setupParser() {
     parser = RSSParser(urls: [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
-                              URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                               URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                               URL(string: "http://www.koszalin.pl/pl/rss.xml")])
     parseRSSContent { }
