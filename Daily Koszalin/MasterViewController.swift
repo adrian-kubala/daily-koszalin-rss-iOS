@@ -42,10 +42,7 @@ class MasterViewController: UITableViewController {
   }
   
   @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
-    if ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) {
-      parseRSSContent()
-    }
-    
+    parseRSSContent()
     refreshControl.endRefreshing()
   }
   
@@ -81,22 +78,33 @@ class MasterViewController: UITableViewController {
   }
   
   private func parseRSSContent() {
-    guard ConnectionManager.sharedInstance.isConnectedToNetwork() else {
-      assignDataFromRealmIfNeeded()
-      return
+    DispatchQueue.global(qos: .background).async {
+      var result: [Article] = []
+      let isParsed: Bool
+      
+      if !ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self) {
+        isParsed = false
+      } else {
+        isParsed = true
+        result = self.parser.parse()
+      }
+      
+      DispatchQueue.main.async {
+        if isParsed {
+          self.assignDataFromRealmIfNeeded()
+        }
+        self.updateRealm(with: result)
+        self.updateTableView()
+      }
     }
-    
-    let result = parser.parse()
-    updateRealm(with: result)
-    updateTableView()
   }
   
   private func updateRealm(with objects: [Article]) {
+    try! realm.write {
+      realm.add(objects, update: true)
+    }
+    
     for object in objects {
-      try! realm.write {
-        realm.add(objects, update: true)
-      }
-      
       if !isSuchArticle(object) {
         articles.append(object)
       }
