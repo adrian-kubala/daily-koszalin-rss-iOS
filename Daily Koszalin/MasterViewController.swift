@@ -42,8 +42,9 @@ class MasterViewController: UITableViewController {
   }
   
   @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
-    parseRSSContent()
-    refreshControl.endRefreshing()
+    parseRSSContent { 
+      refreshControl.endRefreshing()
+    }
   }
   
   private func setupSearchController() {
@@ -74,10 +75,10 @@ class MasterViewController: UITableViewController {
                               URL(string: "http://www.radio.koszalin.pl/Content/rss/region.xml"),
                               URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                               URL(string: "http://www.koszalin.pl/pl/rss.xml")])
-    parseRSSContent()
+    parseRSSContent { }
   }
   
-  private func parseRSSContent() {
+  private func parseRSSContent(completion: @escaping () -> Void) {
     DispatchQueue.global(qos: .background).async {
       var result: [Article] = []
       let isParsed: Bool
@@ -90,11 +91,14 @@ class MasterViewController: UITableViewController {
       }
       
       DispatchQueue.main.async {
-        if isParsed {
+        if !isParsed {
           self.assignDataFromRealmIfNeeded()
+        } else {
+          self.updateRealm(with: result)
         }
-        self.updateRealm(with: result)
+        
         self.updateTableView()
+        completion()
       }
     }
   }
