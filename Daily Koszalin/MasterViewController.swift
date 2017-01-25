@@ -128,7 +128,10 @@ class MasterViewController: UITableViewController {
     articles.sort {
       $0.pubDate > $1.pubDate
     }
-    tableView.reloadData()
+    
+    if tableView.visibleCells.count == 0 {
+      tableView.reloadCellsWith(animationOptions: .transitionCrossDissolve)
+    }
   }
   
   private func assignDataFromRealmIfNeeded() {
