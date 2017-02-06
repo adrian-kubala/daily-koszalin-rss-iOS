@@ -1,6 +1,0 @@
-framework module Pods_Daily_Koszalin {
-  umbrella header "Pods-Daily Koszalin-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -11,7 +11,6 @@
 		3A0A067E1D8182610007DBCA /* ConnectionManager+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A067D1D8182610007DBCA /* ConnectionManager+Alert.swift */; };
 		3A0E8E7D1D719B5A006331C3 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0E8E7C1D719B5A006331C3 /* Article.swift */; };
 		3A53D0E71E38D66A0015F1B6 /* UITableView+animateCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A53D0E61E38D66A0015F1B6 /* UITableView+animateCells.swift */; };
-		3A54EB2E1D6C7D3D0005AD0E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3A54EB2D1D6C7D3D0005AD0E /* .gitignore */; };
 		3A8D42E51D892F5200D94139 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D42E41D892F5200D94139 /* DownloadManager.swift */; };
 		3AB97A031D673DC000ADBF74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A021D673DC000ADBF74 /* AppDelegate.swift */; };
 		3AB97A081D673DC000ADBF74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB97A061D673DC000ADBF74 /* Main.storyboard */; };
@@ -29,19 +28,19 @@
 		3AF88C4F1D78019000C5F534 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF88C4E1D78019000C5F534 /* ArticleView.swift */; };
 		3AFE3FD61DF8C94D003494F1 /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE3FD51DF8C94D003494F1 /* RSSParser.swift */; };
 		3AFEAD051D87272A00034DAD /* NSDate+Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEAD041D87272A00034DAD /* NSDate+Difference.swift */; };
-		C0350F05953705C68FB64CC2 /* Pods_Daily_Koszalin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374AD637BC98175477EE9B71 /* Pods_Daily_Koszalin.framework */; };
+		4CACF73A275CF492086CC391 /* Pods_InfoKoszalin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E06C644D191DAAE14A53E32 /* Pods_InfoKoszalin.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09C1A602238A6579DE089556 /* Pods-Daily Koszalin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Daily Koszalin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Daily Koszalin/Pods-Daily Koszalin.debug.xcconfig"; sourceTree = "<group>"; };
-		374AD637BC98175477EE9B71 /* Pods_Daily_Koszalin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Daily_Koszalin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E06C644D191DAAE14A53E32 /* Pods_InfoKoszalin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InfoKoszalin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3009F04274406A28657D53AB /* Pods-InfoKoszalin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoKoszalin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InfoKoszalin/Pods-InfoKoszalin.debug.xcconfig"; sourceTree = "<group>"; };
+		393451CA979E46DC8F0B2255 /* Pods-InfoKoszalin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InfoKoszalin.release.xcconfig"; path = "Pods/Target Support Files/Pods-InfoKoszalin/Pods-InfoKoszalin.release.xcconfig"; sourceTree = "<group>"; };
 		3A0A067B1D8173BB0007DBCA /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		3A0A067D1D8182610007DBCA /* ConnectionManager+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConnectionManager+Alert.swift"; sourceTree = "<group>"; };
 		3A0E8E7C1D719B5A006331C3 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		3A53D0E61E38D66A0015F1B6 /* UITableView+animateCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+animateCells.swift"; sourceTree = "<group>"; };
-		3A54EB2D1D6C7D3D0005AD0E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = "Daily Koszalin/.gitignore"; sourceTree = "<group>"; };
 		3A8D42E41D892F5200D94139 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
-		3AB979FF1D673DC000ADBF74 /* Daily Koszalin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Koszalin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AB979FF1D673DC000ADBF74 /* InfoKoszalin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfoKoszalin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB97A021D673DC000ADBF74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AB97A071D673DC000ADBF74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AB97A091D673DC000ADBF74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,7 +58,6 @@
 		3AF88C4E1D78019000C5F534 /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		3AFE3FD51DF8C94D003494F1 /* RSSParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
 		3AFEAD041D87272A00034DAD /* NSDate+Difference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Difference.swift"; sourceTree = "<group>"; };
-		5F48BDFB3DDB129EDB883595 /* Pods-Daily Koszalin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Daily Koszalin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Daily Koszalin/Pods-Daily Koszalin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,19 +65,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0350F05953705C68FB64CC2 /* Pods_Daily_Koszalin.framework in Frameworks */,
+				4CACF73A275CF492086CC391 /* Pods_InfoKoszalin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		006B9CAF85E082E67B21338B /* Frameworks */ = {
+		2ED0F932F07D21BF867C0F3B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				374AD637BC98175477EE9B71 /* Pods_Daily_Koszalin.framework */,
+				3009F04274406A28657D53AB /* Pods-InfoKoszalin.debug.xcconfig */,
+				393451CA979E46DC8F0B2255 /* Pods-InfoKoszalin.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		3A0A067F1D81833E0007DBCA /* Extensions */ = {
@@ -137,23 +136,22 @@
 		3AB979F61D673DC000ADBF74 = {
 			isa = PBXGroup;
 			children = (
-				3A54EB2D1D6C7D3D0005AD0E /* .gitignore */,
-				3AB97A011D673DC000ADBF74 /* Daily Koszalin */,
+				3AB97A011D673DC000ADBF74 /* InfoKoszalin */,
 				3AB97A001D673DC000ADBF74 /* Products */,
-				640E5B1C6AA89684A38E6266 /* Pods */,
-				006B9CAF85E082E67B21338B /* Frameworks */,
+				2ED0F932F07D21BF867C0F3B /* Pods */,
+				5D5E9317DE5EEC3C41A5E983 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		3AB97A001D673DC000ADBF74 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3AB979FF1D673DC000ADBF74 /* Daily Koszalin.app */,
+				3AB979FF1D673DC000ADBF74 /* InfoKoszalin.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3AB97A011D673DC000ADBF74 /* Daily Koszalin */ = {
+		3AB97A011D673DC000ADBF74 /* InfoKoszalin */ = {
 			isa = PBXGroup;
 			children = (
 				3AB97A021D673DC000ADBF74 /* AppDelegate.swift */,
@@ -167,39 +165,38 @@
 				3A0A06801D8183820007DBCA /* Singleton */,
 				3A0A067F1D81833E0007DBCA /* Extensions */,
 			);
-			path = "Daily Koszalin";
+			path = InfoKoszalin;
 			sourceTree = "<group>";
 		};
-		640E5B1C6AA89684A38E6266 /* Pods */ = {
+		5D5E9317DE5EEC3C41A5E983 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				09C1A602238A6579DE089556 /* Pods-Daily Koszalin.debug.xcconfig */,
-				5F48BDFB3DDB129EDB883595 /* Pods-Daily Koszalin.release.xcconfig */,
+				1E06C644D191DAAE14A53E32 /* Pods_InfoKoszalin.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3AB979FE1D673DC000ADBF74 /* Daily Koszalin */ = {
+		3AB979FE1D673DC000ADBF74 /* InfoKoszalin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3AB97A271D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily Koszalin" */;
+			buildConfigurationList = 3AB97A271D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "InfoKoszalin" */;
 			buildPhases = (
-				A0274780079DDE307B861068 /* [CP] Check Pods Manifest.lock */,
+				F0A16FD7E091915818968A31 /* [CP] Check Pods Manifest.lock */,
 				3AB979FB1D673DC000ADBF74 /* Sources */,
 				3AB979FC1D673DC000ADBF74 /* Frameworks */,
 				3AB979FD1D673DC000ADBF74 /* Resources */,
-				94BEB2701D805F1A8F8AC69D /* [CP] Embed Pods Frameworks */,
-				1080AAEE69F98407398D4505 /* [CP] Copy Pods Resources */,
+				4450EC85CA567D34EDA21A55 /* [CP] Embed Pods Frameworks */,
+				918300E5332BD62646537609 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Daily Koszalin";
+			name = InfoKoszalin;
 			productName = "Daily Koszalin";
-			productReference = 3AB979FF1D673DC000ADBF74 /* Daily Koszalin.app */;
+			productReference = 3AB979FF1D673DC000ADBF74 /* InfoKoszalin.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -219,7 +216,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3AB979FA1D673DC000ADBF74 /* Build configuration list for PBXProject "Daily Koszalin" */;
+			buildConfigurationList = 3AB979FA1D673DC000ADBF74 /* Build configuration list for PBXProject "InfoKoszalin" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -232,7 +229,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3AB979FE1D673DC000ADBF74 /* Daily Koszalin */,
+				3AB979FE1D673DC000ADBF74 /* InfoKoszalin */,
 			);
 		};
 /* End PBXProject section */
@@ -242,7 +239,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A54EB2E1D6C7D3D0005AD0E /* .gitignore in Resources */,
 				3AB97A0D1D673DC000ADBF74 /* LaunchScreen.storyboard in Resources */,
 				3AB97A0A1D673DC000ADBF74 /* Assets.xcassets in Resources */,
 				3AB97A081D673DC000ADBF74 /* Main.storyboard in Resources */,
@@ -252,22 +248,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1080AAEE69F98407398D4505 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Daily Koszalin/Pods-Daily Koszalin-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		94BEB2701D805F1A8F8AC69D /* [CP] Embed Pods Frameworks */ = {
+		4450EC85CA567D34EDA21A55 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -279,10 +260,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Daily Koszalin/Pods-Daily Koszalin-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InfoKoszalin/Pods-InfoKoszalin-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A0274780079DDE307B861068 /* [CP] Check Pods Manifest.lock */ = {
+		918300E5332BD62646537609 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InfoKoszalin/Pods-InfoKoszalin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0A16FD7E091915818968A31 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -439,14 +435,14 @@
 		};
 		3AB97A281D673DC000ADBF74 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09C1A602238A6579DE089556 /* Pods-Daily Koszalin.debug.xcconfig */;
+			baseConfigurationReference = 3009F04274406A28657D53AB /* Pods-InfoKoszalin.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = E84ETWJ5XP;
-				INFOPLIST_FILE = "Daily Koszalin/Info.plist";
+				INFOPLIST_FILE = InfoKoszalin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kubala.adrian.DailyKoszalin;
+				PRODUCT_BUNDLE_IDENTIFIER = kubala.adrian.InfoKoszalin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -454,14 +450,14 @@
 		};
 		3AB97A291D673DC000ADBF74 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F48BDFB3DDB129EDB883595 /* Pods-Daily Koszalin.release.xcconfig */;
+			baseConfigurationReference = 393451CA979E46DC8F0B2255 /* Pods-InfoKoszalin.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = E84ETWJ5XP;
-				INFOPLIST_FILE = "Daily Koszalin/Info.plist";
+				INFOPLIST_FILE = InfoKoszalin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kubala.adrian.DailyKoszalin;
+				PRODUCT_BUNDLE_IDENTIFIER = kubala.adrian.InfoKoszalin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -470,7 +466,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3AB979FA1D673DC000ADBF74 /* Build configuration list for PBXProject "Daily Koszalin" */ = {
+		3AB979FA1D673DC000ADBF74 /* Build configuration list for PBXProject "InfoKoszalin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3AB97A251D673DC000ADBF74 /* Debug */,
@@ -479,7 +475,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3AB97A271D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "Daily Koszalin" */ = {
+		3AB97A271D673DC000ADBF74 /* Build configuration list for PBXNativeTarget "InfoKoszalin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3AB97A281D673DC000ADBF74 /* Debug */,

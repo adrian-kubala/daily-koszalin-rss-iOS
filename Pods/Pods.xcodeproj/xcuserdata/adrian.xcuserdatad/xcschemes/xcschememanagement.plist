@@ -19,7 +19,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Daily Koszalin.xcscheme</key>
+		<key>Pods-InfoKoszalin.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,7 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>852C71E7C5AD3A803BC1F03E78F8601D</key>
+		<key>411A3BA4EF2A571E5216568B1E97DEEA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>42498BE1481D72FF385576A0401EE67B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55A2F7641124FB153933BB0998E56EC6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -53,16 +63,6 @@
 			<true/>
 		</dict>
 		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B148CA0FC5AD46AFEF533D63A0A9FA21</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D5C3A67B9316ED11342BD7701BDA6DA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

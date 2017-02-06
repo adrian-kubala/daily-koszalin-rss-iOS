@@ -1,0 +1,6 @@
+framework module Pods_InfoKoszalin {
+  umbrella header "Pods-InfoKoszalin-umbrella.h"
+
+  export *
+  module * { export * }
+}
