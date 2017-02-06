@@ -18,7 +18,7 @@ class MasterViewController: UITableViewController {
   let realm = try! Realm()
   var results: Results<Article> {
     let objects = realm.objects(Article.self)
-    return objects.sorted(byProperty: "pubDate", ascending: false)
+    return objects.sorted(byKeyPath: "pubDate", ascending: false)
   }
   var articles: [Article] = []
   var filteredArticles: [Article] = []

@@ -3,7 +3,7 @@
 use_frameworks!
 
 target 'Daily Koszalin' do
-  pod 'FeedKit', '~> 5.0'
-  pod 'AlamofireImage', '~> 3.1'
-  pod 'RealmSwift', '~> 2.0'
+  pod 'FeedKit', '~> 5.1.0'
+  pod 'AlamofireImage', '~> 3.2.0'
+  pod 'RealmSwift', '~> 2.4.2'
 end
