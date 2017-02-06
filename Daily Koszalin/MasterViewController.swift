@@ -131,6 +131,8 @@ class MasterViewController: UITableViewController {
     
     if tableView.visibleCells.count == 0 {
       tableView.reloadCellsWith(animationOptions: .transitionCrossDissolve)
+    } else {
+      tableView.reloadData()
     }
   }
   
