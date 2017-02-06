@@ -24,16 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Daily KoszalinTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Daily KoszalinUITests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Realm.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -48,11 +38,6 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>056441ED0CE73B79E3C1738DDFE426A6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3B1CB473400A752C86DC2C036FEFA903</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -78,11 +63,6 @@
 			<true/>
 		</dict>
 		<key>D5C3A67B9316ED11342BD7701BDA6DA7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DF45D1F456EF5189C4B65BF5DB6549BB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
