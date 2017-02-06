@@ -1,6 +1,6 @@
 //
 //  UITableView+scroll.swift
-//  Daily Koszalin
+//  InfoKoszalin
 //
 //  Created by Adrian Kubała on 24.01.2017.
 //  Copyright © 2017 Adrian Kubała. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  Article.swift
-//  Daily Koszalin
+//  InfoKoszalin
 //
 //  Created by Adrian on 27.08.2016.
 //  Copyright © 2016 Adrian Kubała. All rights reserved.
