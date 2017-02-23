@@ -1,5 +1,5 @@
 //
-//  UITableView+scroll.swift
+//  UITableView+Scrolling.swift
 //  InfoKoszalin
 //
 //  Created by Adrian Kubała on 24.01.2017.
