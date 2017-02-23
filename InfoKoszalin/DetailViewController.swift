@@ -23,14 +23,14 @@ class DetailViewController: UIViewController {
     webview.delegate = self
     
     setupNewsButtonItem()
-    addNotificationObserver()
+    setupObserver()
   }
   
   func setupNewsButtonItem() {
-    newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailViewController.showMasterViewController))
+    newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: .plain, target: self, action: #selector(DetailViewController.showMasterViewController))
   }
   
-  func addNotificationObserver() {
+  func setupObserver() {
     NotificationCenter.default.addObserver(forName: .DisplayModeChangeNotification) { (notification) in
       self.splitViewControllerDisplayModeDidChange(notification)
     }
@@ -38,7 +38,7 @@ class DetailViewController: UIViewController {
   
   func showMasterViewController() {
     UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-      self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
+      self.splitViewController?.preferredDisplayMode = .allVisible
       }, completion: nil)
     insertDispModeBtn()
   }
@@ -78,7 +78,7 @@ class DetailViewController: UIViewController {
       insertDispModeBtn()
     }
     
-    guard traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.pad else {
+    guard traitCollection.userInterfaceIdiom == .pad else {
       return
     }
     
@@ -90,7 +90,7 @@ class DetailViewController: UIViewController {
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     super.traitCollectionDidChange(previousTraitCollection)
     
-    if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.regular {
+    if previousTraitCollection?.verticalSizeClass == .regular {
       insertDisplayModeButton()
     } else if displayModeIsAllVisible() {
       insertDispModeBtn()
@@ -99,7 +99,7 @@ class DetailViewController: UIViewController {
   
   func displayModeIsPrimaryHidden() -> Bool {
     let currentDisplayMode = splitViewController?.displayMode
-    return currentDisplayMode == UISplitViewControllerDisplayMode.primaryHidden
+    return currentDisplayMode == .primaryHidden
   }
   
   func insertDisplayModeButton() {
@@ -112,7 +112,7 @@ class DetailViewController: UIViewController {
   
   func displayModeIsAllVisible() -> Bool {
     let currentDisplayMode = splitViewController?.displayMode
-    return currentDisplayMode == UISplitViewControllerDisplayMode.allVisible
+    return currentDisplayMode == .allVisible
   }
   
   func insertDispModeBtn() {
