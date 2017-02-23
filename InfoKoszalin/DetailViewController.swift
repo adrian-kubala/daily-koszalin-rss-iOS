@@ -31,7 +31,7 @@ class DetailViewController: UIViewController {
   }
   
   func addNotificationObserver() {
-    NotificationCenter.default.addObserver(self, selector: #selector(DetailViewController.splitViewControllerDisplayModeDidChange(_:)), name: NSNotification.Name(rawValue: "DisplayModeChangeNotification"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(DetailViewController.splitViewControllerDisplayModeDidChange(_:)), name: .DisplayModeChangeNotification, object: nil)
   }
   
   func showMasterViewController() {
