@@ -28,7 +28,7 @@
 		3AF72FE71D7D79E800AC39BA /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF72FE61D7D79E800AC39BA /* SplitViewController.swift */; };
 		3AF88C4F1D78019000C5F534 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF88C4E1D78019000C5F534 /* ArticleView.swift */; };
 		3AFE3FD61DF8C94D003494F1 /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFE3FD51DF8C94D003494F1 /* RSSParser.swift */; };
-		3AFEAD051D87272A00034DAD /* NSDate+Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEAD041D87272A00034DAD /* NSDate+Difference.swift */; };
+		3AFEAD051D87272A00034DAD /* Date+Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFEAD041D87272A00034DAD /* Date+Difference.swift */; };
 		4CACF73A275CF492086CC391 /* Pods_InfoKoszalin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E06C644D191DAAE14A53E32 /* Pods_InfoKoszalin.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		3AF72FE61D7D79E800AC39BA /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		3AF88C4E1D78019000C5F534 /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		3AFE3FD51DF8C94D003494F1 /* RSSParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
-		3AFEAD041D87272A00034DAD /* NSDate+Difference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Difference.swift"; sourceTree = "<group>"; };
+		3AFEAD041D87272A00034DAD /* Date+Difference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Difference.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +89,7 @@
 				3A3348AB1E5F1D20006CD7B0 /* NotificationCenter+Observing.swift */,
 				3A0A067D1D8182610007DBCA /* ConnectionManager+Alert.swift */,
 				3AF6E69C1D86D51A00C41376 /* MasterViewController+Search.swift */,
-				3AFEAD041D87272A00034DAD /* NSDate+Difference.swift */,
+				3AFEAD041D87272A00034DAD /* Date+Difference.swift */,
 				3A3348A71E5F1A8D006CD7B0 /* Notification.Name+Constants.swift */,
 				3ABAC1F51E37E19800C12F85 /* UITableView+Scrolling.swift */,
 				3A3348A91E5F1B3F006CD7B0 /* UITableView+CellsPresentation.swift */,
@@ -321,7 +321,7 @@
 				3AE5465B1DA7C30F001C7BE3 /* CustomWebView.swift in Sources */,
 				3A0A067E1D8182610007DBCA /* ConnectionManager+Alert.swift in Sources */,
 				3ABAC1F61E37E19800C12F85 /* UITableView+Scrolling.swift in Sources */,
-				3AFEAD051D87272A00034DAD /* NSDate+Difference.swift in Sources */,
+				3AFEAD051D87272A00034DAD /* Date+Difference.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

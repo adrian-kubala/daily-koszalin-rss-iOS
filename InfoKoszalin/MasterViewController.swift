@@ -205,7 +205,7 @@ class MasterViewController: UITableViewController {
   func filterContentForSearchText(_ searchText: String, scope: String) {
     filteredArticles = articles.filter { article in
       let currentDate = Date()
-      let difference = currentDate.daysBetweenDates(article.pubDate)
+      let difference = currentDate.daysBetween(date: article.pubDate)
       let dateMatch = doesMatchByDaysDifference(difference, within: scope)
       let filterMatch = (scope == Filters.all.rawValue) || dateMatch
       
