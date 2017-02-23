@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SplitViewController: UISplitViewController {
+class SplitViewController: UISplitViewController, UISplitViewControllerDelegate {
   var isCollapsing = true
   
   override func viewDidLoad() {
@@ -31,9 +31,9 @@ class SplitViewController: UISplitViewController {
       isCollapsing = false
     }
   }
-}
-
-extension SplitViewController: UISplitViewControllerDelegate {
+  
+  // MARK: UISplitViewControllerDelegate
+  
   func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
     return isCollapsing
   }

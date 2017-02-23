@@ -87,8 +87,8 @@
 				3A0A067D1D8182610007DBCA /* ConnectionManager+Alert.swift */,
 				3AF6E69C1D86D51A00C41376 /* MasterViewController+Search.swift */,
 				3AFEAD041D87272A00034DAD /* NSDate+Difference.swift */,
-				3ABAC1F51E37E19800C12F85 /* UITableView+Scrolling.swift */,
 				3A3348A71E5F1A8D006CD7B0 /* Notification.Name+Constants.swift */,
+				3ABAC1F51E37E19800C12F85 /* UITableView+Scrolling.swift */,
 				3A3348A91E5F1B3F006CD7B0 /* UITableView+CellsPresentation.swift */,
 			);
 			name = Extensions;
