@@ -11,7 +11,7 @@ import FeedKit
 import AlamofireImage
 import RealmSwift
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
   var parser: RSSParser!
   let searchController = UISearchController(searchResultsController: nil)
   
@@ -200,6 +200,29 @@ class MasterViewController: UITableViewController {
     splitVC?.unCollapseSecondaryVCOntoPrimary()
     
     showDetailViewController(detailViewController, sender: self)
+  }
+  
+  // MARK: UISearchResultsUpdating
+  
+  func updateSearchResults(for searchController: UISearchController) {
+    let searchBar = searchController.searchBar
+    guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
+      return
+    }
+    
+    let scope = scopeTitles[searchBar.selectedScopeButtonIndex]
+    
+    filterContentForSearchText(searchText, scope: scope)
+  }
+  
+  // MARK: UISearchBarDelegate
+  
+  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
+      return
+    }
+    
+    filterContentForSearchText(searchText, scope: scopeTitles[selectedScope])
   }
   
   func filterContentForSearchText(_ searchText: String, scope: String) {
