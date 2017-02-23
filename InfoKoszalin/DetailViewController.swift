@@ -27,7 +27,7 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
   }
   
   func setupNewsButtonItem() {
-    newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: .plain, target: self, action: #selector(DetailViewController.showMasterViewController))
+    newsButtonitem = UIBarButtonItem(title: "Aktualności", style: .plain, target: self, action: #selector(DetailViewController.showMasterViewController))
   }
   
   func setupObserver() {
