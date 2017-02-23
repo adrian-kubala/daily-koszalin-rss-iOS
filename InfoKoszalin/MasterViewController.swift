@@ -182,15 +182,10 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
       return
     }
     
-    let selectedNews = chooseData((indexPath as NSIndexPath).row)
+    let selectedNews = chooseData(indexPath.row)
     let link = selectedNews.link
     
-    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detailViewController")
-    
-    guard let detailViewController = viewController as? DetailViewController else {
-      return
-    }
-    
+    let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
     detailViewController.newsURL = URL(string: link)
     
     let splitVC = splitViewController as? SplitViewController

@@ -13,7 +13,7 @@
         <!--Detail View Controller-->
         <scene sceneID="81o-cG-MHp">
             <objects>
-                <viewController storyboardIdentifier="detailViewController" id="IPv-oO-iH4" customClass="DetailViewController" customModule="InfoKoszalin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="IPv-oO-iH4" customClass="DetailViewController" customModule="InfoKoszalin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fed-1a-gnQ"/>
                         <viewControllerLayoutGuide type="bottom" id="8yT-HS-M4W"/>
