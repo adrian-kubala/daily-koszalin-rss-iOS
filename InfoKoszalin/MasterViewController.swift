@@ -151,10 +151,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "articleView")
-    guard let articleView = cell as? ArticleView else {
-      return UITableViewCell()
-    }
+    let articleView = tableView.dequeueReusableCell(withIdentifier: "ArticleView") as! ArticleView
     
     let currentNews = chooseData(indexPath.row)
     articleView.setupWithData(currentNews)
