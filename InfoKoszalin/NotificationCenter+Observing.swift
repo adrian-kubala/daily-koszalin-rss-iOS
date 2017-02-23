@@ -10,6 +10,6 @@ import Foundation
 
 extension NotificationCenter {
   func observeNotification(withName name: Notification.Name?, block: @escaping (Notification) -> ()) {
-    addObserver(forName: notificationName, object: nil, queue: nil, using: block)
+    addObserver(forName: name, object: nil, queue: nil, using: block)
   }
 }
