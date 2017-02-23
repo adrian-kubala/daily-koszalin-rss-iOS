@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIWebViewDelegate {
   @IBOutlet weak var webview: CustomWebView!
   @IBOutlet weak var toolbar: CustomToolbar!
   @IBOutlet var noNews: UILabel!
@@ -131,12 +131,8 @@ class DetailViewController: UIViewController {
     }
   }
   
-  deinit {
-    NotificationCenter.default.removeObserver(self)
-  }
-}
-
-extension DetailViewController: UIWebViewDelegate {
+  // MARK: UIWebViewDelegate
+  
   func webViewDidFinishLoad(_ webView: UIWebView) {
     webViewIndicator.stopAnimating()
   }
@@ -145,5 +141,9 @@ extension DetailViewController: UIWebViewDelegate {
     _ = ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
     
     webViewIndicator.stopAnimating()
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
 }
