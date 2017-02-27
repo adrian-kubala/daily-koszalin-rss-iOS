@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIWebViewDelegate {
   @IBOutlet weak var webview: CustomWebView!
   @IBOutlet weak var toolbar: CustomToolbar!
   @IBOutlet var noNews: UILabel!
@@ -23,20 +23,22 @@ class DetailViewController: UIViewController {
     webview.delegate = self
     
     setupNewsButtonItem()
-    addNotificationObserver()
+    setupObserver()
   }
   
   func setupNewsButtonItem() {
-    newsButtonitem = UIBarButtonItem(title: "Wiadomości", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailViewController.showMasterViewController))
+    newsButtonitem = UIBarButtonItem(title: "Aktualności", style: .plain, target: self, action: #selector(DetailViewController.showMasterViewController))
   }
   
-  func addNotificationObserver() {
-    NotificationCenter.default.addObserver(self, selector: #selector(DetailViewController.splitViewControllerDisplayModeDidChange(_:)), name: NSNotification.Name(rawValue: "DisplayModeChangeNotification"), object: nil)
+  func setupObserver() {
+    NotificationCenter.default.addObserver(forName: .DisplayModeChangeNotification) { (notification) in
+      self.splitViewControllerDisplayModeDidChange(notification)
+    }
   }
   
   func showMasterViewController() {
     UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-      self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
+      self.splitViewController?.preferredDisplayMode = .allVisible
       }, completion: nil)
     insertDispModeBtn()
   }
@@ -76,7 +78,7 @@ class DetailViewController: UIViewController {
       insertDispModeBtn()
     }
     
-    guard traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.pad else {
+    guard traitCollection.userInterfaceIdiom == .pad else {
       return
     }
     
@@ -88,7 +90,7 @@ class DetailViewController: UIViewController {
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     super.traitCollectionDidChange(previousTraitCollection)
     
-    if previousTraitCollection?.verticalSizeClass == UIUserInterfaceSizeClass.regular {
+    if previousTraitCollection?.verticalSizeClass == .regular {
       insertDisplayModeButton()
     } else if displayModeIsAllVisible() {
       insertDispModeBtn()
@@ -97,7 +99,7 @@ class DetailViewController: UIViewController {
   
   func displayModeIsPrimaryHidden() -> Bool {
     let currentDisplayMode = splitViewController?.displayMode
-    return currentDisplayMode == UISplitViewControllerDisplayMode.primaryHidden
+    return currentDisplayMode == .primaryHidden
   }
   
   func insertDisplayModeButton() {
@@ -110,7 +112,7 @@ class DetailViewController: UIViewController {
   
   func displayModeIsAllVisible() -> Bool {
     let currentDisplayMode = splitViewController?.displayMode
-    return currentDisplayMode == UISplitViewControllerDisplayMode.allVisible
+    return currentDisplayMode == .allVisible
   }
   
   func insertDispModeBtn() {
@@ -129,12 +131,8 @@ class DetailViewController: UIViewController {
     }
   }
   
-  deinit {
-    NotificationCenter.default.removeObserver(self)
-  }
-}
-
-extension DetailViewController: UIWebViewDelegate {
+  // MARK: UIWebViewDelegate
+  
   func webViewDidFinishLoad(_ webView: UIWebView) {
     webViewIndicator.stopAnimating()
   }
@@ -143,5 +141,9 @@ extension DetailViewController: UIWebViewDelegate {
     _ = ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
     
     webViewIndicator.stopAnimating()
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
   }
 }

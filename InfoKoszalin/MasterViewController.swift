@@ -11,7 +11,7 @@ import FeedKit
 import AlamofireImage
 import RealmSwift
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
   var parser: RSSParser!
   let searchController = UISearchController(searchResultsController: nil)
   
@@ -151,10 +151,7 @@ class MasterViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "articleView")
-    guard let articleView = cell as? ArticleView else {
-      return UITableViewCell()
-    }
+    let articleView = tableView.dequeueReusableCell(withIdentifier: "ArticleView") as! ArticleView
     
     let currentNews = chooseData(indexPath.row)
     articleView.setupWithData(currentNews)
@@ -185,15 +182,10 @@ class MasterViewController: UITableViewController {
       return
     }
     
-    let selectedNews = chooseData((indexPath as NSIndexPath).row)
+    let selectedNews = chooseData(indexPath.row)
     let link = selectedNews.link
     
-    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detailViewController")
-    
-    guard let detailViewController = viewController as? DetailViewController else {
-      return
-    }
-    
+    let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
     detailViewController.newsURL = URL(string: link)
     
     let splitVC = splitViewController as? SplitViewController
@@ -202,10 +194,33 @@ class MasterViewController: UITableViewController {
     showDetailViewController(detailViewController, sender: self)
   }
   
+  // MARK: UISearchResultsUpdating
+  
+  func updateSearchResults(for searchController: UISearchController) {
+    let searchBar = searchController.searchBar
+    guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
+      return
+    }
+    
+    let scope = scopeTitles[searchBar.selectedScopeButtonIndex]
+    
+    filterContentForSearchText(searchText, scope: scope)
+  }
+  
+  // MARK: UISearchBarDelegate
+  
+  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    guard let searchText = searchBar.text, let scopeTitles = searchBar.scopeButtonTitles else {
+      return
+    }
+    
+    filterContentForSearchText(searchText, scope: scopeTitles[selectedScope])
+  }
+  
   func filterContentForSearchText(_ searchText: String, scope: String) {
     filteredArticles = articles.filter { article in
       let currentDate = Date()
-      let difference = currentDate.daysBetweenDates(article.pubDate)
+      let difference = currentDate.daysBetween(date: article.pubDate)
       let dateMatch = doesMatchByDaysDifference(difference, within: scope)
       let filterMatch = (scope == Filters.all.rawValue) || dateMatch
       

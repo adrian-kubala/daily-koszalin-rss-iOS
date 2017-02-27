@@ -1,8 +1,8 @@
 //
-//  UITableView+animateCells.swift
+//  UITableView+CellsPresentation.swift
 //  InfoKoszalin
 //
-//  Created by Adrian Kubała on 25.01.2017.
+//  Created by Adrian Kubała on 23.02.2017.
 //  Copyright © 2017 Adrian Kubała. All rights reserved.
 //
 
@@ -16,5 +16,10 @@ extension UITableView {
                       animations: { () -> Void in
                         self.reloadData()
     }, completion: nil);
+  }
+  
+  func enableSelfSizingCells(withEstimatedHeight height: CGFloat) {
+    rowHeight = UITableViewAutomaticDimension
+    estimatedRowHeight = height
   }
 }

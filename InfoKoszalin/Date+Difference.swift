@@ -1,5 +1,5 @@
 //
-//  NSDate+Difference.swift
+//  Date+Difference.swift
 //  InfoKoszalin
 //
 //  Created by Adrian on 12.09.2016.
@@ -9,9 +9,9 @@
 import Foundation
 
 extension Date {
-  func daysBetweenDates(_ startDate: Date) -> Int {
+  func daysBetween(date: Date) -> Int {
     let calendar = Calendar.current
-    let components = (calendar as NSCalendar).components([.day], from: startDate, to: self, options: [])
+    let components = calendar.dateComponents([.day], from: date, to: self)
     
     return components.day!
   }

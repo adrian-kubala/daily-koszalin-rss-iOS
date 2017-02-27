@@ -13,7 +13,7 @@
         <!--Detail View Controller-->
         <scene sceneID="81o-cG-MHp">
             <objects>
-                <viewController storyboardIdentifier="detailViewController" id="IPv-oO-iH4" customClass="DetailViewController" customModule="InfoKoszalin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="IPv-oO-iH4" customClass="DetailViewController" customModule="InfoKoszalin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fed-1a-gnQ"/>
                         <viewControllerLayoutGuide type="bottom" id="8yT-HS-M4W"/>
@@ -86,7 +86,7 @@
             </objects>
             <point key="canvasLocation" x="316" y="378"/>
         </scene>
-        <!--Wiadomości-->
+        <!--Aktualności-->
         <scene sceneID="kHw-k0-VTy">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="VOA-IS-Mlg" customClass="MasterViewController" customModule="InfoKoszalin" customModuleProvider="target" sceneMemberID="viewController">
@@ -100,11 +100,11 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationLevel="1" indentationWidth="20" reuseIdentifier="articleView" id="FMC-Nm-LaU" customClass="ArticleView" customModule="InfoKoszalin" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationLevel="1" indentationWidth="20" reuseIdentifier="ArticleView" id="FMC-Nm-LaU" customClass="ArticleView" customModule="InfoKoszalin" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FMC-Nm-LaU" id="hPS-mT-jWN">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e4D-9j-Mq6">
@@ -154,8 +154,8 @@
                             <outlet property="delegate" destination="VOA-IS-Mlg" id="8u0-4c-10u"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Wiadomości" id="Whr-f4-O3e">
-                        <barButtonItem key="backBarButtonItem" title="Wiadomości" id="ioP-gZ-frO"/>
+                    <navigationItem key="navigationItem" title="Aktualności" id="Whr-f4-O3e">
+                        <barButtonItem key="backBarButtonItem" title="Aktualności" id="ioP-gZ-frO"/>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" alpha="0.59999999999999998" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="084-y1-F8C">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
