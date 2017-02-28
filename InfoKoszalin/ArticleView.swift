@@ -20,15 +20,15 @@ class ArticleView: UITableViewCell {
     setSelectedBackgroundColor()
   }
   
-  fileprivate func setTitle(_ title: String) {
+  private func setTitle(_ title: String) {
     titleView.text = title
   }
   
-  fileprivate func setPubDate(_ date: Date) {
+  private func setPubDate(_ date: Date) {
     dateView.text = setPubDateFormat(date)
   }
   
-  fileprivate func setPubDateFormat(_ date: Date) -> String? {
+  private func setPubDateFormat(_ date: Date) -> String? {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "EEEE, d-MM-yyyy HH:mm"
     dateFormatter.locale = Locale(identifier: "pl_PL")
@@ -37,7 +37,7 @@ class ArticleView: UITableViewCell {
     return dateString
   }
   
-  fileprivate func setupFavIcon(_ article: Article) {
+  private func setupFavIcon(_ article: Article) {
     if let favicon = article.favIcon {
       setFavIcon(favicon)
     } else {
@@ -47,12 +47,12 @@ class ArticleView: UITableViewCell {
     }
   }
   
-  fileprivate func setFavIcon(_ data: Data?) {
+  private func setFavIcon(_ data: Data?) {
     let image = UIImage(data: data!)
     favIconView.image = image
   }
   
-  fileprivate func setSelectedBackgroundColor() {
+  private func setSelectedBackgroundColor() {
     let backgroundView = UIView()
     backgroundView.backgroundColor = UIColor.blue.withAlphaComponent(0.6)
     selectedBackgroundView = backgroundView

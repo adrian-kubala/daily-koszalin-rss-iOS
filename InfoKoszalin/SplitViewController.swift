@@ -20,7 +20,7 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
     setupRootViewController()
   }
   
-  func setupRootViewController() {
+  private func setupRootViewController() {
     let containerViewController = ContainerViewController()
     containerViewController.embedViewController(self)
     containerViewController.setAsRootViewController()

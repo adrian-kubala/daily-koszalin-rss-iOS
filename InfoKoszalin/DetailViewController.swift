@@ -26,11 +26,11 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
     setupObserver()
   }
   
-  func setupNewsButtonItem() {
+  private func setupNewsButtonItem() {
     newsButtonitem = UIBarButtonItem(title: "Aktualności", style: .plain, target: self, action: #selector(DetailViewController.showMasterViewController))
   }
   
-  func setupObserver() {
+  private func setupObserver() {
     NotificationCenter.default.addObserver(forName: .DisplayModeChangeNotification) { (notification) in
       self.splitViewControllerDisplayModeDidChange(notification)
     }
