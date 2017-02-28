@@ -140,6 +140,8 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     _ = ConnectionManager.sharedInstance.showAlertIfNeeded(onViewController: self)
   }
   
+  // MARK: UITableViewDataSource
+  
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return searchIsActive() ? filteredArticles.count : articles.count
   }
@@ -160,6 +162,8 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
   func searchIsActive() -> Bool {
     return searchController.isActive ? true : false
   }
+  
+  // MARK: UITableViewDelegate
   
   override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
     let selectedCell = tableView.cellForRow(at: indexPath)
