@@ -41,7 +41,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     refreshControl?.addTarget(self, action: #selector(MasterViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
   }
   
-  @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
+  @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
     parseRSSContent {
       refreshControl.endRefreshing()
     }
@@ -64,12 +64,6 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     searchBar.delegate = self
   }
   
-  private enum Filters: String {
-    case all = "Wszystkie"
-    case threeDays = "Do 3 dni"
-    case fiveDays = "Do 5 dni"
-  }
-  
   private func setupParser() {
     parser = RSSParser(urls: [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
                               URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
@@ -77,7 +71,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     parseRSSContent { }
   }
   
-  private func parseRSSContent(completion: @escaping () -> Void) {
+  func parseRSSContent(completion: @escaping () -> Void) {
     DispatchQueue.global(qos: .background).async {
       var result: [Article] = []
       let isParsed: Bool
@@ -102,7 +96,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     }
   }
   
-  private func updateRealm(with objects: [Article]) {
+  func updateRealm(with objects: [Article]) {
     try! realm.write {
       realm.add(objects, update: true)
     }
@@ -114,7 +108,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     }
   }
   
-  private func isSuchArticle(_ article: Article) -> Bool {
+  func isSuchArticle(_ article: Article) -> Bool {
     for existingArticle in articles {
       if article.link == existingArticle.link {
         return true
@@ -124,7 +118,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
   }
   
   
-  private func updateTableView() {
+  func updateTableView() {
     articles.sort {
       $0.pubDate > $1.pubDate
     }
@@ -136,7 +130,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     }
   }
   
-  private func assignDataFromRealmIfNeeded() {
+  func assignDataFromRealmIfNeeded() {
     articles = Array(results)
   }
   
@@ -159,11 +153,11 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     return articleView
   }
   
-  private func chooseData(_ row: Int) -> Article {
+  func chooseData(_ row: Int) -> Article {
     return searchIsActive() ? filteredArticles[row] : articles[row]
   }
   
-  private func searchIsActive() -> Bool {
+  func searchIsActive() -> Bool {
     return searchController.isActive ? true : false
   }
   
@@ -236,7 +230,7 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
     tableView.reloadData()
   }
   
-  private func doesMatchByDaysDifference(_ days: Int, within scope: String) -> Bool {
+  func doesMatchByDaysDifference(_ days: Int, within scope: String) -> Bool {
     var doesMatch = false
     switch scope {
     case Filters.threeDays.rawValue:

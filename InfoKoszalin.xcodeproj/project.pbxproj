@@ -14,6 +14,7 @@
 		3A3348AA1E5F1B3F006CD7B0 /* UITableView+CellsPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3348A91E5F1B3F006CD7B0 /* UITableView+CellsPresentation.swift */; };
 		3A3348AC1E5F1D20006CD7B0 /* NotificationCenter+Observing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3348AB1E5F1D20006CD7B0 /* NotificationCenter+Observing.swift */; };
 		3A8D42E51D892F5200D94139 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D42E41D892F5200D94139 /* DownloadManager.swift */; };
+		3AA333811E65E0EE00770A9F /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA333801E65E0EE00770A9F /* Filters.swift */; };
 		3AB97A031D673DC000ADBF74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB97A021D673DC000ADBF74 /* AppDelegate.swift */; };
 		3AB97A081D673DC000ADBF74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AB97A061D673DC000ADBF74 /* Main.storyboard */; };
 		3AB97A0A1D673DC000ADBF74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB97A091D673DC000ADBF74 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		3A3348A91E5F1B3F006CD7B0 /* UITableView+CellsPresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+CellsPresentation.swift"; sourceTree = "<group>"; };
 		3A3348AB1E5F1D20006CD7B0 /* NotificationCenter+Observing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Observing.swift"; sourceTree = "<group>"; };
 		3A8D42E41D892F5200D94139 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		3AA333801E65E0EE00770A9F /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		3AB979FF1D673DC000ADBF74 /* InfoKoszalin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfoKoszalin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB97A021D673DC000ADBF74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AB97A071D673DC000ADBF74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				3A1C9A6D1D7EA12E007C62FA /* ViewController */,
 				3A0A06801D8183820007DBCA /* Singleton */,
 				3A0A067F1D81833E0007DBCA /* Extensions */,
+				3AA333801E65E0EE00770A9F /* Filters.swift */,
 			);
 			path = InfoKoszalin;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				3AF72FE71D7D79E800AC39BA /* SplitViewController.swift in Sources */,
 				3AB97A031D673DC000ADBF74 /* AppDelegate.swift in Sources */,
 				3A0A067C1D8173BB0007DBCA /* ConnectionManager.swift in Sources */,
+				3AA333811E65E0EE00770A9F /* Filters.swift in Sources */,
 				3A0E8E7D1D719B5A006331C3 /* Article.swift in Sources */,
 				3A3348AC1E5F1D20006CD7B0 /* NotificationCenter+Observing.swift in Sources */,
 				3AE5465D1DA7C784001C7BE3 /* CustomToolbar.swift in Sources */,
