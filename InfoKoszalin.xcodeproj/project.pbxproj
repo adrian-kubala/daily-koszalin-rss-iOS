@@ -135,6 +135,14 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
+		3AA333821E65E27600770A9F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				3AA333801E65E0EE00770A9F /* Filters.swift */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
 		3AB979F61D673DC000ADBF74 = {
 			isa = PBXGroup;
 			children = (
@@ -164,9 +172,9 @@
 				3A1C9A6B1D7EA11E007C62FA /* Model */,
 				3A1C9A6C1D7EA126007C62FA /* View */,
 				3A1C9A6D1D7EA12E007C62FA /* ViewController */,
+				3AA333821E65E27600770A9F /* Enums */,
 				3A0A06801D8183820007DBCA /* Singleton */,
 				3A0A067F1D81833E0007DBCA /* Extensions */,
-				3AA333801E65E0EE00770A9F /* Filters.swift */,
 			);
 			path = InfoKoszalin;
 			sourceTree = "<group>";
