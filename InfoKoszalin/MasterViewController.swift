@@ -66,7 +66,6 @@ class MasterViewController: UITableViewController, UISearchResultsUpdating, UISe
   
   private func setupParser() {
     parser = RSSParser(urls: [URL(string: "http://www.gk24.pl/rss/gloskoszalinski.xml"),
-                              URL(string: "http://koszalin.naszemiasto.pl/rss/artykuly/1.xml"),
                               URL(string: "http://www.koszalin.pl/pl/rss.xml")])
     parseRSSContent { }
   }
